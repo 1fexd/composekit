@@ -1,4 +1,4 @@
-package fe.buildsrc.publishing.fe.buildsrc.publishing
+package fe.buildsrc.publishing
 
 object PublicationComponent {
     const val RELEASE = "release"
