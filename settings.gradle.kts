@@ -21,7 +21,6 @@ dependencyResolutionManagement {
         gradlePluginPortal()
         maven { url = uri("https://jitpack.io") }
         maven { url = uri("https://maven.mozilla.org/maven2") }
-        mavenLocal()
     }
 }
 
@@ -32,7 +31,6 @@ plugins {
 
 include(":components")
 include(":util")
-
 
 val isJitPack = System.getenv("JITPACK")?.toBooleanStrictOrNull() == true
 
