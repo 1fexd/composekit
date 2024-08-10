@@ -6,15 +6,16 @@ plugins {
     id("org.jetbrains.kotlin.android")
 }
 
+group = "fe.composekit.testapp"
+
 android {
-    namespace = "fe.android.compose.ui.kit"
+    namespace = group.toString()
     compileSdk = Version.COMPILE_SDK
 
     defaultConfig {
-        applicationId = "fe.dialog.helper"
-        minSdk = 24
+        applicationId = group.toString()
+        minSdk = Version.MIN_SDK
         targetSdk = Version.COMPILE_SDK
-        compileSdk = Version.COMPILE_SDK
         versionCode = (System.currentTimeMillis() / 1000).toInt()
         versionName = "1.0"
 
@@ -34,15 +35,16 @@ android {
         }
     }
 
-    kotlin {
-        jvmToolchain(Version.JVM)
-    }
-
     buildFeatures {
         compose = true
     }
+
     composeOptions {
         kotlinCompilerExtensionVersion = versionFor(AndroidX.compose.compiler)
+    }
+
+    kotlin {
+        jvmToolchain(Version.JVM)
     }
 
     packaging {
@@ -50,19 +52,23 @@ android {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
+
+    dependencies {
+        implementation(project(":component"))
+        implementation(project(":core"))
+        implementation(project(":layout"))
+
+        implementation(platform(AndroidX.compose.bom))
+        implementation(AndroidX.compose.ui)
+        implementation(AndroidX.compose.ui.graphics)
+        implementation(AndroidX.compose.ui.toolingPreview)
+        implementation(AndroidX.compose.material3)
+
+        implementation(AndroidX.core.ktx)
+        implementation(AndroidX.lifecycle.viewModelKtx)
+        implementation(AndroidX.lifecycle.runtime.ktx)
+        implementation(AndroidX.activity.compose)
+    }
 }
 
-dependencies {
-    implementation(project(":components"))
 
-    implementation(platform(AndroidX.compose.bom))
-    implementation(AndroidX.compose.ui)
-    implementation(AndroidX.compose.ui.graphics)
-    implementation(AndroidX.compose.ui.toolingPreview)
-    implementation(AndroidX.compose.material3)
-
-    implementation(AndroidX.core.ktx)
-    implementation(AndroidX.lifecycle.viewModelKtx)
-    implementation(AndroidX.lifecycle.runtime.ktx)
-    implementation(AndroidX.activity.compose)
-}

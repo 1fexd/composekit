@@ -1,4 +1,4 @@
-rootProject.name = "compose-ui-kit"
+rootProject.name = "composekit"
 
 pluginManagement {
     repositories {
@@ -9,6 +9,9 @@ pluginManagement {
 
     plugins {
         id("de.fayard.refreshVersions") version "0.60.5"
+        id("com.android.library")
+        id("org.jetbrains.kotlin.android")
+        id("net.nemerosa.versioning")
     }
 }
 
@@ -29,8 +32,9 @@ plugins {
 }
 
 
-include(":components")
-include(":util")
+include(":core")
+include(":component")
+include(":layout")
 
 val isJitPack = System.getenv("JITPACK")?.toBooleanStrictOrNull() == true
 
