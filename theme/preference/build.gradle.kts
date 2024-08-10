@@ -36,7 +36,7 @@ android {
 
     dependencies {
         implementation(project(":core"))
-        implementation(project(":theme:core"))
+        implementation(project(":theme-core"))
 
         implementation(_1fexd.android.preference.core)
         implementation(_1fexd.android.preference.compose)

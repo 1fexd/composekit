@@ -31,10 +31,18 @@ plugins {
     id("de.fayard.refreshVersions") version "0.60.5"
 }
 
-include(":app:core")
+fun includeProject(path: String, filePath: String, name: String) {
+    include(path)
 
-include(":theme:core")
-include(":theme:preference")
+    val project = project(path)
+    project.projectDir = file(filePath)
+    project.name = name
+}
+
+includeProject(":core", "app/core", "app-core")
+
+includeProject(":core", "theme/core", "theme-core")
+includeProject(":preference", "theme/preference", "theme-preference")
 
 include(":core")
 include(":component")
