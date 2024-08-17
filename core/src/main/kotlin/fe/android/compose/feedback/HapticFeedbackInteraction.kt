@@ -1,6 +1,7 @@
 package fe.android.compose.feedback
 
 import android.content.ClipboardManager
+import android.content.Context
 import android.view.HapticFeedbackConstants
 import android.view.View
 import androidx.compose.runtime.Composable
@@ -71,10 +72,10 @@ class DefaultHapticFeedbackInteraction(
 }
 
 @Composable
-fun rememberHapticFeedbackInteraction(): DefaultHapticFeedbackInteraction {
-    val context = LocalContext.current
-    val view = LocalView.current
-
+fun rememberHapticFeedbackInteraction(
+    context: Context = LocalContext.current,
+    view: View = LocalView.current,
+): DefaultHapticFeedbackInteraction {
     return remember(context, view) {
         DefaultHapticFeedbackInteraction(
             clipboardManager = context.getSystemService<ClipboardManager>()!!,
