@@ -1,13 +1,14 @@
-import de.fayard.refreshVersions.core.versionFor
-import fe.buildsrc.dependency.PinnedVersions
 import fe.buildsrc.Version
+import fe.buildsrc.dependency.PinnedVersions
 import fe.buildsrc.dependency._1fexd
 import fe.buildsrc.publishing.PublicationComponent
 import fe.buildsrc.publishing.publish
+import fe.buildsrc.publishing.asProvider
 
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
+    id("org.jetbrains.kotlin.plugin.compose") version "2.0.20"
     id("net.nemerosa.versioning")
     `maven-publish`
 }
@@ -24,10 +25,6 @@ android {
 
     buildFeatures {
         compose = true
-    }
-
-    composeOptions {
-        kotlinCompilerExtensionVersion = versionFor(AndroidX.compose.compiler)
     }
 
     kotlin {
@@ -57,6 +54,6 @@ android {
 publishing.publish(
     project,
     group.toString(),
-    versioning.info.tag ?: versioning.info.full,
+    versioning.asProvider(project),
     PublicationComponent.RELEASE
 )

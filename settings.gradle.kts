@@ -1,3 +1,6 @@
+import java.util.*
+import kotlin.experimental.ExperimentalTypeInference
+
 rootProject.name = "composekit"
 
 pluginManagement {
@@ -11,8 +14,16 @@ pluginManagement {
         id("de.fayard.refreshVersions") version "0.60.5"
         id("com.android.library")
         id("org.jetbrains.kotlin.android")
-        id("net.nemerosa.versioning")
+        id("net.nemerosa.versioning") version "3.1.0"
     }
+
+//    resolutionStrategy {
+//        eachPlugin {
+//            if (requested.id.id == "com.gitlab.grrfe.common-gradle-plugin") {
+//                useModule("${requested.id.id}:library:0.0.39")
+//            }
+//        }
+//    }
 }
 
 @Suppress("UnstableApiUsage")
@@ -48,8 +59,40 @@ include(":core")
 include(":component")
 include(":layout")
 
-val isJitPack = System.getenv("JITPACK")?.toBooleanStrictOrNull() == true
 
-if (!isJitPack) {
-    include(":test-app")
+fun substitute(directory: Any, dependency: String, substitutes: Map<String, String>) {
+    includeBuild(directory) {
+        dependencySubstitution {
+            for ((artifact, project) in substitutes) {
+                substitute(module("$dependency:$artifact")).using(project(":$project"))
+            }
+        }
+    }
 }
+
+@OptIn(ExperimentalTypeInference::class)
+fun Any?.trySubstitute(dependency: String, @BuilderInference builderAction: MutableMap<String, String>.() -> Unit = {}) {
+    this?.let { substitute(this, dependency, buildMap(builderAction)) }
+}
+
+
+fun hasEnv(name: String): Boolean {
+    return System.getenv(name)?.toBooleanStrictOrNull() == true
+}
+
+
+val isCI = hasEnv("CI")
+val isJitPack = hasEnv("JITPACK")
+val dev = true
+
+val substitutes = file("local.properties")
+if (dev && (substitutes.exists() && !isCI && !isJitPack)) {
+    include(":test-app")
+
+    val properties = Properties().apply {
+        file("local.properties").reader().use { load(it) }
+    }
+
+}
+
+

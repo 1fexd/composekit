@@ -1,9 +1,10 @@
-import de.fayard.refreshVersions.core.versionFor
 import fe.buildsrc.Version
 
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("org.jetbrains.kotlin.plugin.compose") version "2.0.20"
+    id("net.nemerosa.versioning")
 }
 
 group = "fe.composekit.testapp"
@@ -37,10 +38,6 @@ android {
 
     buildFeatures {
         compose = true
-    }
-
-    composeOptions {
-        kotlinCompilerExtensionVersion = versionFor(AndroidX.compose.compiler)
     }
 
     kotlin {
