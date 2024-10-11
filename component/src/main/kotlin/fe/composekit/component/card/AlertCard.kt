@@ -24,6 +24,7 @@ import fe.android.compose.extension.atElevation
 import fe.android.compose.padding.Top
 import fe.android.compose.extension.optionalClickable
 import fe.android.compose.padding.exclude
+import fe.composekit.component.icon.IconOffset
 
 object AlertCardDefaults {
     val MinHeight = Modifier.heightIn(min = 90.dp)
@@ -50,6 +51,7 @@ fun AlertCard(
     icon: IconPainter,
     iconSize: Dp = AlertCardDefaults.IconSize,
     iconContainerSize: Dp = AlertCardDefaults.IconContainerSize,
+    iconOffset: IconOffset? = null,
     iconContentDescription: String?,
     content: @Composable (() -> Unit)? = null,
 ) {
@@ -76,6 +78,7 @@ fun AlertCard(
                 icon = icon,
                 iconSize = iconSize,
                 containerSize = iconContainerSize,
+                iconOffset = iconOffset,
                 contentDescription = iconContentDescription,
                 colors = IconButtonDefaults.iconButtonColors(
                     containerColor = containerColor,
