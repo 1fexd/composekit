@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.dsl.KotlinVersion
+
 plugins {
     `kotlin-dsl`
 }
@@ -12,5 +14,8 @@ dependencies {
 }
 
 kotlin {
-    jvmToolchain(17)
+    compilerOptions {
+        languageVersion.set(KotlinVersion.KOTLIN_1_9)
+        apiVersion.set(KotlinVersion.KOTLIN_1_9)
+    }
 }

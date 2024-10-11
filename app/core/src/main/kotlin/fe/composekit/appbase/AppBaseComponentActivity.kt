@@ -1,5 +1,3 @@
-@file:OptIn(KoinExperimentalAPI::class)
-
 package fe.composekit.appbase
 
 import androidx.activity.ComponentActivity

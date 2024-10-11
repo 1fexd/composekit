@@ -1,5 +1,4 @@
 import fe.buildsrc.Version
-import fe.buildsrc.dependency.PinnedVersions
 import fe.buildsrc.publishing.PublicationComponent
 import fe.buildsrc.publishing.asProvider
 import fe.buildsrc.publishing.publish
@@ -7,7 +6,7 @@ import fe.buildsrc.publishing.publish
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
-    id("org.jetbrains.kotlin.plugin.compose") version "2.0.20"
+    id("org.jetbrains.kotlin.plugin.compose")
     id("net.nemerosa.versioning")
     `maven-publish`
 }
@@ -37,9 +36,8 @@ android {
         implementation(AndroidX.activity.compose)
         implementation(Koin.compose)
 
-
-        implementation(PinnedVersions.ComposeUi)
-        implementation(PinnedVersions.Material3)
+        implementation(AndroidX.compose.ui)
+        implementation(AndroidX.compose.material3)
     }
 
     publishing {

@@ -36,8 +36,8 @@ android {
         implementation(project(":layout"))
 
         implementation(platform(AndroidX.compose.bom))
-        implementation(PinnedVersions.ComposeUi)
-        implementation(PinnedVersions.Material3)
+        implementation(AndroidX.compose.ui)
+        implementation(AndroidX.compose.material3)
         implementation(AndroidX.compose.ui.toolingPreview)
 
         implementation(_1fexd.android.span.compose)
