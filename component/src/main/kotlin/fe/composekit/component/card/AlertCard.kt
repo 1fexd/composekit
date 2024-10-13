@@ -13,6 +13,7 @@ import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import fe.android.compose.content.OptionalContent
 import fe.composekit.component.PreviewThemeNew
 import fe.composekit.component.icon.FilledIcon
 import fe.composekit.component.shape.CustomShapeDefaults
@@ -53,7 +54,7 @@ fun AlertCard(
     iconContainerSize: Dp = AlertCardDefaults.IconContainerSize,
     iconOffset: IconOffset? = null,
     iconContentDescription: String?,
-    content: @Composable (() -> Unit)? = null,
+    content: OptionalContent = null,
 ) {
     Card(
         modifier = Modifier
@@ -111,8 +112,8 @@ fun AlertCard(
 }
 
 @Composable
-@Preview(showBackground = true)
-fun ClickableAlertCard2Preview() {
+@Preview(showBackground = true, apiLevel = 34)
+private fun ClickableAlertCard2Preview() {
     PreviewThemeNew {
         Column(modifier = Modifier.width(400.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
             AlertCard(
