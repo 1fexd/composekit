@@ -11,13 +11,13 @@ import org.gradle.kotlin.dsl.*
 fun PublishingExtension.publish(
     project: Project,
     group: String,
-    version: String,
+    version: Provider<String>,
     publication: String,
 ) {
     publications {
         register<MavenPublication>(publication) {
             groupId = group
-            this.version = version
+            this.version = version.get()
 
             project.afterEvaluate {
                 from(components[publication])
@@ -40,8 +40,4 @@ fun VersioningExtension.asProvider(
         val info = computeInfo()
         strategy(info)
     }
-}
-
-fun PublishingExtension.publish(project: Project, group: String, version: Provider<String>, publication: String) {
-    publish(project, group, version.get(), publication)
 }
