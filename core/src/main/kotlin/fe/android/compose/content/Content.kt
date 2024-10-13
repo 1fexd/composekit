@@ -9,9 +9,7 @@ typealias OptionalContent = Content?
 @Composable
 inline fun rememberOptionalContent(condition: Boolean, crossinline content: @Composable () -> Unit): OptionalContent {
     return remember(key1 = condition) {
-        condition.takeIf { true }?.let {
-            { content() }
-        }
+        if (condition) ({ content() }) else null
     }
 }
 
