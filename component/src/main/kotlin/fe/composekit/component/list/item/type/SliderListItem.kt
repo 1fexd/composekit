@@ -12,18 +12,20 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import fe.composekit.component.CommonDefaults
-import fe.composekit.component.list.column.shape.ShapeListItem
-import fe.composekit.component.shape.CustomShapeDefaults
+import fe.android.compose.extension.enabled
 import fe.android.compose.text.ComposableTextContent.Companion.content
 import fe.android.compose.text.DefaultContent.Companion.text
 import fe.android.compose.text.TextContent
-import fe.android.compose.extension.enabled
+import fe.composekit.component.CommonDefaults
+import fe.composekit.component.list.column.shape.ShapeListItem
+import fe.composekit.component.list.item.EnabledContent
+import fe.composekit.component.list.item.EnabledContentSet
+import fe.composekit.component.shape.CustomShapeDefaults
 
 @Composable
 fun SliderListItem(
     modifier: Modifier = Modifier,
-    enabled: Boolean = true,
+    enabled: EnabledContentSet = EnabledContent.all,
     value: Float,
     valueRange: ClosedFloatingPointRange<Float> = 0f..1f,
     valueRangeStep: Float = 1f,
@@ -37,7 +39,7 @@ fun SliderListItem(
 ) {
     ShapeListItem(
         modifier = Modifier
-            .enabled(enabled)
+            .enabled(EnabledContent.Main in enabled)
             .then(modifier),
         shape = shape,
         padding = padding,
@@ -48,7 +50,7 @@ fun SliderListItem(
                 supportingContent?.content?.invoke()
 
                 DefaultSliderListItem(
-                    enabled = enabled,
+                    enabled = EnabledContent.Primary in enabled,
                     value = value,
                     valueRange = valueRange,
                     valueRangeStep = valueRangeStep,

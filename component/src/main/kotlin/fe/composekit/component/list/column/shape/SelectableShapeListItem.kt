@@ -13,8 +13,11 @@ import fe.android.compose.content.OptionalContent
 import fe.android.compose.text.OptionalTextContent
 import fe.android.compose.text.TextContent
 import fe.android.compose.extension.enabled
+import fe.composekit.component.list.column.CustomListItemContainerHeight
+import fe.composekit.component.list.column.CustomListItemDefaults
+import fe.composekit.component.list.column.CustomListItemPadding
+import fe.composekit.component.list.column.CustomListItemTextOptions
 import fe.composekit.component.list.item.ContentPosition
-import fe.composekit.component.list.column.*
 
 @Composable
 fun SelectableShapeListItem(

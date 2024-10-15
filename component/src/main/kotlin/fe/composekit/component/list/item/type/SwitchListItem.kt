@@ -11,17 +11,19 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.semantics.Role
-import fe.composekit.component.CommonDefaults
-import fe.composekit.component.list.column.shape.ClickableShapeListItem
-import fe.composekit.component.shape.CustomShapeDefaults
 import fe.android.compose.content.OptionalContent
 import fe.android.compose.content.rememberOptionalContent
 import fe.android.compose.text.TextContent
+import fe.composekit.component.CommonDefaults
+import fe.composekit.component.list.column.shape.ClickableShapeListItem
 import fe.composekit.component.list.item.ContentPosition
+import fe.composekit.component.list.item.EnabledContent
+import fe.composekit.component.list.item.EnabledContentSet
+import fe.composekit.component.shape.CustomShapeDefaults
 
 @Composable
 fun SwitchListItem(
-    enabled: Boolean = true,
+    enabled: EnabledContentSet = EnabledContent.all,
     checked: Boolean,
     onCheckedChange: (Boolean) -> Unit,
     shape: Shape = CustomShapeDefaults.SingleShape,
@@ -33,7 +35,7 @@ fun SwitchListItem(
     otherContent: OptionalContent = null,
 ) {
     ClickableShapeListItem(
-        enabled = enabled,
+        enabled = EnabledContent.Main in enabled,
         onClick = { onCheckedChange(!checked) },
         role = Role.Switch,
         shape = shape,
@@ -44,7 +46,7 @@ fun SwitchListItem(
         supportingContent = supportingContent,
         primaryContent = {
             DefaultListItemSwitch(
-                enabled = enabled,
+                enabled = EnabledContent.Primary in enabled,
                 checked = checked,
                 onCheckedChange = onCheckedChange
             )

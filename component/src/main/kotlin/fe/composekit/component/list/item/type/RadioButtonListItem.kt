@@ -13,13 +13,18 @@ import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import fe.composekit.component.CommonDefaults
-import fe.composekit.component.list.column.*
-import fe.composekit.component.list.column.shape.SelectableShapeListItem
-import fe.composekit.component.list.column.shape.ShapeListItemDefaults
 import fe.composekit.component.shape.CustomShapeDefaults
 import fe.android.compose.content.OptionalContent
 import fe.android.compose.text.TextContent
+import fe.composekit.component.list.column.CustomListItemContainerHeight
+import fe.composekit.component.list.column.CustomListItemDefaults
+import fe.composekit.component.list.column.CustomListItemPadding
+import fe.composekit.component.list.column.CustomListItemTextOptions
+import fe.composekit.component.list.column.shape.SelectableShapeListItem
+import fe.composekit.component.list.column.shape.ShapeListItemDefaults
 import fe.composekit.component.list.item.ContentPosition
+import fe.composekit.component.list.item.EnabledContent
+import fe.composekit.component.list.item.EnabledContentSet
 
 object RadioButtonListItemDefaults {
     val Width = 24.dp
@@ -28,7 +33,7 @@ object RadioButtonListItemDefaults {
 @Composable
 fun RadioButtonListItem(
     modifier: Modifier = CommonDefaults.BaseModifier,
-    enabled: Boolean = true,
+    enabled: EnabledContentSet = EnabledContent.all,
     width: Dp = RadioButtonListItemDefaults.Width,
     selected: Boolean,
     onSelect: () -> Unit,
@@ -46,7 +51,7 @@ fun RadioButtonListItem(
 ) {
     SelectableShapeListItem(
         modifier = modifier,
-        enabled = enabled,
+        enabled = EnabledContent.Main in enabled,
         selected = selected,
         onClick = onSelect,
         role = Role.RadioButton,
@@ -58,7 +63,12 @@ fun RadioButtonListItem(
         supportingContent = supportingContent,
         position = position,
         primaryContent = {
-            DefaultListItemRadioButton(enabled = enabled, width = width, selected = selected, onSelect = onSelect)
+            DefaultListItemRadioButton(
+                enabled = EnabledContent.Primary in enabled,
+                width = width,
+                selected = selected,
+                onSelect = onSelect
+            )
         },
         otherContent = otherContent,
         containerHeight = containerHeight,

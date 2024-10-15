@@ -9,18 +9,17 @@ import androidx.compose.ui.semantics.Role
 import fe.android.compose.content.OptionalContent
 import fe.android.compose.text.TextContent
 import fe.composekit.component.CommonDefaults
-import fe.composekit.component.list.column.CustomListItemContainerHeight
-import fe.composekit.component.list.column.CustomListItemDefaults
-import fe.composekit.component.list.column.CustomListItemPadding
-import fe.composekit.component.list.column.CustomListItemTextOptions
+import fe.composekit.component.list.column.*
 import fe.composekit.component.list.column.shape.ClickableShapeListItem
 import fe.composekit.component.list.column.shape.ShapeListItemDefaults
 import fe.composekit.component.list.item.ContentPosition
+import fe.composekit.component.list.item.EnabledContent
+import fe.composekit.component.list.item.EnabledContentSet
 import fe.composekit.component.shape.CustomShapeDefaults
 
 @Composable
 fun CheckboxListItem(
-    enabled: Boolean = true,
+    enabled: EnabledContentSet = EnabledContent.all,
     checked: Boolean,
     onCheckedChange: (Boolean) -> Unit,
     shape: Shape = CustomShapeDefaults.SingleShape,
@@ -36,7 +35,7 @@ fun CheckboxListItem(
     otherContent: OptionalContent,
 ) {
     ClickableShapeListItem(
-        enabled = enabled,
+        enabled = EnabledContent.Main in enabled,
         onClick = { onCheckedChange(!checked) },
         role = Role.Checkbox,
         shape = shape,
@@ -47,7 +46,11 @@ fun CheckboxListItem(
         supportingContent = supportingContent,
         position = position,
         primaryContent = {
-            DefaultListItemCheckbox(enabled = enabled, checked = checked, onCheckedChange = onCheckedChange)
+            DefaultListItemCheckbox(
+                enabled = EnabledContent.Primary in enabled,
+                checked = checked,
+                onCheckedChange = onCheckedChange
+            )
         },
         otherContent = otherContent,
         containerHeight = containerHeight,

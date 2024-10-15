@@ -10,8 +10,8 @@ import fe.android.compose.content.rememberOptionalContent
 import fe.android.compose.icon.IconPainter
 import fe.android.compose.text.TextContent
 import fe.composekit.component.CommonDefaults
-import fe.composekit.component.list.item.ContentPosition
 import fe.composekit.component.list.column.shape.ClickableShapeListItem
+import fe.composekit.component.list.item.ContentPosition
 import fe.composekit.component.shape.CustomShapeDefaults
 
 @Composable

@@ -15,18 +15,20 @@ import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import fe.composekit.component.CommonDefaults
-import fe.composekit.component.list.column.shape.ClickableShapeListItem
 import fe.composekit.component.shape.CustomShapeDefaults
 import fe.android.compose.content.OptionalContent
 import fe.android.compose.content.rememberOptionalContent
 import fe.android.compose.text.DefaultContent.Companion.text
 import fe.android.compose.text.TextContent
+import fe.composekit.component.list.column.shape.ClickableShapeListItem
 import fe.composekit.component.list.item.ContentPosition
+import fe.composekit.component.list.item.EnabledContent
+import fe.composekit.component.list.item.EnabledContentSet
 
 
 @Composable
 fun DividedSwitchListItem(
-    enabled: Boolean = true,
+    enabled: EnabledContentSet = EnabledContent.all,
     checked: Boolean,
     onCheckedChange: (Boolean) -> Unit,
     onContentClick: () -> Unit,
@@ -39,7 +41,7 @@ fun DividedSwitchListItem(
     otherContent: OptionalContent = null,
 ) {
     ClickableShapeListItem(
-        enabled = enabled,
+        enabled = EnabledContent.Main in enabled,
         onClick = onContentClick,
         role = Role.Button,
         shape = shape,
@@ -50,7 +52,7 @@ fun DividedSwitchListItem(
         supportingContent = supportingContent,
         primaryContent = {
             DefaultDividedListItemSwitch(
-                enabled = enabled,
+                enabled = EnabledContent.Primary in enabled,
                 checked = checked,
                 onCheckedChange = onCheckedChange
             )
@@ -94,6 +96,8 @@ private fun DefaultDividedListItemSwitch(
 @Preview
 @Composable
 fun DividedClickableShapeListItemPreview() {
+
+
     var checked by remember { mutableStateOf(true) }
     DividedSwitchListItem(
         checked = checked,

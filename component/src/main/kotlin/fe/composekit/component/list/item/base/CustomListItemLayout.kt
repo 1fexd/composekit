@@ -1,4 +1,4 @@
-package fe.composekit.component.list.column
+package fe.composekit.component.list.item.base
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
@@ -6,6 +6,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.layout.*
 import androidx.compose.ui.unit.*
+import fe.composekit.component.list.column.CustomListItemContainerHeight
+import fe.composekit.component.list.column.CustomListItemPadding
 import kotlin.math.max
 
 @Composable

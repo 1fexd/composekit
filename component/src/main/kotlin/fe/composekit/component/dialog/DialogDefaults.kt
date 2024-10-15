@@ -7,10 +7,10 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import fe.android.compose.text.TextOptions
 import fe.composekit.component.list.column.CustomListItemDefaults
 import fe.composekit.component.list.column.CustomListItemTextOptions
 import fe.composekit.component.list.column.shape.ShapeListItemDefaults
-import fe.android.compose.text.TextOptions
 
 object DialogDefaults {
     val RadioButtonWidth = 48.dp

@@ -11,11 +11,11 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import fe.composekit.component.CommonDefaults
-import fe.composekit.component.list.column.*
 import fe.composekit.component.shape.CustomShapeDefaults
 import fe.android.compose.content.OptionalContent
 import fe.android.compose.text.OptionalTextContent
 import fe.android.compose.text.TextContent
+import fe.composekit.component.list.column.*
 
 
 object ShapeListItemDefaults {
