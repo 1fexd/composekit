@@ -8,7 +8,7 @@ import fe.buildsrc.publishing.asProvider
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
-    id("org.jetbrains.kotlin.plugin.compose") version "2.0.20"
+    id("org.jetbrains.kotlin.plugin.compose")
     id("net.nemerosa.versioning")
     `maven-publish`
 }

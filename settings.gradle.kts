@@ -92,7 +92,6 @@ if (dev && (substitutes.exists() && !isCI && !isJitPack)) {
     val properties = Properties().apply {
         file("local.properties").reader().use { load(it) }
     }
-
 }
 
 
