@@ -59,6 +59,7 @@ include(":core")
 include(":component")
 include(":layout")
 
+include(":platform")
 
 fun substitute(directory: Any, dependency: String, substitutes: Map<String, String>) {
     includeBuild(directory) {
