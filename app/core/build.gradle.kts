@@ -1,4 +1,5 @@
 import fe.buildsrc.Version
+import fe.buildsrc.dependency.PinnedVersions
 import fe.buildsrc.publishing.PublicationComponent
 import fe.buildsrc.publishing.asProvider
 import fe.buildsrc.publishing.publish
@@ -37,7 +38,7 @@ android {
         implementation(Koin.compose)
 
         implementation(AndroidX.compose.ui)
-        implementation(AndroidX.compose.material3)
+        implementation(PinnedVersions.Material3)
     }
 
     publishing {

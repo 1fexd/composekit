@@ -1,4 +1,5 @@
 import fe.buildsrc.Version
+import fe.buildsrc.dependency.PinnedVersions
 import fe.buildsrc.dependency._1fexd
 import fe.buildsrc.publishing.PublicationComponent
 import fe.buildsrc.publishing.publish
@@ -36,8 +37,9 @@ android {
 
         implementation(platform(AndroidX.compose.bom))
         implementation(AndroidX.compose.ui)
-        implementation(AndroidX.compose.material3)
+        implementation(PinnedVersions.Material3)
         implementation(AndroidX.compose.ui.toolingPreview)
+        implementation(AndroidX.compose.material.icons.core)
 
         implementation(_1fexd.android.span.compose)
     }

@@ -1,4 +1,5 @@
 import fe.buildsrc.Version
+import fe.buildsrc.dependency.PinnedVersions
 
 plugins {
     id("com.android.application")
@@ -59,12 +60,12 @@ android {
         implementation(AndroidX.compose.ui)
         implementation(AndroidX.compose.ui.graphics)
         implementation(AndroidX.compose.ui.toolingPreview)
-        implementation(AndroidX.compose.material3)
-
+        implementation(PinnedVersions.Material3)
         implementation(AndroidX.core.ktx)
         implementation(AndroidX.lifecycle.viewModelKtx)
         implementation(AndroidX.lifecycle.runtime.ktx)
         implementation(AndroidX.activity.compose)
+        implementation(AndroidX.compose.material.icons.core)
     }
 }
 

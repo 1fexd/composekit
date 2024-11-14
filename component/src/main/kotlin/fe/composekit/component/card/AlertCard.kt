@@ -3,7 +3,13 @@ package fe.composekit.component.card
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Warning
-import androidx.compose.material3.*
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardColors
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.IconButtonDefaults
+import androidx.compose.material3.LocalTextStyle
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.contentColorFor
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Alignment
@@ -14,18 +20,18 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import fe.android.compose.content.OptionalContent
-import fe.composekit.component.PreviewThemeNew
-import fe.composekit.component.icon.FilledIcon
-import fe.composekit.component.shape.CustomShapeDefaults
+import fe.android.compose.extension.atElevation
+import fe.android.compose.extension.optionalClickable
 import fe.android.compose.icon.IconPainter
 import fe.android.compose.icon.iconPainter
+import fe.android.compose.padding.Top
+import fe.android.compose.padding.exclude
 import fe.android.compose.text.DefaultContent.Companion.text
 import fe.android.compose.text.TextContent
-import fe.android.compose.extension.atElevation
-import fe.android.compose.padding.Top
-import fe.android.compose.extension.optionalClickable
-import fe.android.compose.padding.exclude
+import fe.composekit.component.PreviewThemeNew
+import fe.composekit.component.icon.FilledIcon
 import fe.composekit.component.icon.IconOffset
+import fe.composekit.component.shape.CustomShapeDefaults
 
 object AlertCardDefaults {
     val MinHeight = Modifier.heightIn(min = 90.dp)
@@ -90,13 +96,13 @@ fun AlertCard(
             AlertCardContentLayout(
                 title = {
                     CompositionLocalProvider(
-                        LocalTextStyle provides MaterialTheme.typography.titleMedium,
+                        value = LocalTextStyle provides MaterialTheme.typography.titleMedium,
                         content = headline.content
                     )
                 },
                 subtitle = {
                     CompositionLocalProvider(
-                        LocalTextStyle provides MaterialTheme.typography.bodyMedium,
+                        value = LocalTextStyle provides MaterialTheme.typography.bodyMedium,
                         content = subtitle.content
                     )
                 }
