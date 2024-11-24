@@ -38,10 +38,11 @@ android {
         implementation(_1fexd.android.preference.core)
         implementation(_1fexd.android.preference.compose)
 
-        implementation(platform(AndroidX.compose.bom))
         implementation(AndroidX.activity.compose)
 
-        implementation(PinnedVersions.ComposeUi)
+        implementation(platform(AndroidX.compose.bom))
+        implementation(AndroidX.compose.ui.withVersion(PinnedVersions.ComposeVersion))
+        implementation(AndroidX.compose.ui.text)
         implementation(PinnedVersions.Material3)
     }
 

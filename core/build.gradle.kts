@@ -33,7 +33,8 @@ android {
 
     dependencies {
         implementation(platform(AndroidX.compose.bom))
-        implementation(PinnedVersions.ComposeUi)
+        implementation(AndroidX.compose.ui.withVersion(PinnedVersions.ComposeVersion))
+        implementation(AndroidX.compose.ui.text)
         implementation(PinnedVersions.Material3)
 
         implementation(_1fexd.android.span.compose)

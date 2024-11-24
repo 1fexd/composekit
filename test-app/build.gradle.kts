@@ -57,7 +57,7 @@ android {
         implementation(project(":layout"))
 
         implementation(platform(AndroidX.compose.bom))
-        implementation(AndroidX.compose.ui)
+        implementation(AndroidX.compose.ui.withVersion(PinnedVersions.ComposeVersion))
         implementation(AndroidX.compose.ui.graphics)
         implementation(AndroidX.compose.ui.toolingPreview)
         implementation(PinnedVersions.Material3)

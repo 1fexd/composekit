@@ -12,7 +12,7 @@ data class TextOptions(
 )
 
 val DefaultTextOptions = TextOptions()
-val LocalTextOptions = compositionLocalOf(structuralEqualityPolicy()) { DefaultTextOptions }
+val LocalTextOptions = compositionLocalOf { DefaultTextOptions }
 
 typealias OptionalTextContent = TextContent?
 

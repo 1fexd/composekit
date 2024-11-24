@@ -37,7 +37,7 @@ android {
         implementation(AndroidX.activity.compose)
         implementation(Koin.compose)
 
-        implementation(AndroidX.compose.ui)
+        implementation(AndroidX.compose.ui.withVersion(PinnedVersions.ComposeVersion))
         implementation(PinnedVersions.Material3)
     }
 
