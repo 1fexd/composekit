@@ -38,6 +38,7 @@ android {
         implementation(platform(AndroidX.compose.bom))
         implementation(AndroidX.compose.ui)
         implementation(PinnedVersions.Material3)
+        implementation(AndroidX.compose.ui.tooling)
         implementation(AndroidX.compose.ui.toolingPreview)
         implementation(AndroidX.compose.material.icons.core)
 
