@@ -1,3 +1,5 @@
+@file:Suppress("UnstableApiUsage")
+
 import java.util.*
 import kotlin.experimental.ExperimentalTypeInference
 
@@ -11,10 +13,10 @@ pluginManagement {
     }
 
     plugins {
-        id("de.fayard.refreshVersions") version "0.60.5"
+        id("de.fayard.refreshVersions")
         id("com.android.library")
         id("org.jetbrains.kotlin.android")
-        id("net.nemerosa.versioning") version "3.1.0"
+        id("net.nemerosa.versioning")
     }
 
 //    resolutionStrategy {
@@ -26,7 +28,6 @@ pluginManagement {
 //    }
 }
 
-@Suppress("UnstableApiUsage")
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
