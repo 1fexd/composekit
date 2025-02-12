@@ -1,5 +1,5 @@
-import fe.buildsrc.Version
-import fe.buildsrc.dependency.PinnedVersions
+import fe.buildlogic.Version
+import fe.build.dependencies.PinnedVersions
 
 plugins {
     id("com.android.application")
@@ -37,10 +37,6 @@ android {
         }
     }
 
-    buildFeatures {
-        compose = true
-    }
-
     kotlin {
         jvmToolchain(Version.JVM)
     }
@@ -57,7 +53,7 @@ android {
         implementation(project(":layout"))
 
         implementation(platform(AndroidX.compose.bom))
-        implementation(AndroidX.compose.ui.withVersion(PinnedVersions.ComposeVersion))
+        implementation(AndroidX.compose.ui)
         implementation(AndroidX.compose.ui.graphics)
         implementation(AndroidX.compose.ui.toolingPreview)
         implementation(PinnedVersions.Material3)

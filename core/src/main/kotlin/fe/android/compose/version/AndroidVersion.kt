@@ -6,9 +6,9 @@ import androidx.annotation.Keep
 
 @Keep
 object AndroidVersion {
+    @get:Keep
+    @get:ChecksSdkIntAtLeast(api = Build.VERSION_CODES.O)
     inline val AT_LEAST_API_26_O: Boolean
-        @Keep
-        @ChecksSdkIntAtLeast(api = Build.VERSION_CODES.O)
         get() = Build.VERSION.SDK_INT >= Build.VERSION_CODES.O
 
     inline val AT_LEAST_API_28_P
@@ -26,9 +26,9 @@ object AndroidVersion {
         @ChecksSdkIntAtLeast(api = Build.VERSION_CODES.R)
         get() = Build.VERSION.SDK_INT >= Build.VERSION_CODES.R
 
+    @get:Keep
+    @get:ChecksSdkIntAtLeast(api = Build.VERSION_CODES.S)
     inline val AT_LEAST_API_31_S
-        @Keep
-        @ChecksSdkIntAtLeast(api = Build.VERSION_CODES.S)
         get() = Build.VERSION.SDK_INT >= Build.VERSION_CODES.S
 
     inline val AT_LEAST_API_33_T

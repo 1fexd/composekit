@@ -1,11 +1,5 @@
-import fe.buildsrc.publishing.PublicationComponent
-import fe.buildsrc.publishing.asProvider
-import fe.buildsrc.publishing.publish
-
 plugins {
     `java-platform`
-    `maven-publish`
-    id("net.nemerosa.versioning")
 }
 
 val group = "com.github.1fexd.composekit"
@@ -17,10 +11,3 @@ dependencies {
         }
     }
 }
-
-publishing.publish(
-    project,
-    group.toString(),
-    versioning.asProvider(project),
-    PublicationComponent.JAVA_PLATFORM
-)
