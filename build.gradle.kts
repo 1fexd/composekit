@@ -1,7 +1,9 @@
 import com.android.build.gradle.LibraryExtension
 import fe.buildlogic.Version
 import fe.buildlogic.extension.asProvider
+import fe.buildlogic.fixGroup
 import fe.buildlogic.publishing.PublicationComponent
+import fe.buildlogic.publishing.PublicationName
 import fe.buildlogic.publishing.publish
 import fe.buildlogic.version.AndroidVersionStrategy
 import net.nemerosa.versioning.VersioningExtension
@@ -16,7 +18,7 @@ plugins {
     `maven-publish`
 }
 
-val baseGroup = "com.github._1fexd.composekit"
+val baseGroup = "com.github.q1fexd.composekit"
 
 subprojects {
     val isPlatform = name == "platform"
@@ -39,7 +41,7 @@ subprojects {
         asProvider(this@subprojects, provider)
     }
 
-    group = baseGroup
+    group = fixGroup(baseGroup)
     version = versionProvider.get()
 
     if (!isPlatform && !isTestApp) {
@@ -57,7 +59,7 @@ subprojects {
 
             publishing {
                 multipleVariants {
-                    allVariants()
+                    singleVariant(PublicationName.Release)
                     withSourcesJar()
                 }
             }
@@ -70,12 +72,13 @@ subprojects {
         }
     }
 
-    if(!isTestApp) {
+    if (!isTestApp) {
         publishing.publish(
             this@subprojects,
             group.toString(),
             versionProvider,
-            if (isPlatform) PublicationComponent.JavaPlatform else PublicationComponent.Android
+            if (isPlatform) PublicationComponent.JavaPlatform else PublicationComponent.Android,
+            PublicationName.Release
         )
     }
 }
