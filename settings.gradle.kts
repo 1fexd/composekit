@@ -15,9 +15,6 @@ pluginManagement {
         gradlePluginPortal()
     }
 
-    extra.properties["gradle.build.dir"]
-        ?.let { includeBuild(it.toString()) }
-
     plugins {
         id("de.fayard.refreshVersions") version "0.60.5"
         id("com.android.library")
@@ -25,15 +22,21 @@ pluginManagement {
         id("net.nemerosa.versioning") version "3.1.0"
     }
 
-    resolutionStrategy {
-        eachPlugin {
-            if (extra.properties["gradle.build.dir"] == null) {
-                when (requested.id.id) {
-                    "com.gitlab.grrfe.build-settings-plugin" -> useModule("com.gitlab.grrfe.gradle-build:build-settings:0.0.7")
-                    "com.gitlab.grrfe.build-logic-plugin" -> useModule("com.gitlab.grrfe.gradle-build:build-logic:0.0.7")
+    when(val gradleBuildDir = extra.properties["gradle.build.dir"]) {
+        null -> {
+            val gradleBuildVersion = "0.0.8"
+            val plugins = mapOf(
+                "com.gitlab.grrfe.build-settings-plugin" to "com.gitlab.grrfe.gradle-build:build-settings",
+                "com.gitlab.grrfe.build-logic-plugin" to "com.gitlab.grrfe.gradle-build:build-logic"
+            )
+
+            resolutionStrategy {
+                eachPlugin {
+                    plugins[requested.id.id]?.let { useModule("$it:$gradleBuildVersion") }
                 }
             }
         }
+        else -> includeBuild(gradleBuildDir.toString())
     }
 }
 
@@ -62,6 +65,9 @@ include(":layout")
 
 include(":app:app-core")
 
+include(":dialog:dialog-core")
+include(":dialog:dialog-test-app")
+
 include(":theme:theme-core")
 include(":theme:theme-preference")
 
@@ -72,7 +78,7 @@ if (!hasJitpackEnv) {
 }
 
 buildSettings {
-    fromFile(file("local.properties")) {
+    substitutes {
         trySubstitute(_1fexd.android.span, properties["android-span-helper.dir"])
     }
 }

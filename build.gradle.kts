@@ -20,7 +20,7 @@ val baseGroup = "com.github._1fexd.composekit"
 
 subprojects {
     val isPlatform = name == "platform"
-    val isTestApp = name == "test-app"
+    val isTestApp = name.endsWith("test-app")
 
     if (!isTestApp && !isPlatform) {
         apply(plugin = "com.android.library")

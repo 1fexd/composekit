@@ -1,5 +1,4 @@
 import fe.buildlogic.Version
-import fe.build.dependencies.PinnedVersions
 
 plugins {
     id("com.android.application")
@@ -7,7 +6,7 @@ plugins {
     id("org.jetbrains.kotlin.plugin.compose")
 }
 
-group = "fe.composekit.testapp"
+group = "fe.android.compose.dialog.helper"
 
 android {
     namespace = group.toString()
@@ -48,18 +47,15 @@ android {
 }
 
 dependencies {
-    implementation(project(":component"))
-    implementation(project(":core"))
-    implementation(project(":layout"))
+    implementation(project(":dialog:dialog-core"))
 
-    implementation(platform(AndroidX.compose.bom))
-    implementation(AndroidX.compose.ui)
-    implementation(AndroidX.compose.ui.graphics)
-    implementation(AndroidX.compose.ui.toolingPreview)
-    implementation(PinnedVersions.Material3)
     implementation(AndroidX.core.ktx)
     implementation(AndroidX.lifecycle.viewModelKtx)
     implementation(AndroidX.lifecycle.runtime.ktx)
     implementation(AndroidX.activity.compose)
-    implementation(AndroidX.compose.material.icons.core)
+    implementation(platform(AndroidX.compose.bom))
+    implementation(AndroidX.compose.ui)
+    implementation(AndroidX.compose.ui.graphics)
+    implementation(AndroidX.compose.ui.toolingPreview)
+    implementation(AndroidX.compose.material3)
 }
