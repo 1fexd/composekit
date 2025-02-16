@@ -10,5 +10,5 @@ dependencies {
 
 //    implementation(platform(_1fexd.android.preference.bom))
     implementation(_1fexd.android.preference.core)
-    implementation(_1fexd.android.preference.compose)
+    implementation(_1fexd.android.preference.compose.core)
 }
