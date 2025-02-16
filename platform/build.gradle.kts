@@ -2,12 +2,22 @@ plugins {
     `java-platform`
 }
 
-val group = "com.github.1fexd.composekit"
-
 dependencies {
     constraints {
-        rootProject.allprojects.filter { it != rootProject && it != project }.forEach { project ->
-            api("$group:${project.name}:${project.version}")
-        }
+        dependencies().forEach { api(it.toDependencyNotation()) }
+    }
+}
+
+fun Project.toDependencyNotation(): String {
+    return "$group:${name}:${version}"
+}
+
+fun Project.dependencies(): List<Project> {
+    return rootProject.allprojects.filter { it != rootProject && it != project }
+}
+
+tasks.create("printArtiacts") {
+    dependencies().sorted().forEach {
+        println(it.toDependencyNotation())
     }
 }

@@ -18,7 +18,7 @@ plugins {
     `maven-publish`
 }
 
-val baseGroup = "com.github.q1fexd.composekit"
+val baseGroup = "com.github.1fexd.composekit"
 
 subprojects {
     val isPlatform = name == "platform"
@@ -42,7 +42,7 @@ subprojects {
     }
 
     group = fixGroup(baseGroup)
-    version = versionProvider.get()
+    version = versionProvider.get().releaseVersion
 
     if (!isPlatform && !isTestApp) {
         with(extensions["kotlin"] as KotlinAndroidProjectExtension) {
@@ -50,7 +50,7 @@ subprojects {
         }
 
         with(extensions["android"] as LibraryExtension) {
-            namespace = group.toString()
+            namespace = fixGroup("fe.composekit")
             compileSdk = Version.COMPILE_SDK
 
             defaultConfig {
