@@ -2,9 +2,6 @@
 
 import fe.build.dependencies._1fexd
 import fe.buildsettings.extension.hasJitpackEnv
-import fe.buildsettings.trySubstitute
-import java.util.*
-import kotlin.experimental.ExperimentalTypeInference
 
 rootProject.name = "composekit"
 
@@ -13,6 +10,7 @@ pluginManagement {
         google()
         mavenCentral()
         gradlePluginPortal()
+        maven { url = uri("https://jitpack.io") }
     }
 
     plugins {
@@ -22,9 +20,9 @@ pluginManagement {
         id("net.nemerosa.versioning") version "3.1.0"
     }
 
-    when(val gradleBuildDir = extra.properties["gradle.build.dir"]) {
+    when (val gradleBuildDir = extra.properties["gradle.build.dir"]) {
         null -> {
-            val gradleBuildVersion = "0.0.8"
+            val gradleBuildVersion = extra.properties["gradle.build.version"]
             val plugins = mapOf(
                 "com.gitlab.grrfe.build-settings-plugin" to "com.gitlab.grrfe.gradle-build:build-settings",
                 "com.gitlab.grrfe.build-logic-plugin" to "com.gitlab.grrfe.gradle-build:build-logic"
