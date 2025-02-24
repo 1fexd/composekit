@@ -4,7 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 
 typealias Content = @Composable () -> Unit
-typealias OptionalContent = Content?
+typealias OptionalContent = (@Composable () -> Unit)?
 
 @Composable
 inline fun rememberOptionalContent(condition: Boolean, crossinline content: @Composable () -> Unit): OptionalContent {
