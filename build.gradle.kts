@@ -20,7 +20,7 @@ plugins {
     `maven-publish`
 }
 
-val baseGroup = "com.github.fexd.composekit"
+val baseGroup = "com.github.1fexd.composekit"
 
 subprojects {
     val isPlatform = name == "platform"
@@ -52,7 +52,7 @@ subprojects {
         }
 
         with(extensions["android"] as LibraryExtension) {
-            namespace = baseGroup
+            namespace = baseGroup.replace("1fexd", "fexd")
             compileSdk = Version.COMPILE_SDK
 
             defaultConfig {

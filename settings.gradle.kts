@@ -2,6 +2,7 @@
 
 import fe.build.dependencies._1fexd
 import fe.buildsettings.extension.hasJitpackEnv
+import fe.buildsettings.extension.maybeResolveIncludingRootContext
 
 rootProject.name = "composekit"
 
@@ -34,7 +35,11 @@ pluginManagement {
                 }
             }
         }
-        else -> includeBuild(gradleBuildDir.toString())
+
+        else -> {
+            logger.info("Included build $gradleBuildDir")
+            includeBuild(gradleBuildDir.toString())
+        }
     }
 }
 
@@ -56,6 +61,13 @@ plugins {
 
 extra.properties["gradle.build.dir"]
     ?.let { includeBuild(it.toString()) }
+
+//maybeResolveIncludingRootContext()?.rootProject {
+//    refreshVersions {
+//        versionsPropertiesFile = rootDir.resolve("versions.properties")
+//        logger.info("Using versions file from $versionsPropertiesFile")
+//    }
+//}
 
 include(":core")
 include(":component")
