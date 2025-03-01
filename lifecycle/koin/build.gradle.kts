@@ -3,6 +3,6 @@ plugins {
 }
 
 dependencies {
-    api(project(":lifecycle:lifecycle-core"))
+    api(project(":lifecycle-core"))
     implementation(Koin.android)
 }

@@ -3,7 +3,7 @@ plugins {
 }
 
 dependencies {
-    implementation(project(":compose:theme:theme-core"))
+    implementation(project(":compose-theme-core"))
 
     implementation(AndroidX.activity.compose)
     implementation(Koin.compose)

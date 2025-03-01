@@ -3,9 +3,9 @@ plugins {
 }
 
 dependencies {
-    implementation(project(":compose:core"))
-    implementation(project(":compose:layout"))
-    implementation(project(":span:span-compose"))
+    implementation(project(":compose-core"))
+    implementation(project(":compose-layout"))
+    implementation(project(":span-compose"))
 
     implementation(AndroidX.compose.ui.text)
     implementation(AndroidX.compose.ui.tooling)

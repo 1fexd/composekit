@@ -48,9 +48,9 @@ android {
 }
 
 dependencies {
-    implementation(project(":compose:component"))
-    implementation(project(":compose:core"))
-    implementation(project(":compose:layout"))
+    implementation(project(":compose-component"))
+    implementation(project(":compose-core"))
+    implementation(project(":compose-layout"))
 
     implementation(platform(AndroidX.compose.bom))
     implementation(AndroidX.compose.ui)

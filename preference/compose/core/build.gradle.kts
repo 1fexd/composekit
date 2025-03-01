@@ -3,6 +3,6 @@ plugins {
 }
 
 dependencies {
-    api(project(":preference:preference-core"))
+    api(project(":preference-core"))
     implementation(AndroidX.compose.runtime)
 }

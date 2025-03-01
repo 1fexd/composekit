@@ -3,7 +3,7 @@ plugins {
 }
 
 dependencies {
-    implementation(project(":span:span-compose"))
+    implementation(project(":span-compose"))
 
     api(AndroidX.annotation)
     implementation(AndroidX.compose.ui.text)

@@ -63,39 +63,43 @@ extra.properties["gradle.build.dir"]
 //    }
 //}
 //
-include(":compose:core")
-include(":compose:component")
-include(":compose:layout")
 
-include(":compose:app:app-core")
+fun includeProject(name: String, path: String) {
+    include(name)
+    project(name).projectDir = file(path)
+}
 
-include(":compose:dialog:dialog-core")
-include(":compose:route:route-core")
+includeProject(":compose-core", "compose/core")
+includeProject(":compose-component", "compose/component")
+includeProject(":compose-layout", "compose/layout")
+includeProject(":compose-app", "compose/app")
+includeProject(":compose-dialog-core", "compose/dialog/core")
+includeProject(":compose-route", "compose/route")
 
-include(":compose:theme:theme-core")
-include(":compose:theme:theme-preference")
+includeProject(":compose-theme-core", "compose/theme/core")
+includeProject(":compose-theme-preference", "compose/theme/preference")
 
 include(":core")
 include(":koin")
 
-include(":lifecycle:lifecycle-core")
-include(":lifecycle:lifecycle-koin")
+includeProject(":lifecycle-core", "lifecycle/core")
+includeProject(":lifecycle-koin", "lifecycle/koin")
 
-include(":span:span-core")
-include(":span:span-compose")
+includeProject(":span-core", "span/core")
+includeProject(":span-compose", "span/compose")
 
-include(":preference:preference-core")
-include(":preference:preference-compose:preference-compose-core")
-include(":preference:preference-compose:preference-compose-mock")
+includeProject(":preference-core", "preference/core")
+includeProject(":preference-compose-core", "preference/compose/core")
+includeProject(":preference-compose-mock", "preference/compose/mock")
 
 include(":platform")
 
 if (!hasJitpackEnv) {
-    include(":compose:test-app")
-    include(":compose:dialog:dialog-test-app")
-    include(":lifecycle:lifecycle-test-app")
-    include(":span:span-test-app")
-    include(":preference:preference-test-app")
+    includeProject(":compose-test-app", "compose/test-app")
+    includeProject(":compose-dialog-test-app", "compose/dialog/test-app")
+    includeProject(":lifecycle-test-app", "lifecycle/test-app")
+    includeProject(":span-test-app", "span/test-app")
+    includeProject(":preference-test-app", "preference/test-app")
 }
 
 //buildSettings {
