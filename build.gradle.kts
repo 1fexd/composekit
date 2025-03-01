@@ -1,9 +1,7 @@
 import com.android.build.gradle.LibraryExtension
-import fe.buildlogic.ProjectInfo
 import fe.buildlogic.Version
 import fe.buildlogic.extension.asProvider
 import fe.buildlogic.extension.getReleaseVersion
-import fe.buildlogic.fixGroup
 import fe.buildlogic.publishing.PublicationComponent
 import fe.buildlogic.publishing.PublicationName
 import fe.buildlogic.publishing.publish

@@ -1,8 +1,6 @@
 @file:Suppress("UnstableApiUsage")
 
-import fe.build.dependencies._1fexd
 import fe.buildsettings.extension.hasJitpackEnv
-import fe.buildsettings.extension.maybeResolveIncludingRootContext
 
 rootProject.name = "composekit"
 
@@ -35,11 +33,7 @@ pluginManagement {
                 }
             }
         }
-
-        else -> {
-            logger.info("Included build $gradleBuildDir")
-            includeBuild(gradleBuildDir.toString())
-        }
+        else -> includeBuild(gradleBuildDir.toString())
     }
 }
 
@@ -68,29 +62,45 @@ extra.properties["gradle.build.dir"]
 //        logger.info("Using versions file from $versionsPropertiesFile")
 //    }
 //}
+//
+include(":compose:core")
+include(":compose:component")
+include(":compose:layout")
+
+include(":compose:app:app-core")
+
+include(":compose:dialog:dialog-core")
+include(":compose:route:route-core")
+
+include(":compose:theme:theme-core")
+include(":compose:theme:theme-preference")
 
 include(":core")
-include(":component")
-include(":layout")
+include(":koin")
 
-include(":app:app-core")
+include(":lifecycle:lifecycle-core")
+include(":lifecycle:lifecycle-koin")
 
-include(":dialog:dialog-core")
-include(":dialog:dialog-test-app")
-include(":route:route-core")
+include(":span:span-core")
+include(":span:span-compose")
 
-include(":theme:theme-core")
-include(":theme:theme-preference")
+include(":preference:preference-core")
+include(":preference:preference-compose:preference-compose-core")
+include(":preference:preference-compose:preference-compose-mock")
 
 include(":platform")
 
 if (!hasJitpackEnv) {
-    include(":test-app")
+    include(":compose:test-app")
+    include(":compose:dialog:dialog-test-app")
+    include(":lifecycle:lifecycle-test-app")
+    include(":span:span-test-app")
+    include(":preference:preference-test-app")
 }
 
-buildSettings {
-    substitutes {
-        trySubstitute(_1fexd.droidKit, properties["droidkit.dir"])
-    }
-}
+//buildSettings {
+//    substitutes {
+//        trySubstitute(_1fexd.droidKit, properties["droidkit.dir"])
+//    }
+//}
 

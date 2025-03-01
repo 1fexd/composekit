@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">android-span-helper</string>
+    <string name="test_string">Simple test string</string>
+    <string name="test_string_format">This is a format string: %s </string>
+    <string name="test_string_format_annotated">This is a bold format string: <b>%s</b></string>
+    <string name="test_string_format_url">This format string links to <annotation url="https://google.com">%s</annotation></string>
+</resources>
