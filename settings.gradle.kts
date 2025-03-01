@@ -65,6 +65,7 @@ include(":app:app-core")
 
 include(":dialog:dialog-core")
 include(":dialog:dialog-test-app")
+include(":route:route-core")
 
 include(":theme:theme-core")
 include(":theme:theme-preference")
@@ -77,7 +78,7 @@ if (!hasJitpackEnv) {
 
 buildSettings {
     substitutes {
-        trySubstitute(_1fexd.android.span, properties["android-span-helper.dir"])
+        trySubstitute(_1fexd.droidKit, properties["droidkit.dir"])
     }
 }
 

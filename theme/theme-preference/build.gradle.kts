@@ -7,8 +7,6 @@ plugins {
 dependencies {
     implementation(project(":core"))
     implementation(project(":theme:theme-core"))
-
-//    implementation(platform(_1fexd.android.preference.bom))
-    implementation(_1fexd.android.preference.core)
-    implementation(_1fexd.android.preference.compose.core)
+    implementation(_1fexd.droidKit.preference.core)
+    implementation(_1fexd.droidKit.preference.compose.core)
 }

@@ -13,5 +13,5 @@ dependencies {
     implementation(AndroidX.compose.ui.toolingPreview)
     implementation(AndroidX.compose.material.icons.core)
 
-    implementation(_1fexd.android.span.compose)
+    implementation(_1fexd.droidKit.span.compose)
 }

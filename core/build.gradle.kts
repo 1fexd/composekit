@@ -6,5 +6,5 @@ plugins {
 dependencies {
     api(AndroidX.annotation)
     implementation(AndroidX.compose.ui.text)
-    implementation(_1fexd.android.span.compose)
+    implementation(_1fexd.droidKit.span.compose)
 }
