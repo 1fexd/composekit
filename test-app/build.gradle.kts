@@ -56,7 +56,7 @@ dependencies {
     implementation(AndroidX.compose.ui)
     implementation(AndroidX.compose.ui.graphics)
     implementation(AndroidX.compose.ui.toolingPreview)
-    implementation(PinnedVersions.Material3)
+    implementation(AndroidX.compose.material3)
     implementation(AndroidX.core.ktx)
     implementation(AndroidX.lifecycle.viewModelKtx)
     implementation(AndroidX.lifecycle.runtime.ktx)

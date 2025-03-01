@@ -5,5 +5,5 @@ plugins {
 
 dependencies {
     implementation(AndroidX.compose.ui.text)
-    implementation(PinnedVersions.Material3)
+    implementation(AndroidX.compose.material3)
 }
