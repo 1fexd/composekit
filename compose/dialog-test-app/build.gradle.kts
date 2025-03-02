@@ -47,7 +47,7 @@ android {
 }
 
 dependencies {
-    implementation(project(":compose-dialog-core"))
+    implementation(project(":compose-dialog"))
 
     implementation(AndroidX.core.ktx)
     implementation(AndroidX.lifecycle.viewModelKtx)

@@ -73,14 +73,14 @@ includeProject(":compose-core", "compose/core")
 includeProject(":compose-component", "compose/component")
 includeProject(":compose-layout", "compose/layout")
 includeProject(":compose-app", "compose/app")
-includeProject(":compose-dialog-core", "compose/dialog/core")
+includeProject(":compose-dialog", "compose/dialog")
 includeProject(":compose-route", "compose/route")
 
-includeProject(":compose-theme-core", "compose/theme/core")
-includeProject(":compose-theme-preference", "compose/theme/preference")
+includeProject(":compose-theme-core", "compose/theme-core")
+includeProject(":compose-theme-preference", "compose/theme-preference")
 
-include(":core")
-include(":koin")
+includeProject(":core", "core")
+includeProject(":koin", "koin")
 
 includeProject(":lifecycle-core", "lifecycle/core")
 includeProject(":lifecycle-koin", "lifecycle/koin")
@@ -89,14 +89,14 @@ includeProject(":span-core", "span/core")
 includeProject(":span-compose", "span/compose")
 
 includeProject(":preference-core", "preference/core")
-includeProject(":preference-compose-core", "preference/compose/core")
-includeProject(":preference-compose-mock", "preference/compose/mock")
+includeProject(":preference-compose-core", "preference/compose-core")
+includeProject(":preference-compose-mock", "preference/compose-mock")
 
 include(":platform")
 
 if (!hasJitpackEnv) {
     includeProject(":compose-test-app", "compose/test-app")
-    includeProject(":compose-dialog-test-app", "compose/dialog/test-app")
+    includeProject(":compose-dialog-test-app", "compose/dialog-test-app")
     includeProject(":lifecycle-test-app", "lifecycle/test-app")
     includeProject(":span-test-app", "span/test-app")
     includeProject(":preference-test-app", "preference/test-app")

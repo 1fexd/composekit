@@ -10,7 +10,9 @@ import androidx.compose.material.icons.rounded.Search
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import fe.android.compose.text.DefaultContent.Companion.text
 import fe.composekit.component.list.column.SaneLazyColumnDefaults
 import fe.android.compose.text.TextContent
 
@@ -75,4 +77,18 @@ fun SearchTopAppBar(
             content = {}
         )
     }
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun SearchTopAppBarPreview() {
+    SearchTopAppBar(
+        titleContent = text("Hello"),
+        placeholderContent = text("World"),
+        query = "Test",
+        onQueryChange =  {
+
+        },
+        onBackPressed = {},
+    )
 }
