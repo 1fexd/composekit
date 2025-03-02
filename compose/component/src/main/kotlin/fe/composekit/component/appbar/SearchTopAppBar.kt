@@ -18,7 +18,7 @@ import fe.android.compose.text.TextContent
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SearchTopAppBar(
+public fun SearchTopAppBar(
     titleContent: TextContent,
     placeholderContent: TextContent,
     query: String,

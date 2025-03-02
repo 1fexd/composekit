@@ -47,6 +47,7 @@ subprojects {
     if (!isPlatform && !isTestApp) {
         with(extensions["kotlin"] as KotlinAndroidProjectExtension) {
             jvmToolchain(Version.JVM)
+            explicitApiWarning()
         }
 
         with(extensions["android"] as LibraryExtension) {
