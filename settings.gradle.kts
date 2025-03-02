@@ -81,6 +81,7 @@ includeProject(":compose-theme-preference", "compose/theme-preference")
 
 includeProject(":core", "core")
 includeProject(":koin", "koin")
+includeProject(":process", "process")
 
 includeProject(":lifecycle-core", "lifecycle/core")
 includeProject(":lifecycle-koin", "lifecycle/koin")

@@ -1,10 +1,10 @@
 import fe.buildlogic.Version
-import fe.build.dependencies.PinnedVersions
 
 plugins {
     id("com.android.application")
-    id("org.jetbrains.kotlin.android")
-    id("org.jetbrains.kotlin.plugin.compose")
+    kotlin("android")
+    kotlin("plugin.compose")
+    kotlin("plugin.serialization")
 }
 
 group = "fe.composekit.testapp"
@@ -57,6 +57,11 @@ dependencies {
     implementation(AndroidX.compose.ui.graphics)
     implementation(AndroidX.compose.ui.toolingPreview)
     implementation(AndroidX.compose.material3)
+    implementation(AndroidX.navigation.compose)
+    implementation(AndroidX.navigation.ui)
+    androidTestImplementation(AndroidX.navigation.testing)
+    implementation(KotlinX.serialization.json)
+
     implementation(AndroidX.core.ktx)
     implementation(AndroidX.lifecycle.viewModelKtx)
     implementation(AndroidX.lifecycle.runtime.ktx)
