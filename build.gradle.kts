@@ -58,6 +58,11 @@ subprojects {
                 minSdk = Version.MIN_SDK
             }
 
+            lint {
+                disable.add("EmptyNavDeepLink")
+            }
+
+
             publishing {
                 multipleVariants {
                     singleVariant(PublicationName.Release)
@@ -68,8 +73,8 @@ subprojects {
 
         this@subprojects.dependencies {
             add("implementation", platform(AndroidX.compose.bom))
-            add("implementation", AndroidX.compose.ui)
-            add("implementation", AndroidX.compose.material3)
+            add("implementation", AndroidX.compose.ui.withVersion("1.8.0-beta03"))
+            add("implementation", AndroidX.compose.material3.withVersion("1.4.0-alpha09"))
         }
     }
 
