@@ -22,13 +22,13 @@ import fe.composekit.component.list.item.EnabledContentSet
 import fe.composekit.component.shape.CustomShapeDefaults
 
 @Composable
-fun SwitchListItem(
+public fun SwitchListItem(
     enabled: EnabledContentSet = EnabledContent.all,
     checked: Boolean,
     onCheckedChange: (Boolean) -> Unit,
     shape: Shape = CustomShapeDefaults.SingleShape,
     padding: PaddingValues = CommonDefaults.EmptyPadding,
-    position: ContentPosition,
+    position: ContentPosition = ContentPosition.Trailing,
     headlineContent: TextContent,
     overlineContent: TextContent? = null,
     supportingContent: TextContent? = null,
