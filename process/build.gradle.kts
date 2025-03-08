@@ -5,5 +5,5 @@ plugins {
 }
 
 dependencies{
-    implementation(Grrfe.std.process.core)
+    api(Grrfe.std.process.core)
 }

@@ -13,7 +13,6 @@ import androidx.compose.material3.Typography
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -22,13 +21,13 @@ import fe.composekit.theme.Theme
 import fe.composekit.theme.ThemeConfig
 
 
-tailrec fun Context.findActivity(): Activity? = when (this) {
+public tailrec fun Context.findActivity(): Activity? = when (this) {
     is Activity -> this
     is ContextWrapper -> baseContext.findActivity()
     else -> null
 }
 
-val LocalActivity = staticCompositionLocalOf<Activity> { error("CompositionLocal LocalActivity not present") }
+//val LocalActivity = staticCompositionLocalOf<Activity> { error("CompositionLocal LocalActivity not present") }
 
 
 /**
@@ -43,10 +42,10 @@ private val lightScrim = Color.argb(0xe6, 0xFF, 0xFF, 0xFF)
  */
 private val darkScrim = Color.argb(0x80, 0x1b, 0x1b, 0x1b)
 
-typealias EdgeToEdgeUpdate = (SystemBarStyle, SystemBarStyle) -> Unit
+public typealias EdgeToEdgeUpdate = (SystemBarStyle, SystemBarStyle) -> Unit
 
 @Composable
-fun AppBaseComponentActivity.AppTheme(
+public fun AppBaseComponentActivity.AppTheme(
     systemDarkTheme: Boolean = isSystemInDarkTheme(),
     appColor: AppColorScheme,
     typography: Typography,
@@ -65,7 +64,7 @@ fun AppBaseComponentActivity.AppTheme(
 }
 
 @Composable
-fun AppTheme(
+public fun AppTheme(
     edgeToEdge: Boolean = true,
     systemDarkTheme: Boolean = isSystemInDarkTheme(),
     appColor: AppColorScheme,
@@ -88,7 +87,7 @@ fun AppTheme(
 }
 
 @Composable
-fun AppTheme(
+public fun AppTheme(
     edgeToEdge: Boolean = true,
     systemDarkTheme: Boolean = isSystemInDarkTheme(),
     appColor: AppColorScheme,
@@ -100,8 +99,6 @@ fun AppTheme(
     val context = LocalContext.current
     val (colorScheme, isDarkMode) = config.getColorScheme(context, appColor, systemDarkTheme)
 
-    val activity = context.findActivity()
-
     if (edgeToEdge && updateEdgeToEdge != null) {
         LaunchedEffect(key1 = config) {
             updateEdgeToEdge(
@@ -111,7 +108,7 @@ fun AppTheme(
         }
     }
 
-    CompositionLocalProvider(LocalActivity provides activity!!) {
+    CompositionLocalProvider {
         MaterialTheme(
             colorScheme = colorScheme,
             typography = typography,
@@ -121,7 +118,7 @@ fun AppTheme(
 }
 
 @Composable
-fun AppBaseComponentActivity.BoxAppHost(
+public fun AppBaseComponentActivity.BoxAppHost(
     modifier: Modifier = Modifier,
     contentAlignment: Alignment = Alignment.TopStart,
     defaultAppColor: AppColorScheme,

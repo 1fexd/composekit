@@ -94,6 +94,7 @@ includeProject(":span-compose", "span/compose")
 
 includeProject(":preference-core", "preference/core")
 includeProject(":preference-compose-core", "preference/compose-core")
+includeProject(":preference-compose-core2", "preference/compose-core2")
 includeProject(":preference-compose-mock", "preference/compose-mock")
 
 include(":platform")
