@@ -1,32 +1,67 @@
 package fe.composekit.preference
 
 import androidx.compose.runtime.Composable
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import fe.android.preference.helper.Preference
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.launch
+import kotlin.coroutines.CoroutineContext
+import kotlin.coroutines.EmptyCoroutineContext
 
 
-public class ViewModelStatePreference<T : Any, NT, P : Preference<T, NT>>(
-    private val flow: StateFlow<NT>,
-    private val update: (NT) -> Unit,
-) : (NT) -> Unit by update {
+public typealias Pref<Type, NullableType> = Preference<Type, NullableType>
 
-    @Composable
-    public fun collectAsStateWithLifecycle(): NT {
-        val state = flow.collectAsStateWithLifecycle()
-        return state.value
+public class ViewModelStatePreference<Type : Any, NullableType, Preference : Pref<Type, NullableType>>(
+    private val preference: Preference,
+    private val get: Get<Preference, NullableType>,
+    private val put: Put<Preference, NullableType>,
+    dispatcher: CoroutineDispatcher = Dispatchers.IO,
+) : (NullableType) -> Unit {
+    private val scope: CoroutineScope = CoroutineScope(dispatcher)
+
+    private val mutableStateFlow: MutableStateFlow<NullableType> = MutableStateFlow(preference.default)
+    public val stateFlow: StateFlow<NullableType> = mutableStateFlow.asStateFlow()
+
+    public val value: NullableType
+        get() = stateFlow.value
+
+//    public operator fun invoke(): NullableType {
+//        return value
+//    }
+
+    public fun reload() {
+        scope.launch { mutableStateFlow.emit(get(preference)) }
     }
 
-    public val value: NT
-        get() = flow.value
+    private suspend fun _update(newValue: NullableType) {
+        mutableStateFlow.emit(newValue)
+        put(preference, newValue)
+    }
 
-    public operator fun invoke(): NT {
-        return value
+    override fun invoke(newValue: NullableType) {
+        scope.launch { _update(newValue) }
     }
 
     @Deprecated(message = "Replace with invoke", replaceWith = ReplaceWith("this(newValue)"))
-    public fun update(newValue: NT) {
+    public fun update(newValue: NullableType) {
         invoke(newValue)
     }
 }
 
+@Composable
+public fun <Type : Any, NullableType, Preference : Pref<Type, NullableType>> ViewModelStatePreference<Type, NullableType, Preference>.collectAsStateWithLifecycle(
+    lifecycleOwner: LifecycleOwner = LocalLifecycleOwner.current,
+    minActiveState: Lifecycle.State = Lifecycle.State.STARTED,
+    context: CoroutineContext = EmptyCoroutineContext
+): NullableType {
+    val state = stateFlow.collectAsStateWithLifecycle(lifecycleOwner, minActiveState, context)
+    return state.value
+}

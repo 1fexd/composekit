@@ -32,7 +32,7 @@ class TestViewModel(
 //    val newTest = newTestRepository.asViewModelState(TestPreferenceDefinition.newTest)
 //    val newTestInt = newTestRepository.asFlow(TestPreferenceDefinition.newTestInt)
 
-    val newTestInt2 = newTestRepository.asViewModelState(TestPreferenceDefinition.newTestInt, viewModelScope)
+    val newTestInt2 = newTestRepository.asViewModelState(TestPreferenceDefinition.newTestInt)
 }
 
 class TestViewModel2(
@@ -53,5 +53,5 @@ class TestViewModel2(
 //    val initState = testRepository.getOrPutInit(TestPreferenceDefinition.init)
 //    val test123 = testRepository.asState(TestPreferenceDefinition.test123)
 
-    val newTestInt2 = newTestRepository.asViewModelState(TestPreferenceDefinition.newTestInt, viewModelScope)
+    val newTestInt2 = newTestRepository.asViewModelState(TestPreferenceDefinition.newTestInt)
 }

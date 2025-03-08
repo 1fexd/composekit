@@ -1,6 +1,7 @@
 @file:Suppress("UnstableApiUsage")
 
 import fe.buildsettings.extension.hasJitpackEnv
+import fe.buildsettings.extension.maybeResolveIncludingRootContext
 
 rootProject.name = "composekit"
 
@@ -56,13 +57,12 @@ plugins {
 extra.properties["gradle.build.dir"]
     ?.let { includeBuild(it.toString()) }
 
-//maybeResolveIncludingRootContext()?.rootProject {
-//    refreshVersions {
-//        versionsPropertiesFile = rootDir.resolve("versions.properties")
-//        logger.info("Using versions file from $versionsPropertiesFile")
-//    }
-//}
-//
+maybeResolveIncludingRootContext()?.rootProject {
+    refreshVersions {
+        versionsPropertiesFile = rootDir.resolve("versions.properties")
+        logger.info("Using versions file from $versionsPropertiesFile")
+    }
+}
 
 fun includeProject(name: String, path: String) {
     include(name)
