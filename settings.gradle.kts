@@ -83,6 +83,9 @@ includeProject(":core", "core")
 includeProject(":koin", "koin")
 includeProject(":process", "process")
 
+includeProject(":test-core", "test/core")
+includeProject(":test-compose", "test/compose")
+
 includeProject(":lifecycle-core", "lifecycle/core")
 includeProject(":lifecycle-koin", "lifecycle/koin")
 
