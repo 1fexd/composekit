@@ -49,6 +49,7 @@ android {
 dependencies {
     implementation(project(":preference-core"))
     implementation(project(":preference-compose-core"))
+    implementation(project(":preference-compose-core2"))
 
     implementation(AndroidX.core.ktx)
     implementation(AndroidX.lifecycle.runtime.ktx)
