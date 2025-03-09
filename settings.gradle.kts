@@ -1,6 +1,7 @@
 @file:Suppress("UnstableApiUsage")
 
 import fe.buildsettings.extension.hasJitpackEnv
+import fe.buildsettings.extension.includeProject
 import fe.buildsettings.extension.maybeResolveIncludingRootContext
 
 rootProject.name = "composekit"
@@ -64,11 +65,6 @@ maybeResolveIncludingRootContext()?.rootProject {
     }
 }
 
-fun includeProject(name: String, path: String) {
-    include(name)
-    project(name).projectDir = file(path)
-}
-
 includeProject(":compose-core", "compose/core")
 includeProject(":compose-component", "compose/component")
 includeProject(":compose-layout", "compose/layout")
@@ -106,10 +102,4 @@ if (!hasJitpackEnv) {
     includeProject(":span-test-app", "span/test-app")
     includeProject(":preference-test-app", "preference/test-app")
 }
-
-//buildSettings {
-//    substitutes {
-//        trySubstitute(_1fexd.droidKit, properties["droidkit.dir"])
-//    }
-//}
 
