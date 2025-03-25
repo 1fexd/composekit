@@ -1,5 +1,7 @@
 @file:Suppress("UnstableApiUsage")
 
+import fe.buildsettings.extension.MavenRepository
+import fe.buildsettings.extension.configureRepositories
 import fe.buildsettings.extension.hasJitpackEnv
 import fe.buildsettings.extension.includeProject
 import fe.buildsettings.extension.maybeResolveIncludingRootContext
@@ -35,18 +37,8 @@ pluginManagement {
                 }
             }
         }
-        else -> includeBuild(gradleBuildDir.toString())
-    }
-}
 
-dependencyResolutionManagement {
-    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
-    repositories {
-        google()
-        mavenCentral()
-        gradlePluginPortal()
-        maven { url = uri("https://jitpack.io") }
-        maven { url = uri("https://maven.mozilla.org/maven2") }
+        else -> includeBuild(gradleBuildDir.toString())
     }
 }
 
@@ -54,6 +46,13 @@ plugins {
     id("de.fayard.refreshVersions")
     id("com.gitlab.grrfe.build-settings-plugin")
 }
+
+configureRepositories(
+    MavenRepository.Google,
+    MavenRepository.MavenCentral,
+    MavenRepository.Jitpack,
+    MavenRepository.Mozilla
+)
 
 extra.properties["gradle.build.dir"]
     ?.let { includeBuild(it.toString()) }

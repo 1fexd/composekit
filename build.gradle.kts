@@ -1,13 +1,15 @@
 import com.android.build.gradle.LibraryExtension
+import fe.buildlogic.Plugins
 import fe.buildlogic.Version
+import fe.buildlogic.accessor.kotlinAndroidProxy
+import fe.buildlogic.accessor.versioningProxy
+import fe.buildlogic.applyPlugin
 import fe.buildlogic.extension.asProvider
 import fe.buildlogic.extension.getReleaseVersion
 import fe.buildlogic.publishing.PublicationComponent
 import fe.buildlogic.publishing.PublicationName
 import fe.buildlogic.publishing.publish
 import fe.buildlogic.version.AndroidVersionStrategy
-import net.nemerosa.versioning.VersioningExtension
-import org.jetbrains.kotlin.gradle.dsl.KotlinAndroidProjectExtension
 
 plugins {
     id("org.jetbrains.kotlin.android") apply false
@@ -25,27 +27,25 @@ subprojects {
     val isTestApp = name.endsWith("test-app")
 
     if (!isTestApp && !isPlatform) {
-        apply(plugin = "com.android.library")
-        apply(plugin = "org.jetbrains.kotlin.android")
-        apply(plugin = "org.jetbrains.kotlin.plugin.compose")
+        applyPlugin(Plugins.AndroidLibrary, Plugins.KotlinAndroid, Plugins.KotlinPluginCompose)
     }
 
-    apply(plugin = "net.nemerosa.versioning")
-    apply(plugin = "org.gradle.maven-publish")
-    apply(plugin = "com.gitlab.grrfe.build-logic-plugin")
+    applyPlugin(
+        Plugins.MavenPublish,
+        Plugins.GrrfeBuildLogic,
+        Plugins.NemerosaVersioning
+    )
 
     val now = System.currentTimeMillis()
     val provider = AndroidVersionStrategy(now)
 
-    val versionProvider = with(extensions["versioning"] as VersioningExtension) {
-        asProvider(this@subprojects, provider)
-    }
+    val versionProvider = versioningProxy().asProvider(this@subprojects, provider)
 
     group = baseGroup
     version = versionProvider.getReleaseVersion()
 
     if (!isPlatform && !isTestApp) {
-        with(extensions["kotlin"] as KotlinAndroidProjectExtension) {
+        kotlinAndroidProxy().run {
             jvmToolchain(Version.JVM)
             explicitApiWarning()
         }
@@ -61,7 +61,6 @@ subprojects {
             lint {
                 disable.add("EmptyNavDeepLink")
             }
-
 
             publishing {
                 multipleVariants {
