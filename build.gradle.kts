@@ -63,8 +63,7 @@ subprojects {
             }
 
             publishing {
-                multipleVariants {
-                    singleVariant(PublicationName.Release)
+                singleVariant(PublicationName.Release) {
                     withSourcesJar()
                 }
             }
