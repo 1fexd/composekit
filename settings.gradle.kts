@@ -1,6 +1,7 @@
 @file:Suppress("UnstableApiUsage")
 
-import fe.buildsettings.extension.MavenRepository
+import fe.build.dependencies.Grrfe
+import fe.buildsettings.config.MavenRepository
 import fe.buildsettings.extension.configureRepositories
 import fe.buildsettings.extension.hasJitpackEnv
 import fe.buildsettings.extension.includeProject
@@ -102,3 +103,8 @@ if (!hasJitpackEnv) {
     includeProject(":preference-test-app", "preference/test-app")
 }
 
+buildSettings {
+    substitutes {
+        trySubstitute(Grrfe.std, properties["kotlin-ext.dir"])
+    }
+}

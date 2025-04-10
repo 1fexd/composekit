@@ -1,6 +1,7 @@
-import com.android.build.gradle.LibraryExtension
+import fe.build.dependencies.Grrfe
 import fe.buildlogic.Plugins
 import fe.buildlogic.Version
+import fe.buildlogic.accessor.androidLibraryProxy
 import fe.buildlogic.accessor.kotlinAndroidProxy
 import fe.buildlogic.accessor.versioningProxy
 import fe.buildlogic.applyPlugin
@@ -50,7 +51,7 @@ subprojects {
             explicitApiWarning()
         }
 
-        with(extensions["android"] as LibraryExtension) {
+        androidLibraryProxy().run {
             namespace = baseGroup.replace("1fexd", "fexd")
             compileSdk = Version.COMPILE_SDK
 
@@ -65,14 +66,16 @@ subprojects {
             publishing {
                 singleVariant(PublicationName.Release) {
                     withSourcesJar()
+                    withJavadocJar()
                 }
             }
         }
 
         this@subprojects.dependencies {
+            add("implementation", platform(Grrfe.std.bom))
             add("implementation", platform(AndroidX.compose.bom))
-            add("implementation", AndroidX.compose.ui.withVersion("1.8.0-beta03"))
-            add("implementation", AndroidX.compose.material3.withVersion("1.4.0-alpha09"))
+            add("implementation", AndroidX.compose.ui.withVersion("1.8.0-rc03"))
+            add("implementation", AndroidX.compose.material3.withVersion("1.4.0-alpha12"))
         }
     }
 
