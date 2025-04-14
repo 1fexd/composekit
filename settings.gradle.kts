@@ -19,9 +19,9 @@ pluginManagement {
 
     plugins {
         id("de.fayard.refreshVersions") version "0.60.5"
+        id("net.nemerosa.versioning")
         id("com.android.library")
         id("org.jetbrains.kotlin.android")
-        id("net.nemerosa.versioning") version "3.1.0"
     }
 
     when (val gradleBuildDir = extra.properties["gradle.build.dir"]) {
