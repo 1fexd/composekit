@@ -1,4 +1,4 @@
-package fe.android.compose.dialog.helper
+package fe.composekit.testapp.page.dialog
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.material3.AlertDialog

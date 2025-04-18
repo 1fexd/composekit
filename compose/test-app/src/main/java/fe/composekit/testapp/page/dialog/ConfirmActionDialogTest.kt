@@ -1,6 +1,5 @@
-package fe.android.compose.dialog.helper
+package fe.composekit.testapp.page.dialog
 
-import android.util.Log
 import androidx.compose.foundation.layout.Column
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button

@@ -98,7 +98,6 @@ include(":platform")
 
 if (!hasJitpackEnv) {
     includeProject(":compose-test-app", "compose/test-app")
-    includeProject(":compose-dialog-test-app", "compose/dialog-test-app")
     includeProject(":lifecycle-test-app", "lifecycle/test-app")
     includeProject(":span-test-app", "span/test-app")
     includeProject(":preference-test-app", "preference/test-app")
