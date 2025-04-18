@@ -1,3 +1,4 @@
+import com.gitlab.grrfe.gradlebuild.android.AndroidSdk
 import fe.buildlogic.Version
 
 plugins {
@@ -8,13 +9,12 @@ plugins {
 
 android {
     namespace = "fe.android.lifecycle.util.test"
-    compileSdk = Version.COMPILE_SDK
+    compileSdk = AndroidSdk.COMPILE_SDK
 
     defaultConfig {
         applicationId = "fe.android.lifecycle.util.test"
-        minSdk = 25
-        targetSdk = Version.COMPILE_SDK
-        compileSdk = Version.COMPILE_SDK
+        minSdk = AndroidSdk.MIN_SDK
+        targetSdk = AndroidSdk.COMPILE_SDK
         versionCode = (System.currentTimeMillis() / 1000).toInt()
         versionName = "1.0"
 

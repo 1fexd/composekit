@@ -1,15 +1,14 @@
+import com.gitlab.grrfe.gradlebuild.android.extension.singleVariant
+import com.gitlab.grrfe.gradlebuild.common.extension.isPlatform
+import com.gitlab.grrfe.gradlebuild.common.extension.isTestApp
+import com.gitlab.grrfe.gradlebuild.library.publishing.PublicationComponent2
+import com.gitlab.grrfe.gradlebuild.library.publishing.PublicationName2
 import fe.build.dependencies.Grrfe
-import fe.buildlogic.*
+import fe.buildlogic.Plugins
 import fe.buildlogic.Version
 import fe.buildlogic.accessor.androidLibraryProxy
 import fe.buildlogic.accessor.kotlinAndroidProxy
-import fe.buildlogic.accessor.versioningProxy
 import fe.buildlogic.applyPlugin
-import fe.buildlogic.extension.asProvider
-import fe.buildlogic.extension.getReleaseVersion
-import fe.buildlogic.publishing.PublicationComponent
-import fe.buildlogic.publishing.PublicationName
-import fe.buildlogic.publishing.publish
 import fe.buildlogic.version.AndroidVersionStrategy
 
 plugins {
@@ -17,16 +16,14 @@ plugins {
     id("com.android.library") apply false
     id("org.jetbrains.kotlin.plugin.compose") apply false
     id("net.nemerosa.versioning") apply false
-    id("com.gitlab.grrfe.build-logic-plugin")
     id("com.gitlab.grrfe.new-build-logic-plugin")
-    `maven-publish`
+    id("com.gitlab.grrfe.library-build-plugin")
 }
 
 val baseGroup = "com.github.1fexd.composekit"
 
 subprojects {
-    val isPlatform = name == "platform"
-    val isTestApp = name.endsWith("test-app")
+    logger.quiet("Init for $this, isTestApp=$isTestApp, isPlatform=$isPlatform")
 
     if (!isTestApp && !isPlatform) {
         applyPlugin(Plugins.AndroidLibrary, Plugins.KotlinAndroid, Plugins.KotlinPluginCompose)
@@ -34,18 +31,23 @@ subprojects {
 
     applyPlugin(
         Plugins.MavenPublish,
-        Plugins.GrrfeBuildLogic,
         Plugins.GrrfeNewBuildLogic,
+        Plugins.GrrfeLibraryBuild,
         Plugins.NemerosaVersioning
     )
 
-    val now = System.currentTimeMillis()
-    val provider = AndroidVersionStrategy(now)
-
-    val versionProvider = versioningProxy().asProvider(this@subprojects, provider)
-
     group = baseGroup
-    version = versionProvider.getReleaseVersion()
+    library {
+        val now = System.currentTimeMillis()
+        versionStrategy.set(AndroidVersionStrategy(now))
+
+        if (!isTestApp) {
+            publication {
+                name.set(PublicationName2.Release)
+                component.set(if (isPlatform) PublicationComponent2.JavaPlatform else PublicationComponent2.Android)
+            }
+        }
+    }
 
     if (!isPlatform && !isTestApp) {
         kotlinAndroidProxy().run {
@@ -66,7 +68,7 @@ subprojects {
             }
 
             publishing {
-                singleVariant(PublicationName.Release) {
+                singleVariant(PublicationName2.Release) {
                     withSourcesJar()
                     withJavadocJar()
                 }
@@ -79,13 +81,5 @@ subprojects {
             add("implementation", AndroidX.compose.ui.withVersion("1.8.0-rc03"))
             add("implementation", AndroidX.compose.material3.withVersion("1.4.0-alpha12"))
         }
-    }
-
-    if (!isTestApp) {
-        publishing.publish(
-            this@subprojects,
-            if (isPlatform) PublicationComponent.JavaPlatform else PublicationComponent.Android,
-            PublicationName.Release
-        )
     }
 }

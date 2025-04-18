@@ -29,7 +29,9 @@ pluginManagement {
             val gradleBuildVersion = extra.properties["gradle.build.version"]
             val plugins = mapOf(
                 "com.gitlab.grrfe.build-settings-plugin" to "com.gitlab.grrfe.gradle-build:build-settings",
-                "com.gitlab.grrfe.build-logic-plugin" to "com.gitlab.grrfe.gradle-build:build-logic"
+                "com.gitlab.grrfe.build-logic-plugin" to "com.gitlab.grrfe.gradle-build:build-logic",
+                "com.gitlab.grrfe.new-build-logic-plugin" to "com.gitlab.grrfe.gradle-build:build-logic",
+                "com.gitlab.grrfe.library-build-plugin" to "com.gitlab.grrfe.gradle-build:build-logic"
             )
 
             resolutionStrategy {
