@@ -1,21 +1,16 @@
 package fe.android.span.helper
 
-import android.os.Build
 import android.text.Html
 import android.text.SpannableStringBuilder
 import androidx.core.text.bold
 import androidx.core.text.buildSpannedString
-import androidx.core.text.toSpanned
+import androidx.test.ext.junit.runners.AndroidJUnit4
 import fe.android.span.helper.formatter.SpanFormatter
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.robolectric.annotation.Config
 import kotlin.test.assertEquals
-import androidx.test.ext.junit.runners.AndroidJUnit4
-import fe.android.span.helper.ext.format
 
 @RunWith(AndroidJUnit4::class)
-@Config(sdk = [Build.VERSION_CODES.N], manifest = Config.NONE)
 class SpanFormatterTest {
 
     private fun compareHtml(

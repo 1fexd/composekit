@@ -1,3 +1,4 @@
+import com.gitlab.grrfe.gradlebuild.android.AndroidSdk
 import com.gitlab.grrfe.gradlebuild.android.extension.singleVariant
 import com.gitlab.grrfe.gradlebuild.common.extension.isPlatform
 import com.gitlab.grrfe.gradlebuild.common.extension.isTestApp
@@ -57,10 +58,12 @@ subprojects {
 
         androidLibraryProxy().run {
             namespace = baseGroup.replace("1fexd", "fexd")
-            compileSdk = 35
+            compileSdk = AndroidSdk.COMPILE_SDK
 
             defaultConfig {
-                minSdk = 25
+                minSdk = AndroidSdk.MIN_SDK
+                testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+                testOptions.unitTests.isIncludeAndroidResources = true
             }
 
             lint {
@@ -70,7 +73,8 @@ subprojects {
             publishing {
                 singleVariant(PublicationName2.Release) {
                     withSourcesJar()
-                    withJavadocJar()
+                   // Disable for now https://github.com/Kotlin/dokka/issues/2956#issuecomment-2191606810
+//                    withJavadocJar()
                 }
             }
         }
