@@ -2,7 +2,7 @@
 
 import fe.build.dependencies.Grrfe
 import fe.buildsettings.config.MavenRepository
-import fe.buildsettings.extension.configureRepositories
+import fe.buildsettings.config.configureRepositories
 import fe.buildsettings.extension.hasJitpackEnv
 import fe.buildsettings.extension.includeProject
 import fe.buildsettings.extension.maybeResolveIncludingRootContext
@@ -27,12 +27,14 @@ pluginManagement {
     when (val gradleBuildDir = extra.properties["gradle.build.dir"]) {
         null -> {
             val gradleBuildVersion = extra.properties["gradle.build.version"]
-            val plugins = mapOf(
-                "com.gitlab.grrfe.build-settings-plugin" to "com.gitlab.grrfe.gradle-build:build-settings",
-                "com.gitlab.grrfe.build-logic-plugin" to "com.gitlab.grrfe.gradle-build:build-logic",
-                "com.gitlab.grrfe.new-build-logic-plugin" to "com.gitlab.grrfe.gradle-build:build-logic",
-                "com.gitlab.grrfe.library-build-plugin" to "com.gitlab.grrfe.gradle-build:build-logic"
-            )
+            val plugins = arrayOf(
+                "build-settings-plugin" to "build-settings",
+                "build-logic-plugin" to "build-logic",
+                "new-build-logic-plugin" to "new-build-logic",
+                "library-build-plugin" to "new-build-logic"
+            ).associate { (artifact, project) ->
+                "com.gitlab.grrfe.$artifact" to "com.gitlab.grrfe.gradle-build:$project"
+            }
 
             resolutionStrategy {
                 eachPlugin {
@@ -55,7 +57,8 @@ configureRepositories(
     MavenRepository.Google,
     MavenRepository.MavenCentral,
     MavenRepository.Jitpack,
-    MavenRepository.Mozilla
+    MavenRepository.Mozilla,
+    mode = RepositoriesMode.FAIL_ON_PROJECT_REPOS
 )
 
 extra.properties["gradle.build.dir"]
