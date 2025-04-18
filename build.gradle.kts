@@ -1,5 +1,5 @@
 import fe.build.dependencies.Grrfe
-import fe.buildlogic.Plugins
+import fe.buildlogic.*
 import fe.buildlogic.Version
 import fe.buildlogic.accessor.androidLibraryProxy
 import fe.buildlogic.accessor.kotlinAndroidProxy
@@ -18,6 +18,7 @@ plugins {
     id("org.jetbrains.kotlin.plugin.compose") apply false
     id("net.nemerosa.versioning") apply false
     id("com.gitlab.grrfe.build-logic-plugin")
+    id("com.gitlab.grrfe.new-build-logic-plugin")
     `maven-publish`
 }
 
@@ -34,6 +35,7 @@ subprojects {
     applyPlugin(
         Plugins.MavenPublish,
         Plugins.GrrfeBuildLogic,
+        Plugins.GrrfeNewBuildLogic,
         Plugins.NemerosaVersioning
     )
 
@@ -53,10 +55,10 @@ subprojects {
 
         androidLibraryProxy().run {
             namespace = baseGroup.replace("1fexd", "fexd")
-            compileSdk = Version.COMPILE_SDK
+            compileSdk = 35
 
             defaultConfig {
-                minSdk = Version.MIN_SDK
+                minSdk = 25
             }
 
             lint {

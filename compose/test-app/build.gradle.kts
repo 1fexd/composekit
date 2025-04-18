@@ -50,6 +50,7 @@ android {
 dependencies {
     implementation(project(":compose-component"))
     implementation(project(":compose-core"))
+    implementation(project(":compose-dialog"))
     implementation(project(":compose-layout"))
 
     implementation(platform(AndroidX.compose.bom))
