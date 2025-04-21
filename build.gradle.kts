@@ -4,6 +4,7 @@ import com.gitlab.grrfe.gradlebuild.common.extension.isPlatform
 import com.gitlab.grrfe.gradlebuild.common.extension.isTestApp
 import com.gitlab.grrfe.gradlebuild.library.publishing.PublicationComponent2
 import com.gitlab.grrfe.gradlebuild.library.publishing.PublicationName2
+import com.gitlab.grrfe.gradlebuild.util.accessor.implementationProxy
 import fe.build.dependencies.Grrfe
 import fe.buildlogic.Plugins
 import fe.buildlogic.Version
@@ -80,10 +81,10 @@ subprojects {
         }
 
         this@subprojects.dependencies {
-            add("implementation", platform(Grrfe.std.bom))
-            add("implementation", platform(AndroidX.compose.bom))
-            add("implementation", AndroidX.compose.ui.withVersion("1.8.0-rc03"))
-            add("implementation", AndroidX.compose.material3.withVersion("1.4.0-alpha12"))
+            implementationProxy(platform(Grrfe.std.bom))
+            implementationProxy(platform("androidx.compose:compose-bom-alpha:2025.04.00"))
+            implementationProxy(AndroidX.compose.ui)
+            implementationProxy(AndroidX.compose.material3)
         }
     }
 }
