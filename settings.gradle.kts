@@ -73,6 +73,7 @@ maybeResolveIncludingRootContext()?.rootProject {
 
 includeProject(":compose-core", "compose/core")
 includeProject(":compose-component", "compose/component")
+includeProject(":compose-m3compat", "compose/m3compat")
 includeProject(":compose-layout", "compose/layout")
 includeProject(":compose-app", "compose/app")
 includeProject(":compose-dialog", "compose/dialog")
