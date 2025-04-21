@@ -6,23 +6,22 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.runtime.Composable
 import org.koin.androidx.compose.KoinAndroidContext
-import org.koin.core.annotation.KoinExperimentalAPI
 
-open class AppBaseComponentActivity : ComponentActivity() {
-    var edgeToEdge: Boolean = false
+public open class AppBaseComponentActivity : ComponentActivity() {
+    public var edgeToEdge: Boolean = false
         private set
 
-    fun updateEdgeToEdge(status: SystemBarStyle, navigation: SystemBarStyle) {
+    public fun updateEdgeToEdge(status: SystemBarStyle, navigation: SystemBarStyle) {
         return enableEdgeToEdge(statusBarStyle = status, navigationBarStyle = navigation)
     }
 
-    fun initPadding(): AppBaseComponentActivity {
+    public fun initPadding(): AppBaseComponentActivity {
         enableEdgeToEdge()
         edgeToEdge = true
         return this
     }
 
-    fun setContent(edgeToEdge: Boolean, content: @Composable () -> Unit) {
+    public fun setContent(edgeToEdge: Boolean, content: @Composable () -> Unit) {
         if (edgeToEdge) initPadding()
 
         return setContent {

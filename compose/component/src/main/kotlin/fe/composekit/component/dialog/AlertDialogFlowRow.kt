@@ -14,27 +14,21 @@
  * limitations under the License.
  */
 
-package fe.composekit.layout.dialog
+package fe.composekit.component.dialog
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.layout.Layout
 import androidx.compose.ui.layout.Placeable
 import androidx.compose.ui.unit.Dp
-import androidx.compose.ui.unit.dp
 import androidx.compose.ui.util.fastForEach
 import androidx.compose.ui.util.fastForEachIndexed
 import kotlin.math.max
 
-object AlertDialogFlowRowDefaults {
-    val MainAxisSpacing = 8.dp
-    val CrossAxisSpacing = 12.dp
-}
-
 @Composable
-fun AlertDialogFlowRow(
-    mainAxisSpacing: Dp = AlertDialogFlowRowDefaults.MainAxisSpacing,
-    crossAxisSpacing: Dp = AlertDialogFlowRowDefaults.CrossAxisSpacing,
+public fun AlertDialogFlowRow(
+    mainAxisSpacing: Dp = DialogDefaults.ButtonsMainAxisSpacing,
+    crossAxisSpacing: Dp = DialogDefaults.ButtonsCrossAxisSpacing,
     content: @Composable () -> Unit,
 ) {
     Layout(content) { measurables, constraints ->
