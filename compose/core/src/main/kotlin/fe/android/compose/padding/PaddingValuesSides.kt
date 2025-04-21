@@ -7,12 +7,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.unit.LayoutDirection
 
-sealed interface PaddingValuesSides {
-    fun only(paddingValues: PaddingValues, layoutDirection: LayoutDirection): PaddingValues
-    fun exclude(paddingValues: PaddingValues, layoutDirection: LayoutDirection): PaddingValues
+public sealed interface PaddingValuesSides {
+    public fun only(paddingValues: PaddingValues, layoutDirection: LayoutDirection): PaddingValues
+    public fun exclude(paddingValues: PaddingValues, layoutDirection: LayoutDirection): PaddingValues
 }
 
-data object Horizontal : PaddingValuesSides {
+public data object Horizontal : PaddingValuesSides {
     override fun only(paddingValues: PaddingValues, layoutDirection: LayoutDirection): PaddingValues {
         return PaddingValues(
             start = paddingValues.calculateStartPadding(layoutDirection),
@@ -25,7 +25,7 @@ data object Horizontal : PaddingValuesSides {
     }
 }
 
-data object Vertical : PaddingValuesSides {
+public data object Vertical : PaddingValuesSides {
     override fun only(paddingValues: PaddingValues, layoutDirection: LayoutDirection): PaddingValues {
         return PaddingValues(
             top = paddingValues.calculateTopPadding(),
@@ -38,7 +38,7 @@ data object Vertical : PaddingValuesSides {
     }
 }
 
-data object Start : PaddingValuesSides {
+public data object Start : PaddingValuesSides {
     override fun only(paddingValues: PaddingValues, layoutDirection: LayoutDirection): PaddingValues {
         return PaddingValues(start = paddingValues.calculateStartPadding(layoutDirection))
     }
@@ -52,7 +52,7 @@ data object Start : PaddingValuesSides {
     }
 }
 
-data object End : PaddingValuesSides {
+public data object End : PaddingValuesSides {
     override fun only(paddingValues: PaddingValues, layoutDirection: LayoutDirection): PaddingValues {
         return PaddingValues(end = paddingValues.calculateEndPadding(layoutDirection))
     }
@@ -66,7 +66,7 @@ data object End : PaddingValuesSides {
     }
 }
 
-data object Top : PaddingValuesSides {
+public data object Top : PaddingValuesSides {
     override fun only(paddingValues: PaddingValues, layoutDirection: LayoutDirection): PaddingValues {
         return PaddingValues(top = paddingValues.calculateTopPadding())
     }
@@ -80,7 +80,7 @@ data object Top : PaddingValuesSides {
     }
 }
 
-data object Bottom : PaddingValuesSides {
+public data object Bottom : PaddingValuesSides {
     override fun only(paddingValues: PaddingValues, layoutDirection: LayoutDirection): PaddingValues {
         return PaddingValues(bottom = paddingValues.calculateBottomPadding())
     }
@@ -95,20 +95,39 @@ data object Bottom : PaddingValuesSides {
 }
 
 
+
 @Composable
-fun PaddingValues.exclude(side: PaddingValuesSides): PaddingValues {
+public fun PaddingValues.exclude(side: PaddingValuesSides): PaddingValues {
     return exclude(side = side, LocalLayoutDirection.current)
 }
 
-fun PaddingValues.exclude(side: PaddingValuesSides, layoutDirection: LayoutDirection): PaddingValues {
+public fun PaddingValues.exclude(side: PaddingValuesSides, layoutDirection: LayoutDirection): PaddingValues {
     return side.exclude(this, layoutDirection)
 }
 
 @Composable
-fun PaddingValues.only(side: PaddingValuesSides): PaddingValues {
+public fun PaddingValues.only(side: PaddingValuesSides): PaddingValues {
     return only(side = side, LocalLayoutDirection.current)
 }
 
-fun PaddingValues.only(side: PaddingValuesSides, layoutDirection: LayoutDirection): PaddingValues {
+public fun PaddingValues.only(side: PaddingValuesSides, layoutDirection: LayoutDirection): PaddingValues {
     return side.only(this, layoutDirection)
+}
+
+@Composable
+public fun PaddingValues.exclude(side: PaddingSide): PaddingValues {
+    return exclude(side = side.value, LocalLayoutDirection.current)
+}
+
+public fun PaddingValues.exclude(side: PaddingSide, layoutDirection: LayoutDirection): PaddingValues {
+    return side.value.exclude(this, layoutDirection)
+}
+
+@Composable
+public fun PaddingValues.only(side: PaddingSide): PaddingValues {
+    return only(side = side.value, LocalLayoutDirection.current)
+}
+
+public fun PaddingValues.only(side: PaddingSide, layoutDirection: LayoutDirection): PaddingValues {
+    return side.value.only(this, layoutDirection)
 }
