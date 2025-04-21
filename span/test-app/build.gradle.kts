@@ -53,7 +53,7 @@ dependencies {
     implementation(project(":span-core"))
     implementation(project(":span-compose"))
 
-    implementation(platform(AndroidX.compose.bom))
+    implementation(platform("androidx.compose:compose-bom-alpha:2025.04.00"))
     implementation(AndroidX.compose.ui)
     implementation(AndroidX.compose.ui.graphics)
     implementation(AndroidX.compose.ui.toolingPreview)
