@@ -10,7 +10,7 @@ import fe.composekit.component.list.column.SaneLazyColumnLayout
 import fe.composekit.layout.column.SaneLazyListScope
 
 @Composable
-fun SaneScaffoldSettingsPageInternal(
+public fun SaneScaffoldSettingsPageInternal(
     modifier: Modifier = Modifier,
     topBar: @Composable () -> Unit,
     floatingActionButton: @Composable () -> Unit = {},
@@ -27,7 +27,7 @@ fun SaneScaffoldSettingsPageInternal(
 }
 
 @Composable
-fun SaneSettingsScaffold(
+public fun SaneSettingsScaffold(
     modifier: Modifier = Modifier,
     topBar: @Composable () -> Unit,
     floatingActionButton: @Composable () -> Unit = {},

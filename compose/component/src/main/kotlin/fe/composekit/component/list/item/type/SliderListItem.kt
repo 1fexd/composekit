@@ -23,7 +23,7 @@ import fe.composekit.component.list.item.EnabledContentSet
 import fe.composekit.component.shape.CustomShapeDefaults
 
 @Composable
-fun SliderListItem(
+public fun SliderListItem(
     modifier: Modifier = Modifier,
     enabled: EnabledContentSet = EnabledContent.all,
     value: Float,
@@ -87,7 +87,7 @@ private fun DefaultSliderListItem(
 
 @Preview
 @Composable
-fun SliderListItemPreview() {
+public fun SliderListItemPreview() {
     SliderListItem(
         shape = CustomShapeDefaults.SingleShape,
         padding = CommonDefaults.EmptyPadding,

@@ -3,18 +3,18 @@ package fe.android.compose.content
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 
-typealias Content = @Composable () -> Unit
-typealias OptionalContent = (@Composable () -> Unit)?
+public typealias Content = @Composable () -> Unit
+public typealias OptionalContent = (@Composable () -> Unit)?
 
 @Composable
-inline fun rememberOptionalContent(condition: Boolean, crossinline content: @Composable () -> Unit): OptionalContent {
+public inline fun rememberOptionalContent(condition: Boolean, crossinline content: @Composable () -> Unit): OptionalContent {
     return remember(key1 = condition) {
         if (condition) ({ content() }) else null
     }
 }
 
 @Composable
-inline fun <T : Any?> rememberOptionalContent(key1: T?, crossinline content: @Composable (T) -> Unit): OptionalContent {
+public inline fun <T : Any?> rememberOptionalContent(key1: T?, crossinline content: @Composable (T) -> Unit): OptionalContent {
     return remember(key1 = key1) {
         key1?.let {
             { content(it) }
@@ -23,7 +23,7 @@ inline fun <T : Any?> rememberOptionalContent(key1: T?, crossinline content: @Co
 }
 
 @Composable
-inline fun rememberContent(crossinline content: @Composable () -> Unit): Content {
+public inline fun rememberContent(crossinline content: @Composable () -> Unit): Content {
     return remember {
         { content() }
     }

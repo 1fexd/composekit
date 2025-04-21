@@ -9,7 +9,7 @@ import androidx.compose.ui.Modifier
 import fe.composekit.component.list.column.SaneLazyColumnDefaults
 
 @Composable
-fun SaneLazyListTextDivider(text: String, padding: PaddingValues = SaneLazyColumnDefaults.TextDividerPadding) {
+public fun SaneLazyListTextDivider(text: String, padding: PaddingValues = SaneLazyColumnDefaults.TextDividerPadding) {
     Text(
         modifier = Modifier.padding(padding),
         text = text,

@@ -7,7 +7,7 @@ import androidx.compose.ui.Modifier
 
 
 @Composable
-fun TextContentWrapper(modifier: Modifier = Modifier, textContent: TextContent) {
+public fun TextContentWrapper(modifier: Modifier = Modifier, textContent: TextContent) {
     val content = remember(textContent) { textContent.content }
 
     Box(modifier = modifier) {

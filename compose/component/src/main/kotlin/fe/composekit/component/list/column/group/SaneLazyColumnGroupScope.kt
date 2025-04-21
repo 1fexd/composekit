@@ -14,31 +14,31 @@ import fe.composekit.layout.column.SaneLazyListScope
 
 
 @Stable
-data class GroupItem(
+public data class GroupItem(
     val contentType: ContentType,
     val padding: PaddingValues = PaddingValues(),
     val shape: Shape,
 ) {
-    companion object {
-        val Top = GroupItem(
+    public companion object {
+        public val Top: GroupItem = GroupItem(
             ContentType.TopGroupItem,
             SaneLazyColumnDefaults.GroupSpacingTop,
             CustomShapeDefaults.TopShape
         )
 
-        val Middle = GroupItem(
+        public val Middle: GroupItem = GroupItem(
             ContentType.MiddleGroupItem,
             SaneLazyColumnDefaults.GroupSpacingMiddle,
             CustomShapeDefaults.MiddleShape
         )
 
-        val Bottom = GroupItem(
+        public val Bottom: GroupItem = GroupItem(
             ContentType.BottomGroupItem,
             SaneLazyColumnDefaults.GroupSpacingBottom,
             CustomShapeDefaults.BottomShape
         )
 
-        val Single = GroupItem(
+        public val Single: GroupItem = GroupItem(
             ContentType.SingleGroupItem,
             shape = CustomShapeDefaults.SingleShape
         )
@@ -46,7 +46,7 @@ data class GroupItem(
 }
 
 @Stable
-data class SaneLazyColumnGroupScopeImpl(
+public data class SaneLazyColumnGroupScopeImpl(
     val size: Int,
     val listScope: SaneLazyListScope,
 ) : SaneLazyColumnGroupScope, SaneLazyListScope by listScope {

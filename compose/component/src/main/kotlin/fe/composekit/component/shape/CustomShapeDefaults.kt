@@ -3,23 +3,27 @@ package fe.composekit.component.shape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.ui.unit.dp
 
-object CustomShapeDefaults {
+public object CustomShapeDefaults {
     // TODO: Use shape defaults or our own? Can we provide our own via LocalComposition or MaterialTheme?
     private val ShapeLarge = 20.dp //    ShapeDefaults.Large
     private val ShapeSmall = 4.dp
 
-    val SingleShape = RoundedCornerShape(ShapeLarge)
+    public val SingleShape: RoundedCornerShape = RoundedCornerShape(
+        size = ShapeLarge
+    )
 
-    val TopShape = RoundedCornerShape(
+    public val TopShape: RoundedCornerShape = RoundedCornerShape(
         topStart = ShapeLarge,
         topEnd = ShapeLarge,
         bottomStart = ShapeSmall,
         bottomEnd = ShapeSmall
     )
 
-    val MiddleShape = RoundedCornerShape(ShapeSmall)
+    public val MiddleShape: RoundedCornerShape = RoundedCornerShape(
+        size = ShapeSmall
+    )
 
-    val BottomShape = RoundedCornerShape(
+    public val BottomShape: RoundedCornerShape = RoundedCornerShape(
         topStart = ShapeSmall,
         topEnd = ShapeSmall,
         bottomEnd = ShapeLarge,

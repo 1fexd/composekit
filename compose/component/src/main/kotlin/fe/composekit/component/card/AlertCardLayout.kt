@@ -7,7 +7,7 @@ import androidx.compose.ui.layout.*
 import androidx.compose.ui.unit.Constraints
 
 @Composable
-fun AlertCardContentLayout(modifier: Modifier = Modifier, title: @Composable () -> Unit, subtitle: @Composable () -> Unit) {
+public fun AlertCardContentLayout(modifier: Modifier = Modifier, title: @Composable () -> Unit, subtitle: @Composable () -> Unit) {
     val measurePolicy = remember { AlertCardContentMeasurePolicy() }
     Layout(
         modifier = modifier,
@@ -16,7 +16,7 @@ fun AlertCardContentLayout(modifier: Modifier = Modifier, title: @Composable () 
     )
 }
 
-class AlertCardContentMeasurePolicy : MultiContentMeasurePolicy {
+public class AlertCardContentMeasurePolicy : MultiContentMeasurePolicy {
     override fun MeasureScope.measure(measurables: List<List<Measurable>>, constraints: Constraints): MeasureResult {
         val (title, subtitle) = measurables
 

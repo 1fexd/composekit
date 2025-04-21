@@ -14,12 +14,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.unit.Dp
-import androidx.compose.ui.unit.dp
 import fe.android.compose.extension.thenIf
 import fe.android.compose.icon.IconPainter
 
 @Composable
-fun FilledIcon(
+public fun FilledIcon(
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
     iconSize: Dp = IconDefaults.IconSize,

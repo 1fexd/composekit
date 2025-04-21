@@ -5,19 +5,19 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextOverflow
 
 @Immutable
-data class TextOptions(
+public data class TextOptions(
     val maxLines: Int = Int.MAX_VALUE,
     val overflow: TextOverflow = TextOverflow.Clip,
     val style: TextStyle? = null
 )
 
-val DefaultTextOptions = TextOptions()
-val LocalTextOptions = compositionLocalOf { DefaultTextOptions }
+public val DefaultTextOptions: TextOptions = TextOptions()
+public val LocalTextOptions: ProvidableCompositionLocal<TextOptions> = compositionLocalOf { DefaultTextOptions }
 
-typealias OptionalTextContent = TextContent?
+public typealias OptionalTextContent = TextContent?
 
 @Composable
-fun ProvideTextOptions(
+public fun ProvideTextOptions(
     textOptions: TextOptions? = null,
     content: @Composable () -> Unit,
 ) {

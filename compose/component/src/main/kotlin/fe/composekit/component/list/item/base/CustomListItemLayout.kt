@@ -11,7 +11,7 @@ import fe.composekit.component.list.column.CustomListItemPadding
 import kotlin.math.max
 
 @Composable
-fun CustomListItemLayout(
+public fun CustomListItemLayout(
     containerHeight: CustomListItemContainerHeight,
     padding: CustomListItemPadding,
     leading: @Composable (() -> Unit)?,
@@ -358,16 +358,16 @@ private fun MeasureScope.place(
 
 @JvmInline
 @Immutable
-value class CustomListItemType private constructor(
+public value class CustomListItemType private constructor(
     private val lines: Int,
 ) : Comparable<CustomListItemType> {
 
-    override operator fun compareTo(other: CustomListItemType) = lines.compareTo(other.lines)
+    override operator fun compareTo(other: CustomListItemType): Int = lines.compareTo(other.lines)
 
-    companion object {
-        val OneLine = CustomListItemType(1)
-        val TwoLine = CustomListItemType(2)
-        val ThreeLine = CustomListItemType(3)
+    public companion object {
+        public val OneLine: CustomListItemType = CustomListItemType(1)
+        public val TwoLine: CustomListItemType = CustomListItemType(2)
+        public val ThreeLine: CustomListItemType = CustomListItemType(3)
 
         internal operator fun invoke(
             hasOverline: Boolean,

@@ -6,9 +6,9 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.height
 import androidx.compose.ui.Modifier
 
-object CommonDefaults {
-    val EmptyPadding = PaddingValues()
+public object CommonDefaults {
+    public val EmptyPadding: PaddingValues = PaddingValues()
 
-    val BaseModifier = Modifier.height(intrinsicSize = IntrinsicSize.Min)
-    val BaseContentModifier = Modifier.fillMaxHeight()
+    public val BaseModifier: Modifier = Modifier.height(intrinsicSize = IntrinsicSize.Min)
+    public val BaseContentModifier: Modifier = Modifier.fillMaxHeight()
 }

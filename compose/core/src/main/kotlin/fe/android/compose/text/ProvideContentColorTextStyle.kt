@@ -9,7 +9,7 @@ import androidx.compose.ui.text.TextStyle
 
 @Composable
 @Deprecated(message = "Migrate to new API")
-fun ProvideContentColorTextStyle(
+public fun ProvideContentColorTextStyle(
     contentColor: Color,
     textStyle: TextStyle,
     textOptions: TextOptions? = null,
@@ -27,7 +27,7 @@ fun ProvideContentColorTextStyle(
 }
 
 @Composable
-fun ProvideContentColorOptionsStyleText(
+public fun ProvideContentColorOptionsStyleText(
     contentColor: Color,
     textOptions: TextOptions? = null,
     content: @Composable () -> Unit,

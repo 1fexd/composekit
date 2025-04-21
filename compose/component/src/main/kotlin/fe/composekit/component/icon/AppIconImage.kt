@@ -10,7 +10,7 @@ import androidx.compose.ui.unit.dp
 import fe.composekit.component.CommonDefaults
 
 @Composable
-fun AppIconImage(
+public fun AppIconImage(
     modifier: Modifier = CommonDefaults.BaseContentModifier,
     size: Dp = 32.dp,
     bitmap: ImageBitmap,

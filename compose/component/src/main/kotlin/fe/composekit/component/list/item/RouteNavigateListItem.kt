@@ -13,15 +13,15 @@ import fe.android.compose.text.TextContent
 
 
 @Stable
-class RouteNavItem(
-    val route: String,
+public class RouteNavItem(
+    public val route: String,
     icon: IconPainter,
     headline: TextContent,
     subtitle: TextContent,
 ) : ListItemData<Any?>(icon, headline, subtitle)
 
 @Composable
-fun RouteNavigateListItem(
+public fun RouteNavigateListItem(
     data: RouteNavItem,
     shape: Shape = CustomShapeDefaults.SingleShape,
     padding: PaddingValues = CommonDefaults.EmptyPadding,

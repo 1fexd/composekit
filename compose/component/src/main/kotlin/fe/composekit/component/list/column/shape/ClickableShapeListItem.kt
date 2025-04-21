@@ -17,7 +17,7 @@ import fe.composekit.component.list.item.ContentPosition
 import fe.composekit.component.list.column.*
 
 @Composable
-fun ClickableShapeListItem(
+public fun ClickableShapeListItem(
     modifier: Modifier = CommonDefaults.BaseModifier,
     enabled: Boolean = true,
     onClick: () -> Unit,
@@ -55,7 +55,7 @@ fun ClickableShapeListItem(
 }
 
 @Composable
-fun ClickableShapeListItem(
+public fun ClickableShapeListItem(
     modifier: Modifier = CommonDefaults.BaseModifier,
     enabled: Boolean = true,
     onClick: () -> Unit,

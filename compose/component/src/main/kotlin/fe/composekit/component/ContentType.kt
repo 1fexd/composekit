@@ -1,6 +1,6 @@
 package fe.composekit.component
 
-enum class ContentType {
+public enum class ContentType {
     ClickableAlert,
     Alert,
     Divider,

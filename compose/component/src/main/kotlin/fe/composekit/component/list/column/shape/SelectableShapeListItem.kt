@@ -20,7 +20,7 @@ import fe.composekit.component.list.column.CustomListItemTextOptions
 import fe.composekit.component.list.item.ContentPosition
 
 @Composable
-fun SelectableShapeListItem(
+public fun SelectableShapeListItem(
     modifier: Modifier = CommonDefaults.BaseModifier,
     enabled: Boolean = true,
     selected: Boolean = false,
@@ -60,7 +60,7 @@ fun SelectableShapeListItem(
 }
 
 @Composable
-fun SelectableShapeListItem(
+public fun SelectableShapeListItem(
     modifier: Modifier = CommonDefaults.BaseModifier,
     enabled: Boolean = true,
     selected: Boolean = false,

@@ -17,7 +17,7 @@ import fe.composekit.component.list.item.base.CustomListItemLayout
 import fe.composekit.component.list.item.base.CustomListItemType
 
 
-object CustomListItemDefaults {
+public object CustomListItemDefaults {
     private val ContainerHeightOneLine = 56.0.dp
     private val ContainerHeightTwoLine = 76.0.dp
     private val ContainerHeightThreeLine = 88.0.dp
@@ -55,7 +55,7 @@ object CustomListItemDefaults {
         )
 
     @Stable
-    fun containerHeight(
+    public fun containerHeight(
         oneLine: Dp = ContainerHeightOneLine,
         twoLine: Dp = ContainerHeightTwoLine,
         threeLine: Dp = ContainerHeightThreeLine
@@ -64,7 +64,7 @@ object CustomListItemDefaults {
     }
 
     @Stable
-    fun padding(
+    public fun padding(
         vertical: Dp = VerticalPadding,
         threeLineVertical: Dp = ThreeLineVerticalPadding,
         start: Dp = StartPadding,
@@ -76,7 +76,7 @@ object CustomListItemDefaults {
     }
 
     @Composable
-    fun textOptions(
+    public fun textOptions(
         overline: TextOptions? = OverlineTextOptions,
         headline: TextOptions? = HeadlineTextOptions,
         supporting: TextOptions? = SupportingTextOptions,
@@ -86,13 +86,13 @@ object CustomListItemDefaults {
 }
 
 @Immutable
-data class CustomListItemContainerHeight(
+public data class CustomListItemContainerHeight(
     val oneLine: Dp,
     val twoLine: Dp,
     val threeLine: Dp,
 ) {
     @Stable
-    fun minHeight(listItemType: CustomListItemType): Dp {
+    public fun minHeight(listItemType: CustomListItemType): Dp {
         return when (listItemType) {
             CustomListItemType.OneLine -> oneLine
             CustomListItemType.TwoLine -> twoLine
@@ -102,7 +102,7 @@ data class CustomListItemContainerHeight(
 }
 
 @Immutable
-data class CustomListItemPadding(
+public data class CustomListItemPadding(
     private val vertical: Dp,
     private val threeLineVertical: Dp,
     val start: Dp,
@@ -110,10 +110,10 @@ data class CustomListItemPadding(
     val leadingContentEnd: Dp,
     val trailingContentStart: Dp
 ) {
-    val horizontal = start + end
+    val horizontal: Dp = start + end
 
     @Stable
-    fun verticalPadding(listItemType: CustomListItemType): Dp {
+    public fun verticalPadding(listItemType: CustomListItemType): Dp {
         return when (listItemType) {
             CustomListItemType.ThreeLine -> threeLineVertical
             else -> vertical
@@ -122,7 +122,7 @@ data class CustomListItemPadding(
 }
 
 @Immutable
-data class CustomListItemTextOptions(
+public data class CustomListItemTextOptions(
     val overline: TextOptions?,
     val headline: TextOptions?,
     val supporting: TextOptions?

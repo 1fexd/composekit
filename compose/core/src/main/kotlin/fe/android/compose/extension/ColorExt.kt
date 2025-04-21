@@ -8,7 +8,7 @@ import androidx.compose.ui.unit.dp
 import kotlin.math.ln
 
 @Stable
-fun Color.atElevation(
+public fun Color.atElevation(
     surfaceTint: Color,
     elevation: Dp,
 ): Color {

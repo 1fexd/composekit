@@ -33,20 +33,18 @@ import fe.composekit.component.icon.FilledIcon
 import fe.composekit.component.icon.IconOffset
 import fe.composekit.component.shape.CustomShapeDefaults
 
-object AlertCardDefaults {
-    val MinHeight = Modifier.heightIn(min = 90.dp)
+public object AlertCardDefaults {
+    public val MinHeight: Modifier = Modifier.heightIn(min = 90.dp)
+    public val Padding: Dp = 16.dp
+    public val InnerPadding: PaddingValues = PaddingValues(all = Padding)
+    public val HorizontalArrangement: Arrangement.HorizontalOrVertical = Arrangement.spacedBy(12.dp)
 
-    val Padding = 16.dp
-    val InnerPadding = PaddingValues(all = Padding)
-
-    val HorizontalArrangement = Arrangement.spacedBy(12.dp)
-
-    val IconSize = 20.dp
-    val IconContainerSize = 34.dp
+    public val IconSize: Dp = 20.dp
+    public val IconContainerSize: Dp = 34.dp
 }
 
 @Composable
-fun AlertCard(
+public fun AlertCard(
     modifier: Modifier = AlertCardDefaults.MinHeight,
     colors: CardColors = CardDefaults.cardColors(),
     shape: Shape = CustomShapeDefaults.SingleShape,

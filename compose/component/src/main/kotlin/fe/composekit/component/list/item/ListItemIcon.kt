@@ -11,7 +11,7 @@ import fe.composekit.component.CommonDefaults
 import fe.composekit.component.icon.IconDefaults
 
 @Composable
-fun ListItemIcon(
+public fun ListItemIcon(
     iconPainter: IconPainter,
     contentDescription: String? = null,
 ) {

@@ -15,7 +15,7 @@ import fe.composekit.component.list.item.ListItemIcon
 import fe.composekit.component.shape.CustomShapeDefaults
 
 @Composable
-fun DefaultTwoLineIconClickableShapeListItem(
+public fun DefaultTwoLineIconClickableShapeListItem(
     enabled: Boolean = true,
     shape: Shape = CustomShapeDefaults.SingleShape,
     padding: PaddingValues = CommonDefaults.EmptyPadding,

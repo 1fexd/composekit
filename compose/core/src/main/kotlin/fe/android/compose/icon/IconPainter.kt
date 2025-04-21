@@ -2,6 +2,7 @@ package fe.android.compose.icon
 
 import androidx.annotation.DrawableRes
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.runtime.Stable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.graphics.ImageBitmap
@@ -12,38 +13,42 @@ import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.res.painterResource
 
 @Stable
-interface IconPainter {
+public interface IconPainter {
     @Composable
-    fun rememberPainter(): Painter
+    public fun rememberPainter(): Painter
 }
 
 @JvmInline
 @Stable
-value class ImageVectorIconPainter private constructor(private val imageVector: ImageVector) : IconPainter {
+public value class ImageVectorIconPainter private constructor(private val imageVector: ImageVector) : IconPainter {
     @Composable
-    override fun rememberPainter(): Painter = rememberVectorPainter(imageVector)
+    override fun rememberPainter(): Painter {
+        return rememberVectorPainter(imageVector)
+    }
 
-    companion object {
-        fun imageVector(imageVector: ImageVector): ImageVectorIconPainter {
+    public companion object {
+        public fun imageVector(imageVector: ImageVector): ImageVectorIconPainter {
             return ImageVectorIconPainter(imageVector)
         }
     }
 }
 
 @Stable
-val ImageVector.iconPainter: IconPainter
+public val ImageVector.iconPainter: IconPainter
     get() = ImageVectorIconPainter.imageVector(this)
 
 
 @JvmInline
 @Stable
-value class DrawableIconPainter private constructor(@DrawableRes private val id: Int) : IconPainter {
+public value class DrawableIconPainter private constructor(@param:DrawableRes private val id: Int) : IconPainter {
 
     @Composable
-    override fun rememberPainter(): Painter = painterResource(id)
+    override fun rememberPainter(): Painter {
+        return painterResource(id)
+    }
 
-    companion object {
-        fun drawable(@DrawableRes id: Int): DrawableIconPainter {
+    public companion object {
+        public fun drawable(@DrawableRes id: Int): DrawableIconPainter {
             return DrawableIconPainter(id)
         }
     }
@@ -51,15 +56,15 @@ value class DrawableIconPainter private constructor(@DrawableRes private val id:
 
 @JvmInline
 @Stable
-value class BitmapIconPainter private constructor(private val bitmap: ImageBitmap) : IconPainter {
+public value class BitmapIconPainter private constructor(private val bitmap: ImageBitmap) : IconPainter {
 
     @Composable
     override fun rememberPainter(): Painter {
         return remember(bitmap) { BitmapPainter(bitmap) }
     }
 
-    companion object {
-        fun bitmap(bitmap: ImageBitmap): BitmapIconPainter {
+    public companion object {
+        public fun bitmap(bitmap: ImageBitmap): BitmapIconPainter {
             return BitmapIconPainter(bitmap)
         }
     }

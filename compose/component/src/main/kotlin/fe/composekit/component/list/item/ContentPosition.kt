@@ -5,11 +5,11 @@ import androidx.compose.runtime.Stable
 import fe.android.compose.content.OptionalContent
 
 @Immutable
-enum class ContentPosition {
+public enum class ContentPosition {
     Leading, Trailing;
 
     @Stable
-    fun pick(position: ContentPosition, primary: OptionalContent, other: OptionalContent): OptionalContent {
+    public fun pick(position: ContentPosition, primary: OptionalContent, other: OptionalContent): OptionalContent {
         return if (position == this) primary else other
     }
 }

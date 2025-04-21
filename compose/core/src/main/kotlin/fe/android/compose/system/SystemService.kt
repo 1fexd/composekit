@@ -7,6 +7,6 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.core.content.getSystemService
 
 @Composable
-inline fun <reified T : Any> rememberSystemService(context: Context = LocalContext.current): T {
+public inline fun <reified T : Any> rememberSystemService(context: Context = LocalContext.current): T {
     return remember(context) { context.getSystemService<T>()!! }
 }

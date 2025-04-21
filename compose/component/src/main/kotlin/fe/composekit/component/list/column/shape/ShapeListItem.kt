@@ -18,9 +18,9 @@ import fe.android.compose.text.TextContent
 import fe.composekit.component.list.column.*
 
 
-object ShapeListItemDefaults {
+public object ShapeListItemDefaults {
     @Composable
-    fun colors(
+    public fun colors(
         containerColor: Color = MaterialTheme.colorScheme.surfaceContainerHigh,
         headlineColor: Color = contentColorFor(containerColor),
         supportingColor: Color = contentColorFor(containerColor),
@@ -34,7 +34,7 @@ object ShapeListItemDefaults {
 }
 
 @Composable
-fun ShapeListItem(
+public fun ShapeListItem(
     modifier: Modifier = CommonDefaults.BaseModifier,
     shape: Shape = CustomShapeDefaults.SingleShape,
     padding: PaddingValues = CommonDefaults.EmptyPadding,

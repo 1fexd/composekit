@@ -10,7 +10,7 @@ import fe.composekit.layout.column.SaneLazyListScope
 
 
 @Stable
-data class SaneLazyListScopeImpl(val lazyListScope: LazyListScope) : SaneLazyListScope, LazyListScope by lazyListScope {
+public data class SaneLazyListScopeImpl(val lazyListScope: LazyListScope) : SaneLazyListScope, LazyListScope by lazyListScope {
     override fun divider(@StringRes id: Int, key: Any) {
         item(key = compute(id, key), contentType = ContentType.Divider) {
             SaneLazyListTextDivider(text = stringResource(id = id))

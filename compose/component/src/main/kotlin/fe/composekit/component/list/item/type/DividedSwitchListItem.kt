@@ -27,7 +27,7 @@ import fe.composekit.component.list.item.EnabledContentSet
 
 
 @Composable
-fun DividedSwitchListItem(
+public fun DividedSwitchListItem(
     enabled: EnabledContentSet = EnabledContent.all,
     checked: Boolean,
     onCheckedChange: (Boolean) -> Unit,
@@ -95,9 +95,7 @@ private fun DefaultDividedListItemSwitch(
 
 @Preview
 @Composable
-fun DividedClickableShapeListItemPreview() {
-
-
+public fun DividedClickableShapeListItemPreview() {
     var checked by remember { mutableStateOf(true) }
     DividedSwitchListItem(
         checked = checked,

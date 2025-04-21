@@ -18,7 +18,7 @@ import fe.composekit.component.list.item.EnabledContentSet
 import fe.composekit.component.shape.CustomShapeDefaults
 
 @Composable
-fun CheckboxListItem(
+public fun CheckboxListItem(
     enabled: EnabledContentSet = EnabledContent.all,
     checked: Boolean,
     onCheckedChange: (Boolean) -> Unit,

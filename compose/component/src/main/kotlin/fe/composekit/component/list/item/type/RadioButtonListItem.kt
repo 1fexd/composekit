@@ -26,12 +26,12 @@ import fe.composekit.component.list.item.ContentPosition
 import fe.composekit.component.list.item.EnabledContent
 import fe.composekit.component.list.item.EnabledContentSet
 
-object RadioButtonListItemDefaults {
-    val Width = 24.dp
+public object RadioButtonListItemDefaults {
+    public val Width: Dp = 24.dp
 }
 
 @Composable
-fun RadioButtonListItem(
+public fun RadioButtonListItem(
     modifier: Modifier = CommonDefaults.BaseModifier,
     enabled: EnabledContentSet = EnabledContent.all,
     width: Dp = RadioButtonListItemDefaults.Width,

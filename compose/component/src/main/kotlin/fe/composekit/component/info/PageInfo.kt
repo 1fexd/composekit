@@ -20,10 +20,9 @@ import fe.android.compose.text.DefaultContent.Companion.text
 import fe.android.compose.text.ProvideContentColorOptionsStyleText
 import fe.android.compose.text.TextContent
 import fe.android.compose.text.TextOptions
-import fe.composekit.component.list.item.ListItemIcon
 
 @Composable
-fun PageInfo(
+public fun PageInfo(
     modifier: Modifier = Modifier,
     textContent: TextContent,
     icon: IconPainter = Icons.Outlined.Info.iconPainter,

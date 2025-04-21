@@ -20,7 +20,7 @@ public class RouteNavItemNew(
 ) : ListItemData<Any?>(icon, headline, subtitle)
 
 @Composable
-public fun RouteNavigateListItem(
+public fun RouteNavigateListItemNew(
     data: RouteNavItemNew,
     shape: Shape = CustomShapeDefaults.SingleShape,
     padding: PaddingValues = CommonDefaults.EmptyPadding,

@@ -9,7 +9,7 @@ import fe.composekit.component.CommonDefaults
 import fe.android.compose.icon.IconPainter
 
 @Composable
-fun ListItemFilledIconButton(
+public fun ListItemFilledIconButton(
     iconPainter: IconPainter,
     contentDescription: String? = null,
     onClick: () -> Unit,
