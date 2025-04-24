@@ -2,9 +2,9 @@ package fe.android.compose.dialog.helper
 
 import androidx.compose.runtime.saveable.SaverScope
 
-typealias ComposeSaver<O, S> = androidx.compose.runtime.saveable.Saver<O, S>
+public typealias ComposeSaver<O, S> = androidx.compose.runtime.saveable.Saver<O, S>
 
-fun <O, S : Any> createSaver(
+public fun <O, S : Any> createSaver(
     save: SaverScope.(O) -> S?,
     restore: (S) -> O?
 ): ComposeSaver<O, S> {

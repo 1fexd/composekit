@@ -4,7 +4,7 @@ import androidx.compose.runtime.Stable
 import kotlinx.coroutines.flow.MutableStateFlow
 
 @Stable
-abstract class BaseResultDialogState<R : Any>(
+public abstract class BaseResultDialogState<R : Any>(
     initial: DialogState = DialogState.Closed,
     result: R? = null
 ) : BaseDialogState(initial) {
@@ -13,11 +13,11 @@ abstract class BaseResultDialogState<R : Any>(
     internal val result: R?
         get() = resultState.value
 
-    open fun dismiss(): Boolean {
+    public open fun dismiss(): Boolean {
         return closeInternal(null)
     }
 
-    fun close(result: R): Boolean {
+    public fun close(result: R): Boolean {
         return closeInternal(result)
     }
 

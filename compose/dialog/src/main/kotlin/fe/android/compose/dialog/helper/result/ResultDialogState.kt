@@ -8,16 +8,17 @@ import fe.android.compose.dialog.helper.base.BaseResultDialogState
 
 
 @Stable
-class ResultDialogState<R : Any>(
+public class ResultDialogState<R : Any>(
     result: R? = null,
 ) : BaseResultDialogState<R>(DialogState.Closed, result) {
 
-    fun open(): Boolean {
+    public fun open(): Boolean {
         return super.tryOpen()
     }
 
-    companion object {
-        fun <R : Any> Saver(): ComposeSaver<ResultDialogState<R>, R> {
+    public companion object {
+        @Suppress("FunctionName")
+        public fun <R : Any> Saver(): ComposeSaver<ResultDialogState<R>, R> {
             return createSaver(
                 save = { it.result },
                 restore = { ResultDialogState(it) }

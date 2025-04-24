@@ -33,6 +33,14 @@ public fun HapticFeedbackInteraction.wrap(type: FeedbackType, fn: () -> Unit): (
     }
 }
 
+public fun <T> HapticFeedbackInteraction.wrap(type: FeedbackType, fn: (T) -> Unit): (T) -> Unit {
+    return {
+        val result = fn(it)
+        perform(type)
+        result
+    }
+}
+
 @JvmInline
 public value class FeedbackType private constructor(public val flag: Int) {
     public companion object {
