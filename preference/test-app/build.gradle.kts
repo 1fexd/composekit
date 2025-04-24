@@ -55,7 +55,7 @@ dependencies {
     implementation(AndroidX.core.ktx)
     implementation(AndroidX.lifecycle.runtime.ktx)
     implementation(AndroidX.activity.compose)
-    implementation(platform("androidx.compose:compose-bom-alpha:2025.04.00"))
+    implementation(platform("androidx.compose:compose-bom-alpha:_"))
     implementation(AndroidX.compose.ui)
     implementation(AndroidX.compose.ui.graphics)
     implementation(AndroidX.compose.ui.toolingPreview)

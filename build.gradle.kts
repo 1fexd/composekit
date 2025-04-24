@@ -82,7 +82,7 @@ subprojects {
 
         this@subprojects.dependencies {
             implementationProxy(platform(Grrfe.std.bom))
-            implementationProxy(platform("androidx.compose:compose-bom-alpha:2025.04.00"))
+            implementationProxy(platform("androidx.compose:compose-bom-alpha:_"))
             implementationProxy(AndroidX.compose.ui)
             implementationProxy(AndroidX.compose.material3)
         }
