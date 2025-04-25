@@ -12,4 +12,5 @@ dependencies {
     implementation(AndroidX.compose.ui.tooling)
     implementation(AndroidX.compose.ui.toolingPreview)
     implementation(AndroidX.compose.material.icons.core)
+    implementation("com.github.nanihadesuka:LazyColumnScrollbar:_")
 }

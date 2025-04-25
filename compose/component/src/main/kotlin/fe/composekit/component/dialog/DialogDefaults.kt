@@ -5,6 +5,7 @@ import androidx.compose.material3.AlertDialogDefaults
 import androidx.compose.material3.ListItemColors
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -14,6 +15,7 @@ import fe.composekit.component.list.column.CustomListItemDefaults
 import fe.composekit.component.list.column.CustomListItemPadding
 import fe.composekit.component.list.column.CustomListItemTextOptions
 import fe.composekit.component.list.column.shape.ShapeListItemDefaults
+import my.nanihadesuka.compose.ScrollbarSettings
 
 public object DialogDefaults {
     public val RadioButtonWidth: Dp = 48.dp
@@ -38,20 +40,28 @@ public object DialogDefaults {
             containerColor = AlertDialogDefaults.containerColor
         )
 
+    public val DefaultScrollbarSettings: ScrollbarSettings
+        @ReadOnlyComposable @Composable
+        get() = ScrollbarSettings(
+            thumbThickness = 3.dp,
+            scrollbarPadding = 0.dp,
+            alwaysShowScrollbar = true,
+            thumbSelectedColor = MaterialTheme.colorScheme.primary,
+            thumbUnselectedColor = MaterialTheme.colorScheme.primary
+        )
+
     public val DialogBoxPadding: Dp = 24.dp
     public val DialogIconBottomPadding: Dp = 16.dp
     public val DialogTitleBottomPadding: Dp = 16.dp
     public val DialogTextBottomPadding: Dp = 24.dp
 
-    public val DefaultDialogPadding: DialogPaddingOptions
-        @Composable
-        get() = DialogPaddingOptions(
-            box = PaddingValues(all = DialogBoxPadding),
-            icon = PaddingValues(bottom = DialogIconBottomPadding),
-            title = PaddingValues(bottom = DialogTitleBottomPadding),
-            text = PaddingValues(bottom = DialogTextBottomPadding),
-            buttons = CommonDefaults.EmptyPadding
-        )
+    public val DefaultDialogPadding: DialogPaddingOptions = DialogPaddingOptions(
+        box = PaddingValues(all = DialogBoxPadding),
+        icon = PaddingValues(bottom = DialogIconBottomPadding),
+        title = PaddingValues(bottom = DialogTitleBottomPadding),
+        text = PaddingValues(bottom = DialogTextBottomPadding),
+        buttons = CommonDefaults.EmptyPadding
+    )
 
     public val ButtonsMainAxisSpacing: Dp = 8.dp
     public val ButtonsCrossAxisSpacing: Dp = 12.dp

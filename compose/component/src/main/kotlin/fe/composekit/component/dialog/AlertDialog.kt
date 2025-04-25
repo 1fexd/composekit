@@ -326,9 +326,7 @@ internal fun AlertDialogContent(
             iconContent?.invoke(this)
             titleContent?.invoke(this)
             textContent?.invoke(this)
-            Box(modifier = Modifier
-                .align(Alignment.End)
-                .padding(padding.buttons)) {
+            Box(modifier = Modifier.align(Alignment.End).padding(padding.buttons)) {
                 val textStyle = DialogTokens.ActionLabelTextFont.value
                 ProvideContentColorTextStyle(
                     contentColor = buttonContentColor,
