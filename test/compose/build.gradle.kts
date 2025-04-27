@@ -10,5 +10,4 @@ dependencies{
     implementation(Koin.junit4)
     implementation(Koin.android)
     implementation(Testing.junit4)
-    implementation(Testing.robolectric)
 }

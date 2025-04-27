@@ -14,7 +14,6 @@ dependencies{
     testImplementation(AndroidX.test.ext.junit)
     testImplementation(AndroidX.test.ext.junit.ktx)
     testImplementation(Testing.junit4)
-    testImplementation(Testing.robolectric)
     testImplementation("com.willowtreeapps.assertk:assertk:_")
     testImplementation(kotlin("test"))
 }

@@ -1,11 +1,11 @@
 @file:Suppress("UnstableApiUsage")
 
+import com.gitlab.grrfe.gradlebuild.maybeConfigureIncludingRootRefreshVersions
 import fe.build.dependencies.Grrfe
 import fe.buildsettings.config.MavenRepository
 import fe.buildsettings.config.configureRepositories
 import fe.buildsettings.extension.hasJitpackEnv
 import fe.buildsettings.extension.includeProject
-import fe.buildsettings.extension.maybeResolveIncludingRootContext
 
 rootProject.name = "composekit"
 
@@ -19,6 +19,7 @@ pluginManagement {
 
     plugins {
         id("de.fayard.refreshVersions") version "0.60.5"
+        id("org.gradle.toolchains.foojay-resolver-convention") version "0.10.0"
         id("net.nemerosa.versioning")
         id("com.android.library")
         id("org.jetbrains.kotlin.android")
@@ -27,14 +28,11 @@ pluginManagement {
     when (val gradleBuildDir = extra.properties["gradle.build.dir"]) {
         null -> {
             val gradleBuildVersion = extra.properties["gradle.build.version"]
-            val plugins = arrayOf(
-                "build-settings-plugin" to "build-settings",
-                "build-logic-plugin" to "build-logic",
-                "new-build-logic-plugin" to "new-build-logic",
-                "library-build-plugin" to "new-build-logic"
-            ).associate { (artifact, project) ->
-                "com.gitlab.grrfe.$artifact" to "com.gitlab.grrfe.gradle-build:$project"
-            }
+            val plugins = extra.properties["gradle.build.plugins"]
+                .toString().trim().split(",")
+                .map { it.trim().split("=") }
+                .filter { it.size == 2 }
+                .associate { it[0] to it[1] }
 
             resolutionStrategy {
                 eachPlugin {
@@ -48,8 +46,8 @@ pluginManagement {
 }
 
 plugins {
-    id("org.gradle.toolchains.foojay-resolver-convention") version "0.10.0"
     id("de.fayard.refreshVersions")
+    id("org.gradle.toolchains.foojay-resolver-convention")
     id("com.gitlab.grrfe.build-settings-plugin")
 }
 
@@ -62,15 +60,10 @@ configureRepositories(
     mode = RepositoriesMode.FAIL_ON_PROJECT_REPOS
 )
 
+maybeConfigureIncludingRootRefreshVersions()
+
 extra.properties["gradle.build.dir"]
     ?.let { includeBuild(it.toString()) }
-
-maybeResolveIncludingRootContext()?.rootProject {
-    refreshVersions {
-        versionsPropertiesFile = rootDir.resolve("versions.properties")
-        logger.info("Using versions file from $versionsPropertiesFile")
-    }
-}
 
 includeProject(":compose-core", "compose/core")
 includeProject(":compose-component", "compose/component")
