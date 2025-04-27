@@ -3,8 +3,8 @@ package fe.android.span.helper.composable
 import androidx.annotation.StringRes
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.platform.LocalResources
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.core.text.toSpanned
@@ -32,7 +32,7 @@ public fun AnnotatedString.Builder.fromStringRes(
     vararg formatArgs: Any?,
     style: LinkAnnotationStyle? = null,
 ): AnnotatedString.Builder {
-    val resources = LocalContext.current.resources
+    val resources = LocalResources.current
     val density = LocalDensity.current
     val linkStyle = style ?: LocalLinkAnnotationStyle.current
 

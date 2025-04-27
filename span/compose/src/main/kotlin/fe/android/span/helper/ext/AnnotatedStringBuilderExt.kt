@@ -37,11 +37,6 @@ public fun AnnotatedString.Builder.putSpan(
         return
     }
 
-    val link = when (span.key) {
-        tags.urlAnnotationKey -> span.value
-        tags.urlIdAnnotationKey -> tags.urlIds[span.value] ?: error("No link found for url id: ${span.value}")
-        else -> return
-    }
-
+    val link = tags.get(span.key, span.value) ?: return
     addLink(style.toUrlAnnotation(link), start, end)
 }

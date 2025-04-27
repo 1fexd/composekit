@@ -16,7 +16,7 @@ import androidx.core.content.getSystemService
 import fe.android.compose.extension.setPlainText
 
 public val LocalHapticFeedbackInteraction: ProvidableCompositionLocal<HapticFeedbackInteraction> =
-    staticCompositionLocalOf<HapticFeedbackInteraction> {
+    staticCompositionLocalOf {
         error("LocalHapticFeedbackInteraction")
     }
 
