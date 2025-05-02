@@ -21,7 +21,7 @@ import fe.androidspanhelper.testapp.R
 @Composable
 fun SpanTextPreviewColumn() {
     CompositionLocalProvider(
-        LocalLinkTags provides LinkTags(),
+        LocalLinkTags provides DefaultLinkTags(),
         LocalLinkAnnotationStyle provides DefaultHyperLinkStyle
     ) {
         Column(modifier = Modifier.padding(all = 12.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
