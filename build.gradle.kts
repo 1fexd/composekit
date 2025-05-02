@@ -85,6 +85,7 @@ subprojects {
             implementationProxy(platform("androidx.compose:compose-bom-alpha:_"))
             implementationProxy(AndroidX.compose.ui)
             implementationProxy(AndroidX.compose.material3)
+            implementationProxy(AndroidX.test.core)
         }
     }
 }
