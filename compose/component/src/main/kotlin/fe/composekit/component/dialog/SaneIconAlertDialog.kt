@@ -7,12 +7,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import fe.android.compose.content.OptionalContent
 import fe.android.compose.text.TextContent
+import my.nanihadesuka.compose.ScrollbarSettings
 
 @Composable
 public fun SaneIconAlertDialog(
     state: LazyListState = rememberLazyListState(),
     modifier: Modifier = SaneDialogDefaults.SaneDialogContentModifier,
     innerModifier: Modifier = SaneDialogDefaults.SaneDialogInnerModifier,
+    settings: ScrollbarSettings = DialogDefaults.DefaultScrollbarSettings,
     icon: OptionalContent? = null,
     title: TextContent,
     onDismiss: () -> Unit,
@@ -29,7 +31,7 @@ public fun SaneIconAlertDialog(
                 state = state,
                 modifier = modifier,
                 innerModifier = innerModifier,
-                settings = DialogDefaults.DefaultScrollbarSettings,
+                settings = settings,
                 dividerTop = null,
                 dividerBottom = null,
                 content = content
