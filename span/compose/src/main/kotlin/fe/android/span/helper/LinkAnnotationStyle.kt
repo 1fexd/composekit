@@ -28,7 +28,6 @@ public val DefaultHyperLinkStyle: LinkAnnotationStyle = LinkAnnotationStyle(
     style = SpanStyle(color = Color(0xff3b82f6), textDecoration = TextDecoration.Underline),
 )
 
-
 public val LocalLinkAnnotationStyle: ProvidableCompositionLocal<LinkAnnotationStyle> = compositionLocalOf {
     DefaultHyperLinkStyle
 }

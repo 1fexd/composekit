@@ -2,7 +2,7 @@ package fe.android.span.helper
 
 import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.ProvidableCompositionLocal
-import androidx.compose.runtime.staticCompositionLocalOf
+import androidx.compose.runtime.compositionLocalOf
 
 @Immutable
 public data class DefaultLinkTags(
@@ -31,6 +31,11 @@ public interface LinkTags {
     public fun getById(id: String): String?
 }
 
-public val LocalLinkTags: ProvidableCompositionLocal<LinkTags> = staticCompositionLocalOf {
-    error("CompositionLocal LocalLinkTags not present")
+private val StubLocalLinkTags = object : LinkTags {
+    override fun get(key: String, value: String): String? = "CompositionLocal LocalLinkTags not present"
+    override fun getById(id: String): String? = "CompositionLocal LocalLinkTags not present"
+}
+
+public val LocalLinkTags: ProvidableCompositionLocal<LinkTags> = compositionLocalOf {
+    StubLocalLinkTags
 }
