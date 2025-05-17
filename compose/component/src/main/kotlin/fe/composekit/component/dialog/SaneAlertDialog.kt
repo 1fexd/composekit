@@ -1,9 +1,7 @@
 package fe.composekit.component.dialog
 
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxScope
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListState
@@ -15,10 +13,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import fe.android.compose.content.OptionalContent
 import fe.android.compose.text.DefaultContent.Companion.text
 import fe.android.compose.text.TextContent
-import my.nanihadesuka.compose.LazyColumnScrollbar
-import my.nanihadesuka.compose.ScrollbarSettings
 
 @Composable
 public fun SaneAlertDialog(
@@ -26,7 +23,7 @@ public fun SaneAlertDialog(
     title: TextContent,
     onDismiss: () -> Unit,
     confirmButton: @Composable () -> Unit,
-    dismissButton: @Composable (() -> Unit)? = null,
+    dismissButton: OptionalContent? = null,
     content: @Composable BoxScope.() -> Unit
 ) {
     AlertDialog(
@@ -38,6 +35,8 @@ public fun SaneAlertDialog(
                 modifier = SaneDialogDefaults.SaneDialogContentModifier,
                 innerModifier = SaneDialogDefaults.SaneDialogInnerModifier,
                 settings = DialogDefaults.DefaultScrollbarSettings,
+                dividerTop = { HorizontalDivider() },
+                dividerBottom = { HorizontalDivider() },
                 content = content
             )
         },
@@ -51,28 +50,6 @@ public fun SaneAlertDialog(
 public fun SaneAlertDialogTextButton(content: TextContent, onClick: () -> Unit) {
     TextButton(onClick = onClick) {
         content.content()
-    }
-}
-
-@Composable
-public fun SaneAlertDialogContent(
-    state: LazyListState = rememberLazyListState(),
-    modifier: Modifier = SaneDialogDefaults.SaneDialogContentModifier,
-    innerModifier: Modifier = SaneDialogDefaults.SaneDialogInnerModifier,
-    settings: ScrollbarSettings = DialogDefaults.DefaultScrollbarSettings,
-    content: @Composable BoxScope.() -> Unit
-) {
-    Column(modifier = modifier) {
-        HorizontalDivider()
-
-        LazyColumnScrollbar(modifier = Modifier, state = state, settings = settings) {
-            Box(
-                modifier = innerModifier,
-                content = content
-            )
-        }
-
-        HorizontalDivider()
     }
 }
 
