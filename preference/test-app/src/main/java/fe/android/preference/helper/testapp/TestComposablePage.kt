@@ -5,12 +5,13 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import fe.composekit.preference.collectAsStateWithLifecycle
 
 
 @Composable
 fun TestComposablePage(viewModel: TestViewModel) {
-    val newTestInt2 = viewModel.newTestInt2.collectAsStateWithLifecycle()
+    val newTestInt2 by viewModel.newTestInt2.collectAsStateWithLifecycle()
 //        var counter by remember { preferenceRepository.asState(TestPreferenceDefinition.counter) }
 
     Column {
@@ -30,7 +31,7 @@ fun TestComposablePage(viewModel: TestViewModel) {
 
 @Composable
 fun TestComposablePage2(viewModel: TestViewModel2) {
-    val newTestInt2 = viewModel.newTestInt2.collectAsStateWithLifecycle()
+    val newTestInt2 by viewModel.newTestInt2.collectAsStateWithLifecycle()
 //        var counter by remember { preferenceRepository.asState(TestPreferenceDefinition.counter) }
 
     Column {

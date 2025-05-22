@@ -1,6 +1,7 @@
 package fe.composekit.preference
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.State
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.compose.LocalLifecycleOwner
@@ -61,7 +62,18 @@ public fun <Type : Any, NullableType, Preference : Pref<Type, NullableType>> Vie
     lifecycleOwner: LifecycleOwner = LocalLifecycleOwner.current,
     minActiveState: Lifecycle.State = Lifecycle.State.STARTED,
     context: CoroutineContext = EmptyCoroutineContext
-): NullableType {
+): State<NullableType> {
     val state = stateFlow.collectAsStateWithLifecycle(lifecycleOwner, minActiveState, context)
-    return state.value
+    return state
+}
+
+@Composable
+public fun <Type : Any, NullableType, Preference : Pref<Type, NullableType>> ViewModelStatePreference<Type, NullableType, Preference>.collectAsStateWithLifecycle(
+    initialValue: NullableType,
+    lifecycleOwner: LifecycleOwner = LocalLifecycleOwner.current,
+    minActiveState: Lifecycle.State = Lifecycle.State.STARTED,
+    context: CoroutineContext = EmptyCoroutineContext
+): State<NullableType> {
+    val state = stateFlow.collectAsStateWithLifecycle(initialValue, lifecycleOwner, minActiveState, context)
+    return state
 }
