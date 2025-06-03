@@ -2,7 +2,6 @@ package fe.android.preference.helper.testapp
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.CreationExtras
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
@@ -32,7 +31,7 @@ class TestViewModel(
 //    val newTest = newTestRepository.asViewModelState(TestPreferenceDefinition.newTest)
 //    val newTestInt = newTestRepository.asFlow(TestPreferenceDefinition.newTestInt)
 
-    val newTestInt2 = newTestRepository.asViewModelState(TestPreferenceDefinition.newTestInt)
+    val newTestInt = newTestRepository.asViewModelState(TestPreferenceDefinition.newTestInt)
 }
 
 class TestViewModel2(
@@ -53,5 +52,5 @@ class TestViewModel2(
 //    val initState = testRepository.getOrPutInit(TestPreferenceDefinition.init)
 //    val test123 = testRepository.asState(TestPreferenceDefinition.test123)
 
-    val newTestInt2 = newTestRepository.asViewModelState(TestPreferenceDefinition.newTestInt)
+    val newTestInt = newTestRepository.asViewModelState(TestPreferenceDefinition.newTestInt)
 }

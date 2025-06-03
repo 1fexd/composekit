@@ -48,10 +48,10 @@ class MainActivity : ComponentActivity() {
                     .padding(all = 10.dp)
             ) {
                 Box(modifier = Modifier.align(Alignment.TopCenter)) {
-                    TestComposablePage(testViewModel)
+                    TestComposablePageWrapper(testViewModel)
                 }
                 Box(modifier = Modifier.align(Alignment.BottomCenter)) {
-                    TestComposablePage2(testViewModel2)
+                    TestComposablePage2Wrapper(testViewModel2)
                 }
             }
         }

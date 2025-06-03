@@ -3,6 +3,11 @@ package fe.composekit.preference
 import android.content.Context
 import fe.android.preference.helper.Preference
 import fe.android.preference.helper.PreferenceRepository
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.CoroutineName
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
 
 public typealias Put<P, NT> = (P, NT) -> Unit
 public typealias Get<P, NT> = (P) -> NT
@@ -10,8 +15,10 @@ public typealias Get<P, NT> = (P) -> NT
 public open class FlowPreferenceRepository(
     context: Context,
     fileName: String = "preferences",
-    public val cache: FlowStateCache = FlowStateCache()
+    public val cache: FlowStateCache = FlowStateCache(),
+    dispatcher: CoroutineDispatcher = Dispatchers.Main.immediate,
 ) : PreferenceRepository(context, fileName) {
+    private val coroutineScope = CoroutineScope(dispatcher + SupervisorJob() + CoroutineName("FlowPreferenceRepository"))
 
     private fun <T : Any, NT, P : Preference<T, NT>, M : ViewModelStatePreference<T, NT, P>> createCachedState(
         preference: P,
@@ -20,17 +27,14 @@ public open class FlowPreferenceRepository(
     ): M {
         val state = cache.get(preference.key)
         if (state != null) {
-            @Suppress("UNCHECKED_CAST")
-            return state as M
+            @Suppress("UNCHECKED_CAST") return state as M
         }
 
-        val newState = ViewModelStatePreference<T, NT, P>(preference, get, put)
+        val newState = ViewModelStatePreference(preference, get, put, coroutineScope)
         newState.reload()
 
         cache.put(preference.key, newState)
-
-        @Suppress("UNCHECKED_CAST")
-        return newState as M
+        @Suppress("UNCHECKED_CAST") return newState as M
     }
 
     @JvmName("asStringState")

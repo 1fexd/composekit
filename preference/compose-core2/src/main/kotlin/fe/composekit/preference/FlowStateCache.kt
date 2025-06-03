@@ -1,7 +1,5 @@
 package fe.composekit.preference
 
-import kotlinx.coroutines.sync.Mutex
-
 public class FlowStateCache(
     private val cache: MutableMap<String, ViewModelStatePreference<*, *, *>> = mutableMapOf()
 ) : AutoCloseable {
@@ -24,7 +22,8 @@ public class FlowStateCache(
     }
 
     public fun get(key: String): ViewModelStatePreference<*, *, *>? {
-        return cache[key]
+        val value = cache[key]
+        return value
     }
 
     public fun getAll(): MutableMap<String, ViewModelStatePreference<*, *, *>> {
