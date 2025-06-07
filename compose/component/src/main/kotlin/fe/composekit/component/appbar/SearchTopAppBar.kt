@@ -2,6 +2,7 @@ package fe.composekit.component.appbar
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.rounded.ArrowBack
@@ -24,6 +25,7 @@ public fun SearchTopAppBar(
     query: String,
     onQueryChange: (String?) -> Unit,
     onBackPressed: () -> Unit,
+    actions: @Composable RowScope.() -> Unit = {},
 ) {
     val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior()
 
@@ -32,16 +34,10 @@ public fun SearchTopAppBar(
         verticalArrangement = Arrangement.spacedBy((-1).dp)
     ) {
         TopAppBar(
-            title = titleContent.content,
-            navigationIcon = {
-                IconButton(onClick = onBackPressed) {
-                    Icon(
-                        imageVector = Icons.AutoMirrored.Rounded.ArrowBack,
-                        contentDescription = null
-                    )
-                }
-            },
-            scrollBehavior = scrollBehavior
+            titleContent = titleContent,
+            onBackPressed = onBackPressed,
+            actions = actions,
+            scrollBehavior = scrollBehavior,
         )
 
         DockedSearchBar(
@@ -79,6 +75,41 @@ public fun SearchTopAppBar(
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+public fun TopAppBar(
+    titleContent: TextContent,
+    onBackPressed: () -> Unit,
+    scrollBehavior: TopAppBarScrollBehavior? = null,
+    actions: @Composable RowScope.() -> Unit = {},
+) {
+    TopAppBar(
+        title = titleContent.content,
+        navigationIcon = {
+            IconButton(onClick = onBackPressed) {
+                Icon(
+                    imageVector = Icons.AutoMirrored.Rounded.ArrowBack,
+                    contentDescription = null
+                )
+            }
+        },
+        actions = actions,
+        scrollBehavior = scrollBehavior
+    )
+}
+
+@Composable
+public fun SearchNavigationIcon(onBackPressed: () -> Unit) {
+    IconButton(onClick = onBackPressed) {
+        Icon(
+            imageVector = Icons.AutoMirrored.Rounded.ArrowBack,
+            contentDescription = null
+        )
+    }
+}
+
+//actions: @Composable RowScope.() -> Unit = {},
+
 @Preview(showBackground = true)
 @Composable
 private fun SearchTopAppBarPreview() {
@@ -86,7 +117,7 @@ private fun SearchTopAppBarPreview() {
         titleContent = text("Hello"),
         placeholderContent = text("World"),
         query = "Test",
-        onQueryChange =  {
+        onQueryChange = {
 
         },
         onBackPressed = {},
