@@ -1,16 +1,18 @@
 package fe.android.compose.icon
 
+import android.graphics.drawable.Drawable
 import androidx.annotation.DrawableRes
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.runtime.Stable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.graphics.ImageBitmap
+import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.graphics.painter.BitmapPainter
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.res.painterResource
+import androidx.core.graphics.drawable.toBitmap
 
 @Stable
 public interface IconPainter {
@@ -65,6 +67,11 @@ public value class BitmapIconPainter private constructor(private val bitmap: Ima
 
     public companion object {
         public fun bitmap(bitmap: ImageBitmap): BitmapIconPainter {
+            return BitmapIconPainter(bitmap)
+        }
+
+        public fun drawable(drawable: Drawable): BitmapIconPainter {
+            val bitmap = drawable.toBitmap().asImageBitmap()
             return BitmapIconPainter(bitmap)
         }
     }
