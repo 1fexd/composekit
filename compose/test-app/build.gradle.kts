@@ -12,7 +12,7 @@ group = "fe.composekit.testapp"
 
 android {
     namespace = group.toString()
-    compileSdk = Version.COMPILE_SDK
+    compileSdk = AndroidSdk.COMPILE_SDK
 
     defaultConfig {
         applicationId = group.toString()
