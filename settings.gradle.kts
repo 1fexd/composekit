@@ -91,6 +91,8 @@ buildSettings {
 
         includeProject(":lifecycle-core", "lifecycle/core")
         includeProject(":lifecycle-koin", "lifecycle/koin")
+        includeProject(":lifecycle-network-core", "lifecycle/network/core")
+        includeProject(":lifecycle-network-koin", "lifecycle/network/koin")
 
         includeProject(":span-core", "span/core")
         includeProject(":span-compose", "span/compose")
