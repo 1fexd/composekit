@@ -65,46 +65,48 @@ maybeConfigureIncludingRootRefreshVersions()
 extra.properties["gradle.build.dir"]
     ?.let { includeBuild(it.toString()) }
 
-includeProject(":compose-core", "compose/core")
-includeProject(":compose-component", "compose/component")
-includeProject(":compose-m3compat", "compose/m3compat")
-includeProject(":compose-layout", "compose/layout")
-includeProject(":compose-app", "compose/app")
-includeProject(":compose-dialog", "compose/dialog")
-includeProject(":compose-route", "compose/route")
-
-includeProject(":compose-theme-core", "compose/theme-core")
-includeProject(":compose-theme-preference", "compose/theme-preference")
-
-includeProject(":core", "core")
-includeProject(":koin", "koin")
-includeProject(":process", "process")
-
-includeProject(":test-core", "test/core")
-includeProject(":test-compose", "test/compose")
-
-includeProject(":lifecycle-core", "lifecycle/core")
-includeProject(":lifecycle-koin", "lifecycle/koin")
-
-includeProject(":span-core", "span/core")
-includeProject(":span-compose", "span/compose")
-
-includeProject(":preference-core", "preference/core")
-includeProject(":preference-compose-core", "preference/compose-core")
-includeProject(":preference-compose-core2", "preference/compose-core2")
-includeProject(":preference-compose-mock", "preference/compose-mock")
-
-include(":platform")
-
-if (!hasJitpackEnv) {
-    includeProject(":compose-test-app", "compose/test-app")
-    includeProject(":lifecycle-test-app", "lifecycle/test-app")
-    includeProject(":span-test-app", "span/test-app")
-    includeProject(":preference-test-app", "preference/test-app")
-}
-
 buildSettings {
     substitutes {
         trySubstitute(Grrfe.std, properties["kotlin-ext.dir"])
+    }
+
+    projects("modules") {
+        includeProject(":compose-core", "compose/core")
+        includeProject(":compose-component", "compose/component")
+        includeProject(":compose-m3compat", "compose/m3compat")
+        includeProject(":compose-layout", "compose/layout")
+        includeProject(":compose-app", "compose/app")
+        includeProject(":compose-dialog", "compose/dialog")
+        includeProject(":compose-route", "compose/route")
+
+        includeProject(":compose-theme-core", "compose/theme-core")
+        includeProject(":compose-theme-preference", "compose/theme-preference")
+
+        includeProject(":core", "core")
+        includeProject(":koin", "koin")
+        includeProject(":process", "process")
+
+        includeProject(":test-core", "test/core")
+        includeProject(":test-compose", "test/compose")
+
+        includeProject(":lifecycle-core", "lifecycle/core")
+        includeProject(":lifecycle-koin", "lifecycle/koin")
+
+        includeProject(":span-core", "span/core")
+        includeProject(":span-compose", "span/compose")
+
+        includeProject(":preference-core", "preference/core")
+        includeProject(":preference-compose-core", "preference/compose-core")
+        includeProject(":preference-compose-core2", "preference/compose-core2")
+        includeProject(":preference-compose-mock", "preference/compose-mock")
+
+        includeProject(":platform", "platform")
+
+        if (!hasJitpackEnv) {
+            includeProject(":compose-test-app", "compose/test-app")
+            includeProject(":lifecycle-test-app", "lifecycle/test-app")
+            includeProject(":span-test-app", "span/test-app")
+            includeProject(":preference-test-app", "preference/test-app")
+        }
     }
 }

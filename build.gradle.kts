@@ -20,6 +20,7 @@ plugins {
     id("net.nemerosa.versioning") apply false
     id("com.gitlab.grrfe.new-build-logic-plugin")
     id("com.gitlab.grrfe.library-build-plugin")
+    id("org.jetbrains.kotlinx.binary-compatibility-validator")
 }
 
 val baseGroup = "com.github.1fexd.composekit"
