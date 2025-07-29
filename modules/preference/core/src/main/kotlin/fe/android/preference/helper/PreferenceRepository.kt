@@ -6,9 +6,12 @@ import android.content.SharedPreferences
 public typealias PreferenceEditAction = SharedPreferences.Editor.() -> Unit
 
 public abstract class PreferenceRepository(context: Context, fileName: String = "preferences") : PreferenceEditor() {
-
     private val preferences by lazy {
         context.getSharedPreferences(context.packageName + "_$fileName", Context.MODE_PRIVATE)
+    }
+
+    public val raw: RawPreferenceRepository by lazy {
+        RawPreferenceRepository(preferences)
     }
 
     public fun edit(action: Scope.() -> Unit) {
@@ -54,14 +57,14 @@ public abstract class PreferenceRepository(context: Context, fileName: String = 
         }
 
         if (preference is Preference.Init) {
-            return unsafeGetString(preference.key, preference.default)
+            return raw.unsafeGetString(preference.key, preference.default)
         }
 
         return when (preference.type) {
-            String::class -> unsafeGetString(preference.key, preference.default as String?)
-            Boolean::class -> unsafeGetBoolean(preference.key, preference.default as Boolean)
-            Int::class -> unsafeGetInt(preference.key, preference.default as Int)
-            Long::class -> unsafeGetLong(preference.key, preference.default as Long)
+            String::class -> raw.unsafeGetString(preference.key, preference.default as String?)
+            Boolean::class -> raw.unsafeGetBoolean(preference.key, preference.default as Boolean)
+            Int::class -> raw.unsafeGetInt(preference.key, preference.default as Int)
+            Long::class -> raw.unsafeGetLong(preference.key, preference.default as Long)
             else -> null
         }?.toString()
     }
@@ -70,12 +73,12 @@ public abstract class PreferenceRepository(context: Context, fileName: String = 
     @JvmName("getString")
     @OptIn(UnsafePreferenceInteraction::class)
     public fun get(preference: Preference<String, String?>): String? {
-        return unsafeGetString(preference.key, preference.default)
+        return raw.unsafeGetString(preference.key, preference.default)
     }
 
     @OptIn(UnsafePreferenceInteraction::class)
     public fun getOrPutInit(preference: Preference.Init): String {
-        val value = unsafeGetString(preference.key, null)
+        val value = raw.unsafeGetString(preference.key, null)
         return if (value == null) {
             val initial = preference.initial()
             unsafePut(preference.key, initial)
@@ -87,71 +90,43 @@ public abstract class PreferenceRepository(context: Context, fileName: String = 
     @JvmName("getMappedByString")
     @OptIn(UnsafePreferenceInteraction::class)
     public fun <T : Any> get(preference: Preference.Mapped<T, String>): T {
-        return getValueFromMapped(preference, ::unsafeGetString)
+        return getValueFromMapped(preference, raw::unsafeGetString)
     }
 
     @JvmName("getInt")
     @OptIn(UnsafePreferenceInteraction::class)
     public fun get(preference: Preference.Default<Int>): Int {
-        return unsafeGetInt(preference.key, preference.default)
+        return raw.unsafeGetInt(preference.key, preference.default)
     }
 
     @JvmName("getMappedByInt")
     @OptIn(UnsafePreferenceInteraction::class)
     public fun <T : Any> get(preference: Preference.Mapped<T, Int>): T {
-        return getValueFromMapped(preference, ::unsafeGetInt)
+        return getValueFromMapped(preference, raw::unsafeGetInt)
     }
 
     @JvmName("getLong")
     @OptIn(UnsafePreferenceInteraction::class)
     public fun get(preference: Preference.Default<Long>): Long {
-        return unsafeGetLong(preference.key, preference.default)
+        return raw.unsafeGetLong(preference.key, preference.default)
     }
 
     @JvmName("getMappedByLong")
     @OptIn(UnsafePreferenceInteraction::class)
     public fun <T : Any> get(preference: Preference.Mapped<T, Long>): T {
-        return getValueFromMapped(preference, ::unsafeGetLong)
+        return getValueFromMapped(preference, raw::unsafeGetLong)
     }
 
     @JvmName("getBoolean")
     @OptIn(UnsafePreferenceInteraction::class)
     public fun get(preference: Preference.Default<Boolean>): Boolean {
-        return unsafeGetBoolean(preference.key, preference.default)
+        return raw.unsafeGetBoolean(preference.key, preference.default)
     }
 
     @JvmName("getMappedByBoolean")
     @OptIn(UnsafePreferenceInteraction::class)
     public fun <T : Any> get(preference: Preference.Mapped<T, Boolean>): T {
-        return getValueFromMapped(preference, ::unsafeGetBoolean)
-    }
-
-    @UnsafePreferenceInteraction
-    private fun unsafeGetString(key: String, default: String?): String? {
-        return tryUnsafeGet(preferences, default) { pref, def -> pref.getString(key, def) }
-    }
-
-    @UnsafePreferenceInteraction
-    private fun unsafeGetInt(key: String, default: Int): Int {
-        return tryUnsafeGet(preferences, default) { pref, def -> pref.getInt(key, def) }!!
-    }
-
-    @UnsafePreferenceInteraction
-    private fun unsafeGetLong(key: String, default: Long): Long {
-        return tryUnsafeGet(preferences, default) { pref, def -> pref.getLong(key, def) }!!
-    }
-
-    @UnsafePreferenceInteraction
-    private fun unsafeGetBoolean(key: String, default: Boolean): Boolean {
-        return tryUnsafeGet(preferences, default) { pref, def -> pref.getBoolean(key, def) }!!
-    }
-
-    private inline fun <T : Any?> tryUnsafeGet(
-        preferences: SharedPreferences,
-        default: T,
-        get: (SharedPreferences, T) -> T?,
-    ): T? {
-        return runCatching { get(preferences, default) }.getOrDefault(default)
+        return getValueFromMapped(preference, raw::unsafeGetBoolean)
     }
 
     /**
@@ -163,6 +138,36 @@ public abstract class PreferenceRepository(context: Context, fileName: String = 
     ): T {
         val mappedValue = get(preference.key, preference.defaultMapped)!!
         return preference.unmap(mappedValue) ?: preference.default
+    }
+}
+
+public class RawPreferenceRepository(private val preferences: SharedPreferences) {
+    @UnsafePreferenceInteraction
+    public fun unsafeGetString(key: String, default: String?): String? {
+        return tryUnsafeGet(preferences, default) { pref, def -> pref.getString(key, def) }
+    }
+
+    @UnsafePreferenceInteraction
+    public fun unsafeGetInt(key: String, default: Int): Int {
+        return tryUnsafeGet(preferences, default) { pref, def -> pref.getInt(key, def) }!!
+    }
+
+    @UnsafePreferenceInteraction
+    public fun unsafeGetLong(key: String, default: Long): Long {
+        return tryUnsafeGet(preferences, default) { pref, def -> pref.getLong(key, def) }!!
+    }
+
+    @UnsafePreferenceInteraction
+    public fun unsafeGetBoolean(key: String, default: Boolean): Boolean {
+        return tryUnsafeGet(preferences, default) { pref, def -> pref.getBoolean(key, def) }!!
+    }
+
+    private inline fun <T : Any?> tryUnsafeGet(
+        preferences: SharedPreferences,
+        default: T,
+        get: (SharedPreferences, T) -> T?,
+    ): T? {
+        return runCatching { get(preferences, default) }.getOrDefault(default)
     }
 }
 
