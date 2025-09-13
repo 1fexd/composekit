@@ -129,7 +129,7 @@ public data class CustomListItemTextOptions(
 )
 
 @Composable
-fun CustomListItem(
+public fun CustomListItem(
     headlineContent: @Composable () -> Unit,
     modifier: Modifier = Modifier,
     overlineContent: @Composable (() -> Unit)? = null,
@@ -141,7 +141,7 @@ fun CustomListItem(
     shadowElevation: Dp = ListItemDefaults.Elevation,
     containerHeight: CustomListItemContainerHeight = CustomListItemDefaults.containerHeight(),
     padding: CustomListItemPadding = CustomListItemDefaults.padding(),
-    textOptions: CustomListItemTextOptions = CustomListItemDefaults.textOptions()
+    textOptions: CustomListItemTextOptions = CustomListItemDefaults.textOptions(),
 ) {
     val decoratedHeadlineContent: @Composable () -> Unit = {
         ProvideContentColorOptionsStyleText(
