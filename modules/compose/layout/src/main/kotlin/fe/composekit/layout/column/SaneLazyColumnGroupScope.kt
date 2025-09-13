@@ -12,7 +12,13 @@ public annotation class LazyGroupScopeMarker
 public interface SaneLazyColumnGroupScope {
     public fun item(key: Any, content: @Composable LazyItemScope.(PaddingValues, Shape) -> Unit)
 
-    fun <K : Any, T> items(
+    public fun <K : Any, T> itemsIndexed(
+        list: List<T>,
+        key: (T) -> K,
+        content: @Composable LazyItemScope.(Int, T, PaddingValues, Shape) -> Unit,
+    )
+
+    public fun <K : Any, T> items(
         list: List<T>,
         key: (T) -> K,
         content: @Composable LazyItemScope.(T, PaddingValues, Shape) -> Unit,

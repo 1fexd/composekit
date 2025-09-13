@@ -11,6 +11,7 @@ import fe.composekit.component.shape.CustomShapeDefaults
 import fe.composekit.layout.column.GroupValueProvider
 import fe.composekit.layout.column.SaneLazyColumnGroupScope
 import fe.composekit.layout.column.SaneLazyListScope
+import kotlin.collections.iterator
 
 
 @Stable
@@ -72,6 +73,26 @@ public data class SaneLazyColumnGroupScopeImpl(
         }
 
         counter++
+    }
+
+    override fun <K : Any, T> itemsIndexed(
+        list: List<T>,
+        key: (T) -> K,
+        content: @Composable LazyItemScope.(Int, T, PaddingValues, Shape) -> Unit,
+    ) {
+        val valueSize = list.size
+        require(counter < size) { "Group has ${counter + 1} items, but only supports $size" }
+        require(counter + valueSize <= size) { "Group has ${counter + 1}/$size items, can't fit an additional $valueSize" }
+
+        var i = 0
+        for (value in list) {
+            val groupItem = currentItem()
+            item(key = key(value), contentType = groupItem) {
+                content(i++, value, groupItem.padding, groupItem.shape)
+            }
+
+            counter++
+        }
     }
 
     override fun <K : Any, T : GroupValueProvider<K>> items(
