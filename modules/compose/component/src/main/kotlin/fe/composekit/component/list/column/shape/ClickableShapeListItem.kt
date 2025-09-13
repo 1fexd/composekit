@@ -1,6 +1,7 @@
 package fe.composekit.component.list.column.shape
 
-import androidx.compose.foundation.clickable
+import androidx.compose.foundation.combinedClickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.material3.ListItemColors
 import androidx.compose.runtime.Composable
@@ -59,6 +60,8 @@ public fun ClickableShapeListItem(
     modifier: Modifier = CommonDefaults.BaseModifier,
     enabled: Boolean = true,
     onClick: () -> Unit,
+    onLongClick: (() -> Unit)? = null,
+    onDoubleClick: (() -> Unit)? = null,
     role: Role? = null,
     shape: Shape = CustomShapeDefaults.SingleShape,
     padding: PaddingValues = CommonDefaults.EmptyPadding,
@@ -71,10 +74,18 @@ public fun ClickableShapeListItem(
     supportingContent: OptionalTextContent = null,
     leadingContent: OptionalContent = null,
     trailingContent: OptionalContent = null,
+    interactionSource: MutableInteractionSource? = null,
 ) {
     ShapeListItem(
         modifier = Modifier
-            .clickable(enabled = enabled, role = role, onClick = onClick)
+            .combinedClickable(
+                enabled = enabled,
+                role = role,
+                onClick = onClick,
+                onLongClick = onLongClick,
+                onDoubleClick = onDoubleClick,
+                interactionSource = interactionSource
+            )
             .enabled(enabled)
             .then(modifier),
         shape = shape,
