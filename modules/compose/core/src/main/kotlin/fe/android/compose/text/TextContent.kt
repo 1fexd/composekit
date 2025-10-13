@@ -1,6 +1,7 @@
 package fe.android.compose.text
 
 import androidx.annotation.StringRes
+import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
@@ -16,12 +17,19 @@ public interface TextContent {
     public val content: @Composable () -> Unit
 }
 
+@Composable
+private fun TextContentText(text: AnnotatedString) {
+    val textOptions = LocalTextOptions.current
+    val style = LocalTextStyle.current.merge(textOptions.style)
+
+    Text(text = text, style = style, overflow = textOptions.overflow, maxLines = textOptions.maxLines)
+}
+
 @Immutable
 public class DefaultContent private constructor(text: String) : TextContent {
     override val key: String = text
     override val content: @Composable () -> Unit = {
-        val textOptions = LocalTextOptions.current
-        Text(text = text, overflow = textOptions.overflow, maxLines = textOptions.maxLines)
+        TextContentText(text = AnnotatedString(text))
     }
 
     public companion object {
@@ -39,12 +47,7 @@ public class DefaultContent private constructor(text: String) : TextContent {
 public class StringResourceContent private constructor(@StringRes id: Int, vararg formatArgs: Any) : TextContent {
     override val key: Int = id
     override val content: @Composable () -> Unit = {
-        val textOptions = LocalTextOptions.current
-        Text(
-            text = stringResource(id = id, formatArgs = formatArgs),
-            overflow = textOptions.overflow,
-            maxLines = LocalTextOptions.current.maxLines
-        )
+        TextContentText(text = AnnotatedString(stringResource(id = id, formatArgs = formatArgs)))
     }
 
     public companion object {
@@ -59,8 +62,7 @@ public class StringResourceContent private constructor(@StringRes id: Int, varar
 public class AnnotatedStringContent(annotatedString: AnnotatedString) : TextContent {
     override val key: String = annotatedString.text
     override val content: @Composable () -> Unit = {
-        val textOptions = LocalTextOptions.current
-        Text(text = annotatedString, overflow = textOptions.overflow, maxLines = textOptions.maxLines)
+        TextContentText(text = annotatedString)
     }
 
     public companion object {
@@ -77,13 +79,7 @@ public class AnnotatedStringContent(annotatedString: AnnotatedString) : TextCont
 public class AnnotatedStringResourceContent private constructor(@StringRes id: Int, vararg formatArgs: Any) : TextContent {
     override val key: Int = id
     override val content: @Composable () -> Unit = {
-        val textOptions = LocalTextOptions.current
-
-        Text(
-            text = createAnnotatedString(id = id, *formatArgs),
-            overflow = textOptions.overflow,
-            maxLines = textOptions.maxLines
-        )
+        TextContentText(text = createAnnotatedString(id = id, *formatArgs))
     }
 
     public companion object {

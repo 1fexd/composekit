@@ -24,3 +24,14 @@ public fun ProvideTextOptions(
     val options = textOptions ?: LocalTextOptions.current
     CompositionLocalProvider(LocalTextOptions provides options, content = content)
 }
+
+@Composable
+public fun TextContent(
+    textContent: TextContent,
+    textOptions: TextOptions? = null
+) {
+    ProvideTextOptions(
+        textOptions = textOptions,
+        content = textContent.content
+    )
+}
