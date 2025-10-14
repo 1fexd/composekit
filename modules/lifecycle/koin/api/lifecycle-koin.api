@@ -1,0 +1,4 @@
+public final class fe/android/lifecycle/koin/extension/ExtendedScopeExtKt {
+	public static final fun getApplicationLifecycle (Lfe/droidkit/koin/ExtendedScope;)Lfe/android/lifecycle/LifecycleServiceRegistry;
+}
+

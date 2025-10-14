@@ -1,0 +1,62 @@
+public final class fe/composekit/theme/AppColorScheme {
+	public static final field $stable I
+	public fun <init> (Landroidx/compose/material3/ColorScheme;Landroidx/compose/material3/ColorScheme;)V
+	public final fun component1 ()Landroidx/compose/material3/ColorScheme;
+	public final fun component2 ()Landroidx/compose/material3/ColorScheme;
+	public final fun copy (Landroidx/compose/material3/ColorScheme;Landroidx/compose/material3/ColorScheme;)Lfe/composekit/theme/AppColorScheme;
+	public static synthetic fun copy$default (Lfe/composekit/theme/AppColorScheme;Landroidx/compose/material3/ColorScheme;Landroidx/compose/material3/ColorScheme;ILjava/lang/Object;)Lfe/composekit/theme/AppColorScheme;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getDarkColors ()Landroidx/compose/material3/ColorScheme;
+	public final fun getLightColors ()Landroidx/compose/material3/ColorScheme;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public abstract class fe/composekit/theme/Theme {
+	public static final field $stable I
+	public synthetic fun <init> (Ljava/lang/String;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun getColorScheme (Landroid/content/Context;Lfe/composekit/theme/AppColorScheme;ZZZ)Landroidx/compose/material3/ColorScheme;
+	public final fun getName ()Ljava/lang/String;
+}
+
+public final class fe/composekit/theme/Theme$Dark : fe/composekit/theme/Theme {
+	public static final field $stable I
+	public static final field INSTANCE Lfe/composekit/theme/Theme$Dark;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class fe/composekit/theme/Theme$Light : fe/composekit/theme/Theme {
+	public static final field $stable I
+	public static final field INSTANCE Lfe/composekit/theme/Theme$Light;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class fe/composekit/theme/Theme$System : fe/composekit/theme/Theme {
+	public static final field $stable I
+	public static final field INSTANCE Lfe/composekit/theme/Theme$System;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class fe/composekit/theme/ThemeConfig {
+	public static final field $stable I
+	public fun <init> (Lfe/composekit/theme/Theme;ZZ)V
+	public final fun component1 ()Lfe/composekit/theme/Theme;
+	public final fun component2 ()Z
+	public final fun component3 ()Z
+	public final fun copy (Lfe/composekit/theme/Theme;ZZ)Lfe/composekit/theme/ThemeConfig;
+	public static synthetic fun copy$default (Lfe/composekit/theme/ThemeConfig;Lfe/composekit/theme/Theme;ZZILjava/lang/Object;)Lfe/composekit/theme/ThemeConfig;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getAmoled ()Z
+	public final fun getColorScheme (Landroid/content/Context;Lfe/composekit/theme/AppColorScheme;Z)Lkotlin/Pair;
+	public final fun getMaterialYou ()Z
+	public final fun getTheme ()Lfe/composekit/theme/Theme;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+

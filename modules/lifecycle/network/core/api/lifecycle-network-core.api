@@ -1,0 +1,40 @@
+public final class fe/composekit/lifecycle/network/core/ConnectedNetwork {
+	public static final field $stable I
+	public static final field Companion Lfe/composekit/lifecycle/network/core/ConnectedNetwork$Companion;
+	public fun <init> (Landroid/net/NetworkCapabilities;ZZ)V
+	public final fun component1 ()Landroid/net/NetworkCapabilities;
+	public final fun component2 ()Z
+	public final fun component3 ()Z
+	public final fun copy (Landroid/net/NetworkCapabilities;ZZ)Lfe/composekit/lifecycle/network/core/ConnectedNetwork;
+	public static synthetic fun copy$default (Lfe/composekit/lifecycle/network/core/ConnectedNetwork;Landroid/net/NetworkCapabilities;ZZILjava/lang/Object;)Lfe/composekit/lifecycle/network/core/ConnectedNetwork;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getNetworkCapabilities ()Landroid/net/NetworkCapabilities;
+	public fun hashCode ()I
+	public final fun isAvailable ()Z
+	public final fun isBlocked ()Z
+	public final fun isConnected ()Z
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class fe/composekit/lifecycle/network/core/ConnectedNetwork$Companion {
+	public final fun getUnknown ()Lfe/composekit/lifecycle/network/core/ConnectedNetwork;
+}
+
+public final class fe/composekit/lifecycle/network/core/NetworkStateService : android/net/ConnectivityManager$NetworkCallback, fe/android/lifecycle/LifecycleAwareService {
+	public static final field $stable I
+	public fun <init> (Landroid/net/ConnectivityManager;)V
+	public final fun awaitNetworkConnection (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun getCurrentNetwork ()Lkotlinx/coroutines/flow/StateFlow;
+	public final fun isNetworkConnected ()Z
+	public fun onAppInitialized (Landroidx/lifecycle/LifecycleOwner;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun onAvailable (Landroid/net/Network;)V
+	public fun onBlockedStatusChanged (Landroid/net/Network;Z)V
+	public fun onCapabilitiesChanged (Landroid/net/Network;Landroid/net/NetworkCapabilities;)V
+	public fun onCreate (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun onLost (Landroid/net/Network;)V
+	public fun onPause (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun onResume (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun onStop (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun onUnavailable ()V
+}
+

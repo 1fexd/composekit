@@ -1,0 +1,5 @@
+public final class fe/composekit/test/ComposeUtilKt {
+	public static final fun runAndroidComposeUiTest (Lkotlin/jvm/functions/Function0;Lkotlin/coroutines/CoroutineContext;Lkotlin/jvm/functions/Function2;)V
+	public static synthetic fun runAndroidComposeUiTest$default (Lkotlin/jvm/functions/Function0;Lkotlin/coroutines/CoroutineContext;Lkotlin/jvm/functions/Function2;ILjava/lang/Object;)V
+}
+

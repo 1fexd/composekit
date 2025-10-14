@@ -1,0 +1,165 @@
+public abstract class fe/android/preference/helper/AbstractPreferenceDefinition {
+	public static final field $stable I
+	public fun <init> ()V
+	protected fun add (Lfe/android/preference/helper/Preference;)Lfe/android/preference/helper/Preference;
+	protected fun addMigration (Lfe/android/preference/helper/Preference;Lkotlin/jvm/functions/Function1;)Lfe/android/preference/helper/Preference;
+	protected fun boolean (Ljava/lang/String;Z)Lfe/android/preference/helper/Preference$Boolean;
+	public static synthetic fun boolean$default (Lfe/android/preference/helper/AbstractPreferenceDefinition;Ljava/lang/String;ZILjava/lang/Object;)Lfe/android/preference/helper/Preference$Boolean;
+	protected final fun int (Ljava/lang/String;I)Lfe/android/preference/helper/Preference$Int;
+	public static synthetic fun int$default (Lfe/android/preference/helper/AbstractPreferenceDefinition;Ljava/lang/String;IILjava/lang/Object;)Lfe/android/preference/helper/Preference$Int;
+	protected final fun long (Ljava/lang/String;J)Lfe/android/preference/helper/Preference$Long;
+	public static synthetic fun long$default (Lfe/android/preference/helper/AbstractPreferenceDefinition;Ljava/lang/String;JILjava/lang/Object;)Lfe/android/preference/helper/Preference$Long;
+	protected final fun mapped (Ljava/lang/String;Ljava/lang/Object;Lfe/android/preference/helper/TypeMapper;Lkotlin/reflect/KClass;Lkotlin/reflect/KClass;)Lfe/android/preference/helper/Preference$Mapped;
+	public final fun migrate (Lfe/android/preference/helper/Preference$Boolean;Lkotlin/jvm/functions/Function2;)Lfe/android/preference/helper/Preference$Boolean;
+	public final fun migrate (Lfe/android/preference/helper/Preference$Init;Lkotlin/jvm/functions/Function2;)Lfe/android/preference/helper/Preference$Init;
+	public final fun migrate (Lfe/android/preference/helper/Preference$Int;Lkotlin/jvm/functions/Function2;)Lfe/android/preference/helper/Preference$Int;
+	public final fun migrate (Lfe/android/preference/helper/Preference$Long;Lkotlin/jvm/functions/Function2;)Lfe/android/preference/helper/Preference$Long;
+	public final fun migrate (Lfe/android/preference/helper/Preference$Nullable;Lkotlin/jvm/functions/Function2;)Lfe/android/preference/helper/Preference$Nullable;
+	public final fun migrateMappedBoolean (Lfe/android/preference/helper/Preference$Mapped;Lkotlin/jvm/functions/Function2;)Lfe/android/preference/helper/Preference$Mapped;
+	public final fun migrateMappedInt (Lfe/android/preference/helper/Preference$Mapped;Lkotlin/jvm/functions/Function2;)Lfe/android/preference/helper/Preference$Mapped;
+	public final fun migrateMappedLong (Lfe/android/preference/helper/Preference$Mapped;Lkotlin/jvm/functions/Function2;)Lfe/android/preference/helper/Preference$Mapped;
+	public final fun migrateMappedString (Lfe/android/preference/helper/Preference$Mapped;Lkotlin/jvm/functions/Function2;)Lfe/android/preference/helper/Preference$Mapped;
+	public final fun migrateTo (Lfe/android/preference/helper/Preference$Boolean;Lkotlin/jvm/functions/Function2;)Lfe/android/preference/helper/Preference$Boolean;
+	public final fun migrateTo (Lfe/android/preference/helper/Preference$Int;Lkotlin/jvm/functions/Function2;)Lfe/android/preference/helper/Preference$Int;
+	public final fun migrateTo (Lfe/android/preference/helper/Preference$Long;Lkotlin/jvm/functions/Function2;)Lfe/android/preference/helper/Preference$Long;
+	public final fun migrateTo (Lfe/android/preference/helper/Preference$Nullable;Lkotlin/jvm/functions/Function2;)Lfe/android/preference/helper/Preference$Nullable;
+	public final fun migrateToMappedBoolean (Lfe/android/preference/helper/Preference$Mapped;Lkotlin/jvm/functions/Function2;)Lfe/android/preference/helper/Preference$Mapped;
+	public final fun migrateToMappedInt (Lfe/android/preference/helper/Preference$Mapped;Lkotlin/jvm/functions/Function2;)Lfe/android/preference/helper/Preference$Mapped;
+	public final fun migrateToMappedLong (Lfe/android/preference/helper/Preference$Mapped;Lkotlin/jvm/functions/Function2;)Lfe/android/preference/helper/Preference$Mapped;
+	public final fun migrateToMappedString (Lfe/android/preference/helper/Preference$Mapped;Lkotlin/jvm/functions/Function2;)Lfe/android/preference/helper/Preference$Mapped;
+	public fun runMigrations (Lfe/android/preference/helper/PreferenceRepository;)V
+	protected final fun string (Ljava/lang/String;Ljava/lang/String;)Lfe/android/preference/helper/Preference$Nullable;
+	protected final fun string (Ljava/lang/String;Lkotlin/jvm/functions/Function0;)Lfe/android/preference/helper/Preference$Init;
+	public static synthetic fun string$default (Lfe/android/preference/helper/AbstractPreferenceDefinition;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lfe/android/preference/helper/Preference$Nullable;
+}
+
+public abstract class fe/android/preference/helper/EnumTypeMapper : fe/android/preference/helper/TypeMapper {
+	public static final field $stable I
+	public fun <init> ([Ljava/lang/Enum;)V
+	public fun getMap ()Lkotlin/jvm/functions/Function1;
+	public fun getUnmap ()Lkotlin/jvm/functions/Function1;
+}
+
+public abstract class fe/android/preference/helper/OptionTypeMapper : fe/android/preference/helper/TypeMapper {
+	public static final field $stable I
+	public fun <init> (Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function0;)V
+	public fun getMap ()Lkotlin/jvm/functions/Function1;
+	public fun getUnmap ()Lkotlin/jvm/functions/Function1;
+}
+
+public abstract class fe/android/preference/helper/Preference {
+	public static final field $stable I
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/Object;Lkotlin/reflect/KClass;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getClazz ()Lkotlin/reflect/KClass;
+	public final fun getDefault ()Ljava/lang/Object;
+	public final fun getKey ()Ljava/lang/String;
+	public fun hashCode ()I
+}
+
+public final class fe/android/preference/helper/Preference$Boolean : fe/android/preference/helper/Preference$Default {
+	public static final field $stable I
+}
+
+public class fe/android/preference/helper/Preference$Default : fe/android/preference/helper/Preference {
+	public static final field $stable I
+}
+
+public final class fe/android/preference/helper/Preference$Init : fe/android/preference/helper/Preference {
+	public static final field $stable I
+	public final fun getInitial ()Lkotlin/jvm/functions/Function0;
+}
+
+public final class fe/android/preference/helper/Preference$Int : fe/android/preference/helper/Preference$Default {
+	public static final field $stable I
+}
+
+public final class fe/android/preference/helper/Preference$Long : fe/android/preference/helper/Preference$Default {
+	public static final field $stable I
+}
+
+public final class fe/android/preference/helper/Preference$Mapped : fe/android/preference/helper/Preference {
+	public static final field $stable I
+	public final fun getDefaultMapped ()Ljava/lang/Object;
+	public final fun getMappedClazz ()Lkotlin/reflect/KClass;
+	public final fun map (Ljava/lang/Object;)Ljava/lang/Object;
+	public final fun unmap (Ljava/lang/Object;)Ljava/lang/Object;
+}
+
+public final class fe/android/preference/helper/Preference$Nullable : fe/android/preference/helper/Preference {
+	public static final field $stable I
+}
+
+public abstract class fe/android/preference/helper/PreferenceDefinition : fe/android/preference/helper/AbstractPreferenceDefinition {
+	public static final field $stable I
+	public fun <init> ([Ljava/lang/String;)V
+	public final fun access$mapped (Ljava/lang/String;Ljava/lang/Object;Lfe/android/preference/helper/TypeMapper;Lkotlin/reflect/KClass;Lkotlin/reflect/KClass;)Lfe/android/preference/helper/Preference$Mapped;
+	protected fun add (Lfe/android/preference/helper/Preference;)Lfe/android/preference/helper/Preference;
+	protected fun addMigration (Lfe/android/preference/helper/Preference;Lkotlin/jvm/functions/Function1;)Lfe/android/preference/helper/Preference;
+	protected final fun finalize ()V
+	public final fun getAll ()Ljava/util/Map;
+	public final fun getAsKeyValuePairList (Lfe/android/preference/helper/PreferenceRepository;)Ljava/util/List;
+	public fun runMigrations (Lfe/android/preference/helper/PreferenceRepository;)V
+}
+
+public abstract class fe/android/preference/helper/PreferenceEditor {
+	public static final field $stable I
+	public final fun put (Lfe/android/preference/helper/Preference$Default;I)V
+	public final fun put (Lfe/android/preference/helper/Preference$Default;J)V
+	public final fun put (Lfe/android/preference/helper/Preference$Default;Z)V
+	public final fun put (Lfe/android/preference/helper/Preference$Nullable;Ljava/lang/String;)V
+	public final fun putMappedToBoolean (Lfe/android/preference/helper/Preference$Mapped;Ljava/lang/Object;)V
+	public final fun putMappedToInt (Lfe/android/preference/helper/Preference$Mapped;Ljava/lang/Object;)V
+	public final fun putMappedToLong (Lfe/android/preference/helper/Preference$Mapped;Ljava/lang/Object;)V
+	public final fun putMappedToString (Lfe/android/preference/helper/Preference$Mapped;Ljava/lang/Object;)V
+	protected final fun unsafePut (Ljava/lang/String;I)V
+	protected final fun unsafePut (Ljava/lang/String;J)V
+	protected final fun unsafePut (Ljava/lang/String;Ljava/lang/String;)V
+	protected final fun unsafePut (Ljava/lang/String;Z)V
+	protected abstract fun withEditor (Lkotlin/jvm/functions/Function1;)V
+}
+
+public final class fe/android/preference/helper/PreferenceEditor$Scope : fe/android/preference/helper/PreferenceEditor {
+	public static final field $stable I
+	public fun <init> (Landroid/content/SharedPreferences$Editor;)V
+}
+
+public abstract class fe/android/preference/helper/PreferenceRepository : fe/android/preference/helper/PreferenceEditor {
+	public static final field $stable I
+	public fun <init> (Landroid/content/Context;Ljava/lang/String;)V
+	public synthetic fun <init> (Landroid/content/Context;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun edit (Lkotlin/jvm/functions/Function1;)V
+	public final fun getAnyAsString (Lfe/android/preference/helper/Preference;)Ljava/lang/String;
+	public final fun getBoolean (Lfe/android/preference/helper/Preference$Default;)Z
+	public final fun getInt (Lfe/android/preference/helper/Preference$Default;)I
+	public final fun getLong (Lfe/android/preference/helper/Preference$Default;)J
+	public final fun getMappedByBoolean (Lfe/android/preference/helper/Preference$Mapped;)Ljava/lang/Object;
+	public final fun getMappedByInt (Lfe/android/preference/helper/Preference$Mapped;)Ljava/lang/Object;
+	public final fun getMappedByLong (Lfe/android/preference/helper/Preference$Mapped;)Ljava/lang/Object;
+	public final fun getMappedByString (Lfe/android/preference/helper/Preference$Mapped;)Ljava/lang/Object;
+	public final fun getOrPutInit (Lfe/android/preference/helper/Preference$Init;)Ljava/lang/String;
+	public final fun getRaw ()Lfe/android/preference/helper/RawPreferenceRepository;
+	public final fun getString (Lfe/android/preference/helper/Preference;)Ljava/lang/String;
+	public final fun hasStoredValue (Lfe/android/preference/helper/Preference;)Z
+	public final fun hasStoredValue (Ljava/lang/String;)Z
+	public final fun setStringValueToPreference (Lfe/android/preference/helper/Preference;Ljava/lang/String;)V
+	protected fun withEditor (Lkotlin/jvm/functions/Function1;)V
+}
+
+public final class fe/android/preference/helper/RawPreferenceRepository {
+	public static final field $stable I
+	public fun <init> (Landroid/content/SharedPreferences;)V
+	public final fun unsafeGetBoolean (Ljava/lang/String;Z)Z
+	public final fun unsafeGetInt (Ljava/lang/String;I)I
+	public final fun unsafeGetLong (Ljava/lang/String;J)J
+	public final fun unsafeGetString (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+}
+
+public abstract interface class fe/android/preference/helper/TypeMapper {
+	public abstract fun getMap ()Lkotlin/jvm/functions/Function1;
+	public abstract fun getUnmap ()Lkotlin/jvm/functions/Function1;
+}
+
+public abstract interface annotation class fe/android/preference/helper/UnsafePreferenceInteraction : java/lang/annotation/Annotation {
+}
+

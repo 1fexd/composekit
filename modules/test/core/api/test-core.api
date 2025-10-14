@@ -1,0 +1,29 @@
+public final class fe/composekit/test/ActivityInvoker {
+	public static final field $stable I
+	public fun <init> (Landroid/app/Instrumentation;)V
+	public final fun getInstrumentation ()Landroid/app/Instrumentation;
+}
+
+public abstract interface class fe/composekit/test/BaseUnitTest : org/koin/test/KoinTest {
+	public fun teardown ()V
+}
+
+public final class fe/composekit/test/BaseUnitTest$DefaultImpls {
+	public static fun getKoin (Lfe/composekit/test/BaseUnitTest;)Lorg/koin/core/Koin;
+	public static fun teardown (Lfe/composekit/test/BaseUnitTest;)V
+}
+
+public abstract interface class fe/composekit/test/UnitTest : fe/composekit/test/BaseUnitTest {
+	public fun getApplicationContext ()Landroid/content/Context;
+	public fun getInstrumentation ()Landroid/app/Instrumentation;
+	public fun getTargetContext ()Landroid/content/Context;
+}
+
+public final class fe/composekit/test/UnitTest$DefaultImpls {
+	public static fun getApplicationContext (Lfe/composekit/test/UnitTest;)Landroid/content/Context;
+	public static fun getInstrumentation (Lfe/composekit/test/UnitTest;)Landroid/app/Instrumentation;
+	public static fun getKoin (Lfe/composekit/test/UnitTest;)Lorg/koin/core/Koin;
+	public static fun getTargetContext (Lfe/composekit/test/UnitTest;)Landroid/content/Context;
+	public static fun teardown (Lfe/composekit/test/UnitTest;)V
+}
+

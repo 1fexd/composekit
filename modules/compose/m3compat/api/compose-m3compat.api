@@ -1,0 +1,192 @@
+public final class fe/material3/compat/ColorSchemeKt {
+	public static final fun getValue (Lfe/material3/compat/tokens/ColorSchemeKeyTokens;Landroidx/compose/runtime/Composer;I)J
+}
+
+public final class fe/material3/compat/ShapesKt {
+	public static final fun getValue (Lfe/material3/compat/tokens/ShapeKeyTokens;Landroidx/compose/runtime/Composer;I)Landroidx/compose/ui/graphics/Shape;
+}
+
+public final class fe/material3/compat/Strings {
+	public static final field $stable I
+	public static final field INSTANCE Lfe/material3/compat/Strings;
+	public final fun getDialog ()I
+}
+
+public final class fe/material3/compat/StringsKt {
+	public static final fun getString (ILandroidx/compose/runtime/Composer;I)Ljava/lang/String;
+}
+
+public final class fe/material3/compat/TypographyKt {
+	public static final fun getValue (Lfe/material3/compat/tokens/TypographyKeyTokens;Landroidx/compose/runtime/Composer;I)Landroidx/compose/ui/text/TextStyle;
+}
+
+public final class fe/material3/compat/tokens/ColorSchemeKeyTokens : java/lang/Enum {
+	public static final field Background Lfe/material3/compat/tokens/ColorSchemeKeyTokens;
+	public static final field Error Lfe/material3/compat/tokens/ColorSchemeKeyTokens;
+	public static final field ErrorContainer Lfe/material3/compat/tokens/ColorSchemeKeyTokens;
+	public static final field InverseOnSurface Lfe/material3/compat/tokens/ColorSchemeKeyTokens;
+	public static final field InversePrimary Lfe/material3/compat/tokens/ColorSchemeKeyTokens;
+	public static final field InverseSurface Lfe/material3/compat/tokens/ColorSchemeKeyTokens;
+	public static final field OnBackground Lfe/material3/compat/tokens/ColorSchemeKeyTokens;
+	public static final field OnError Lfe/material3/compat/tokens/ColorSchemeKeyTokens;
+	public static final field OnErrorContainer Lfe/material3/compat/tokens/ColorSchemeKeyTokens;
+	public static final field OnPrimary Lfe/material3/compat/tokens/ColorSchemeKeyTokens;
+	public static final field OnPrimaryContainer Lfe/material3/compat/tokens/ColorSchemeKeyTokens;
+	public static final field OnPrimaryFixed Lfe/material3/compat/tokens/ColorSchemeKeyTokens;
+	public static final field OnPrimaryFixedVariant Lfe/material3/compat/tokens/ColorSchemeKeyTokens;
+	public static final field OnSecondary Lfe/material3/compat/tokens/ColorSchemeKeyTokens;
+	public static final field OnSecondaryContainer Lfe/material3/compat/tokens/ColorSchemeKeyTokens;
+	public static final field OnSecondaryFixed Lfe/material3/compat/tokens/ColorSchemeKeyTokens;
+	public static final field OnSecondaryFixedVariant Lfe/material3/compat/tokens/ColorSchemeKeyTokens;
+	public static final field OnSurface Lfe/material3/compat/tokens/ColorSchemeKeyTokens;
+	public static final field OnSurfaceVariant Lfe/material3/compat/tokens/ColorSchemeKeyTokens;
+	public static final field OnTertiary Lfe/material3/compat/tokens/ColorSchemeKeyTokens;
+	public static final field OnTertiaryContainer Lfe/material3/compat/tokens/ColorSchemeKeyTokens;
+	public static final field OnTertiaryFixed Lfe/material3/compat/tokens/ColorSchemeKeyTokens;
+	public static final field OnTertiaryFixedVariant Lfe/material3/compat/tokens/ColorSchemeKeyTokens;
+	public static final field Outline Lfe/material3/compat/tokens/ColorSchemeKeyTokens;
+	public static final field OutlineVariant Lfe/material3/compat/tokens/ColorSchemeKeyTokens;
+	public static final field Primary Lfe/material3/compat/tokens/ColorSchemeKeyTokens;
+	public static final field PrimaryContainer Lfe/material3/compat/tokens/ColorSchemeKeyTokens;
+	public static final field PrimaryFixed Lfe/material3/compat/tokens/ColorSchemeKeyTokens;
+	public static final field PrimaryFixedDim Lfe/material3/compat/tokens/ColorSchemeKeyTokens;
+	public static final field Scrim Lfe/material3/compat/tokens/ColorSchemeKeyTokens;
+	public static final field Secondary Lfe/material3/compat/tokens/ColorSchemeKeyTokens;
+	public static final field SecondaryContainer Lfe/material3/compat/tokens/ColorSchemeKeyTokens;
+	public static final field SecondaryFixed Lfe/material3/compat/tokens/ColorSchemeKeyTokens;
+	public static final field SecondaryFixedDim Lfe/material3/compat/tokens/ColorSchemeKeyTokens;
+	public static final field Surface Lfe/material3/compat/tokens/ColorSchemeKeyTokens;
+	public static final field SurfaceBright Lfe/material3/compat/tokens/ColorSchemeKeyTokens;
+	public static final field SurfaceContainer Lfe/material3/compat/tokens/ColorSchemeKeyTokens;
+	public static final field SurfaceContainerHigh Lfe/material3/compat/tokens/ColorSchemeKeyTokens;
+	public static final field SurfaceContainerHighest Lfe/material3/compat/tokens/ColorSchemeKeyTokens;
+	public static final field SurfaceContainerLow Lfe/material3/compat/tokens/ColorSchemeKeyTokens;
+	public static final field SurfaceContainerLowest Lfe/material3/compat/tokens/ColorSchemeKeyTokens;
+	public static final field SurfaceDim Lfe/material3/compat/tokens/ColorSchemeKeyTokens;
+	public static final field SurfaceTint Lfe/material3/compat/tokens/ColorSchemeKeyTokens;
+	public static final field SurfaceVariant Lfe/material3/compat/tokens/ColorSchemeKeyTokens;
+	public static final field Tertiary Lfe/material3/compat/tokens/ColorSchemeKeyTokens;
+	public static final field TertiaryContainer Lfe/material3/compat/tokens/ColorSchemeKeyTokens;
+	public static final field TertiaryFixed Lfe/material3/compat/tokens/ColorSchemeKeyTokens;
+	public static final field TertiaryFixedDim Lfe/material3/compat/tokens/ColorSchemeKeyTokens;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lfe/material3/compat/tokens/ColorSchemeKeyTokens;
+	public static fun values ()[Lfe/material3/compat/tokens/ColorSchemeKeyTokens;
+}
+
+public final class fe/material3/compat/tokens/DialogTokens {
+	public static final field $stable I
+	public static final field INSTANCE Lfe/material3/compat/tokens/DialogTokens;
+	public final fun getActionFocusLabelTextColor ()Lfe/material3/compat/tokens/ColorSchemeKeyTokens;
+	public final fun getActionHoverLabelTextColor ()Lfe/material3/compat/tokens/ColorSchemeKeyTokens;
+	public final fun getActionLabelTextColor ()Lfe/material3/compat/tokens/ColorSchemeKeyTokens;
+	public final fun getActionLabelTextFont ()Lfe/material3/compat/tokens/TypographyKeyTokens;
+	public final fun getActionPressedLabelTextColor ()Lfe/material3/compat/tokens/ColorSchemeKeyTokens;
+	public final fun getContainerColor ()Lfe/material3/compat/tokens/ColorSchemeKeyTokens;
+	public final fun getContainerElevation-D9Ej5fM ()F
+	public final fun getContainerShape ()Lfe/material3/compat/tokens/ShapeKeyTokens;
+	public final fun getHeadlineColor ()Lfe/material3/compat/tokens/ColorSchemeKeyTokens;
+	public final fun getHeadlineFont ()Lfe/material3/compat/tokens/TypographyKeyTokens;
+	public final fun getIconColor ()Lfe/material3/compat/tokens/ColorSchemeKeyTokens;
+	public final fun getIconSize-D9Ej5fM ()F
+	public final fun getSupportingTextColor ()Lfe/material3/compat/tokens/ColorSchemeKeyTokens;
+	public final fun getSupportingTextFont ()Lfe/material3/compat/tokens/TypographyKeyTokens;
+}
+
+public final class fe/material3/compat/tokens/ElevationTokens {
+	public static final field $stable I
+	public static final field INSTANCE Lfe/material3/compat/tokens/ElevationTokens;
+	public final fun getLevel0-D9Ej5fM ()F
+	public final fun getLevel1-D9Ej5fM ()F
+	public final fun getLevel2-D9Ej5fM ()F
+	public final fun getLevel3-D9Ej5fM ()F
+	public final fun getLevel4-D9Ej5fM ()F
+	public final fun getLevel5-D9Ej5fM ()F
+}
+
+public final class fe/material3/compat/tokens/ShapeKeyTokens : java/lang/Enum {
+	public static final field CornerExtraExtraLarge Lfe/material3/compat/tokens/ShapeKeyTokens;
+	public static final field CornerExtraLarge Lfe/material3/compat/tokens/ShapeKeyTokens;
+	public static final field CornerExtraLargeIncreased Lfe/material3/compat/tokens/ShapeKeyTokens;
+	public static final field CornerExtraLargeTop Lfe/material3/compat/tokens/ShapeKeyTokens;
+	public static final field CornerExtraSmall Lfe/material3/compat/tokens/ShapeKeyTokens;
+	public static final field CornerExtraSmallTop Lfe/material3/compat/tokens/ShapeKeyTokens;
+	public static final field CornerFull Lfe/material3/compat/tokens/ShapeKeyTokens;
+	public static final field CornerLarge Lfe/material3/compat/tokens/ShapeKeyTokens;
+	public static final field CornerLargeEnd Lfe/material3/compat/tokens/ShapeKeyTokens;
+	public static final field CornerLargeIncreased Lfe/material3/compat/tokens/ShapeKeyTokens;
+	public static final field CornerLargeStart Lfe/material3/compat/tokens/ShapeKeyTokens;
+	public static final field CornerLargeTop Lfe/material3/compat/tokens/ShapeKeyTokens;
+	public static final field CornerMedium Lfe/material3/compat/tokens/ShapeKeyTokens;
+	public static final field CornerNone Lfe/material3/compat/tokens/ShapeKeyTokens;
+	public static final field CornerSmall Lfe/material3/compat/tokens/ShapeKeyTokens;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lfe/material3/compat/tokens/ShapeKeyTokens;
+	public static fun values ()[Lfe/material3/compat/tokens/ShapeKeyTokens;
+}
+
+public final class fe/material3/compat/tokens/ShapeTokens {
+	public static final field $stable I
+	public static final field INSTANCE Lfe/material3/compat/tokens/ShapeTokens;
+	public final fun getCornerExtraExtraLarge ()Landroidx/compose/foundation/shape/RoundedCornerShape;
+	public final fun getCornerExtraLarge ()Landroidx/compose/foundation/shape/RoundedCornerShape;
+	public final fun getCornerExtraLargeIncreased ()Landroidx/compose/foundation/shape/RoundedCornerShape;
+	public final fun getCornerExtraLargeTop ()Landroidx/compose/foundation/shape/RoundedCornerShape;
+	public final fun getCornerExtraSmall ()Landroidx/compose/foundation/shape/RoundedCornerShape;
+	public final fun getCornerExtraSmallTop ()Landroidx/compose/foundation/shape/RoundedCornerShape;
+	public final fun getCornerFull ()Landroidx/compose/foundation/shape/RoundedCornerShape;
+	public final fun getCornerLarge ()Landroidx/compose/foundation/shape/RoundedCornerShape;
+	public final fun getCornerLargeEnd ()Landroidx/compose/foundation/shape/RoundedCornerShape;
+	public final fun getCornerLargeIncreased ()Landroidx/compose/foundation/shape/RoundedCornerShape;
+	public final fun getCornerLargeStart ()Landroidx/compose/foundation/shape/RoundedCornerShape;
+	public final fun getCornerLargeTop ()Landroidx/compose/foundation/shape/RoundedCornerShape;
+	public final fun getCornerMedium ()Landroidx/compose/foundation/shape/RoundedCornerShape;
+	public final fun getCornerNone ()Landroidx/compose/ui/graphics/Shape;
+	public final fun getCornerSmall ()Landroidx/compose/foundation/shape/RoundedCornerShape;
+	public final fun getCornerValueExtraExtraLarge ()Landroidx/compose/foundation/shape/CornerSize;
+	public final fun getCornerValueExtraLarge ()Landroidx/compose/foundation/shape/CornerSize;
+	public final fun getCornerValueExtraLargeIncreased ()Landroidx/compose/foundation/shape/CornerSize;
+	public final fun getCornerValueExtraSmall ()Landroidx/compose/foundation/shape/CornerSize;
+	public final fun getCornerValueLarge ()Landroidx/compose/foundation/shape/CornerSize;
+	public final fun getCornerValueLargeIncreased ()Landroidx/compose/foundation/shape/CornerSize;
+	public final fun getCornerValueMedium ()Landroidx/compose/foundation/shape/CornerSize;
+	public final fun getCornerValueNone ()Landroidx/compose/foundation/shape/CornerSize;
+	public final fun getCornerValueSmall ()Landroidx/compose/foundation/shape/CornerSize;
+}
+
+public final class fe/material3/compat/tokens/TypographyKeyTokens : java/lang/Enum {
+	public static final field BodyLarge Lfe/material3/compat/tokens/TypographyKeyTokens;
+	public static final field BodyLargeEmphasized Lfe/material3/compat/tokens/TypographyKeyTokens;
+	public static final field BodyMedium Lfe/material3/compat/tokens/TypographyKeyTokens;
+	public static final field BodyMediumEmphasized Lfe/material3/compat/tokens/TypographyKeyTokens;
+	public static final field BodySmall Lfe/material3/compat/tokens/TypographyKeyTokens;
+	public static final field BodySmallEmphasized Lfe/material3/compat/tokens/TypographyKeyTokens;
+	public static final field DisplayLarge Lfe/material3/compat/tokens/TypographyKeyTokens;
+	public static final field DisplayLargeEmphasized Lfe/material3/compat/tokens/TypographyKeyTokens;
+	public static final field DisplayMedium Lfe/material3/compat/tokens/TypographyKeyTokens;
+	public static final field DisplayMediumEmphasized Lfe/material3/compat/tokens/TypographyKeyTokens;
+	public static final field DisplaySmall Lfe/material3/compat/tokens/TypographyKeyTokens;
+	public static final field DisplaySmallEmphasized Lfe/material3/compat/tokens/TypographyKeyTokens;
+	public static final field HeadlineLarge Lfe/material3/compat/tokens/TypographyKeyTokens;
+	public static final field HeadlineLargeEmphasized Lfe/material3/compat/tokens/TypographyKeyTokens;
+	public static final field HeadlineMedium Lfe/material3/compat/tokens/TypographyKeyTokens;
+	public static final field HeadlineMediumEmphasized Lfe/material3/compat/tokens/TypographyKeyTokens;
+	public static final field HeadlineSmall Lfe/material3/compat/tokens/TypographyKeyTokens;
+	public static final field HeadlineSmallEmphasized Lfe/material3/compat/tokens/TypographyKeyTokens;
+	public static final field LabelLarge Lfe/material3/compat/tokens/TypographyKeyTokens;
+	public static final field LabelLargeEmphasized Lfe/material3/compat/tokens/TypographyKeyTokens;
+	public static final field LabelMedium Lfe/material3/compat/tokens/TypographyKeyTokens;
+	public static final field LabelMediumEmphasized Lfe/material3/compat/tokens/TypographyKeyTokens;
+	public static final field LabelSmall Lfe/material3/compat/tokens/TypographyKeyTokens;
+	public static final field LabelSmallEmphasized Lfe/material3/compat/tokens/TypographyKeyTokens;
+	public static final field TitleLarge Lfe/material3/compat/tokens/TypographyKeyTokens;
+	public static final field TitleLargeEmphasized Lfe/material3/compat/tokens/TypographyKeyTokens;
+	public static final field TitleMedium Lfe/material3/compat/tokens/TypographyKeyTokens;
+	public static final field TitleMediumEmphasized Lfe/material3/compat/tokens/TypographyKeyTokens;
+	public static final field TitleSmall Lfe/material3/compat/tokens/TypographyKeyTokens;
+	public static final field TitleSmallEmphasized Lfe/material3/compat/tokens/TypographyKeyTokens;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lfe/material3/compat/tokens/TypographyKeyTokens;
+	public static fun values ()[Lfe/material3/compat/tokens/TypographyKeyTokens;
+}
+

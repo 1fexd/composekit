@@ -1,0 +1,17 @@
+public class fe/composekit/appbase/AppBaseComponentActivity : androidx/activity/ComponentActivity {
+	public static final field $stable I
+	public fun <init> ()V
+	public final fun getEdgeToEdge ()Z
+	public final fun initPadding ()Lfe/composekit/appbase/AppBaseComponentActivity;
+	public final fun setContent (ZLkotlin/jvm/functions/Function2;)V
+	public final fun updateEdgeToEdge (Landroidx/activity/SystemBarStyle;Landroidx/activity/SystemBarStyle;)V
+}
+
+public final class fe/composekit/appbase/AppThemeKt {
+	public static final fun AppTheme (Lfe/composekit/appbase/AppBaseComponentActivity;ZLfe/composekit/theme/AppColorScheme;Landroidx/compose/material3/Typography;Lfe/composekit/theme/ThemeConfig;Lkotlin/jvm/functions/Function2;Landroidx/compose/runtime/Composer;II)V
+	public static final fun AppTheme (ZZLfe/composekit/theme/AppColorScheme;Landroidx/compose/material3/Typography;Lfe/composekit/theme/Theme;ZZLkotlin/jvm/functions/Function2;Lkotlin/jvm/functions/Function2;Landroidx/compose/runtime/Composer;II)V
+	public static final fun AppTheme (ZZLfe/composekit/theme/AppColorScheme;Landroidx/compose/material3/Typography;Lfe/composekit/theme/ThemeConfig;Lkotlin/jvm/functions/Function2;Lkotlin/jvm/functions/Function2;Landroidx/compose/runtime/Composer;II)V
+	public static final fun BoxAppHost (Lfe/composekit/appbase/AppBaseComponentActivity;Landroidx/compose/ui/Modifier;Landroidx/compose/ui/Alignment;Lfe/composekit/theme/AppColorScheme;Landroidx/compose/material3/Typography;Lfe/composekit/theme/ThemeConfig;Lkotlin/jvm/functions/Function3;Landroidx/compose/runtime/Composer;II)V
+	public static final fun findActivity (Landroid/content/Context;)Landroid/app/Activity;
+}
+

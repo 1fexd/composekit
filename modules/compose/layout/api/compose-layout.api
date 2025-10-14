@@ -1,0 +1,55 @@
+public final class fe/composekit/layout/column/ComposableSingletons$SaneLazyColumnLayoutKt {
+	public static final field INSTANCE Lfe/composekit/layout/column/ComposableSingletons$SaneLazyColumnLayoutKt;
+	public fun <init> ()V
+	public final fun getLambda$1483339679$compose_layout_release ()Lkotlin/jvm/functions/Function3;
+}
+
+public abstract interface class fe/composekit/layout/column/GroupValueProvider {
+	public abstract fun getKey ()Ljava/lang/Object;
+}
+
+public abstract interface annotation class fe/composekit/layout/column/LazyGroupScopeMarker : java/lang/annotation/Annotation {
+}
+
+public abstract interface class fe/composekit/layout/column/SaneLazyColumnGroupScope {
+	public abstract fun item (Ljava/lang/Object;Lkotlin/jvm/functions/Function5;)V
+	public abstract fun items (Ljava/util/List;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function6;)V
+	public abstract fun items (Ljava/util/List;Lkotlin/jvm/functions/Function6;)V
+	public abstract fun items (Ljava/util/Map;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function7;)V
+	public abstract fun items (Ljava/util/Map;Lkotlin/jvm/functions/Function7;)V
+	public abstract fun items ([Lfe/composekit/layout/column/GroupValueProvider;Lkotlin/jvm/functions/Function6;)V
+	public abstract fun itemsIndexed (Ljava/util/List;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function7;)V
+}
+
+public final class fe/composekit/layout/column/SaneLazyColumnGroupScopeKt {
+	public static final fun group (Lfe/composekit/layout/column/SaneLazyListScope;Ljava/util/List;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function6;)V
+	public static final fun group (Lfe/composekit/layout/column/SaneLazyListScope;Ljava/util/List;Lkotlin/jvm/functions/Function6;)V
+	public static final fun group (Lfe/composekit/layout/column/SaneLazyListScope;Ljava/util/Map;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function7;)V
+	public static final fun group (Lfe/composekit/layout/column/SaneLazyListScope;Ljava/util/Map;Lkotlin/jvm/functions/Function7;)V
+	public static final fun group (Lfe/composekit/layout/column/SaneLazyListScope;[Lfe/composekit/layout/column/GroupValueProvider;Lkotlin/jvm/functions/Function6;)V
+}
+
+public final class fe/composekit/layout/column/SaneLazyColumnLayoutKt {
+	public static final fun SaneLazyColumnLayoutBase (Landroidx/compose/ui/Modifier;Landroidx/compose/foundation/lazy/LazyListState;Landroidx/compose/foundation/layout/PaddingValues;Landroidx/compose/foundation/layout/PaddingValues;Landroidx/compose/foundation/layout/Arrangement$Vertical;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function1;Landroidx/compose/runtime/Composer;I)V
+}
+
+public abstract interface class fe/composekit/layout/column/SaneLazyListScope : androidx/compose/foundation/lazy/LazyListScope {
+	public abstract fun divider (ILjava/lang/Object;)V
+	public abstract fun divider (Ljava/lang/Object;Ljava/lang/String;)V
+	public static synthetic fun divider$default (Lfe/composekit/layout/column/SaneLazyListScope;ILjava/lang/Object;ILjava/lang/Object;)V
+	public abstract fun group (ILkotlin/jvm/functions/Function1;)V
+}
+
+public final class fe/composekit/layout/column/SaneLazyListScope$DefaultImpls {
+	public static synthetic fun divider$default (Lfe/composekit/layout/column/SaneLazyListScope;ILjava/lang/Object;ILjava/lang/Object;)V
+	public static fun item (Lfe/composekit/layout/column/SaneLazyListScope;Ljava/lang/Object;Ljava/lang/Object;Lkotlin/jvm/functions/Function3;)V
+	public static synthetic fun item (Lfe/composekit/layout/column/SaneLazyListScope;Ljava/lang/Object;Lkotlin/jvm/functions/Function3;)V
+	public static fun items (Lfe/composekit/layout/column/SaneLazyListScope;ILkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function4;)V
+	public static synthetic fun items (Lfe/composekit/layout/column/SaneLazyListScope;ILkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function4;)V
+	public static synthetic fun stickyHeader (Lfe/composekit/layout/column/SaneLazyListScope;Ljava/lang/Object;Ljava/lang/Object;Lkotlin/jvm/functions/Function3;)V
+	public static fun stickyHeader (Lfe/composekit/layout/column/SaneLazyListScope;Ljava/lang/Object;Ljava/lang/Object;Lkotlin/jvm/functions/Function4;)V
+}
+
+public abstract interface annotation class fe/composekit/layout/column/SaneLazyListScopeDslMarker : java/lang/annotation/Annotation {
+}
+

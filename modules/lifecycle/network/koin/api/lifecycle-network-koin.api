@@ -1,0 +1,4 @@
+public final class fe/composekit/lifecycle/network/koin/NetworkStateServiceModuleKt {
+	public static final fun getNetworkStateServiceModule ()Lorg/koin/core/module/Module;
+}
+

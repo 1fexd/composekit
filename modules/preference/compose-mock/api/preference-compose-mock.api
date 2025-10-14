@@ -1,0 +1,14 @@
+public final class fe/android/preference/helper/compose/mock/MockRepositoryState : fe/android/preference/helper/AbstractPreferenceDefinition {
+	public static final field $stable I
+	public fun <init> ()V
+	public final fun access$mapped (Ljava/lang/String;Ljava/lang/Object;Lfe/android/preference/helper/TypeMapper;Lkotlin/reflect/KClass;Lkotlin/reflect/KClass;)Lfe/android/preference/helper/Preference$Mapped;
+	public final fun boolean (ZLjava/lang/String;)Lfe/android/preference/helper/compose/MutablePreferenceState;
+	public static synthetic fun boolean$default (Lfe/android/preference/helper/compose/mock/MockRepositoryState;ZLjava/lang/String;ILjava/lang/Object;)Lfe/android/preference/helper/compose/MutablePreferenceState;
+	public final fun int (ILjava/lang/String;)Lfe/android/preference/helper/compose/MutablePreferenceState;
+	public static synthetic fun int$default (Lfe/android/preference/helper/compose/mock/MockRepositoryState;ILjava/lang/String;ILjava/lang/Object;)Lfe/android/preference/helper/compose/MutablePreferenceState;
+	public final fun long (JLjava/lang/String;)Lfe/android/preference/helper/compose/MutablePreferenceState;
+	public static synthetic fun long$default (Lfe/android/preference/helper/compose/mock/MockRepositoryState;JLjava/lang/String;ILjava/lang/Object;)Lfe/android/preference/helper/compose/MutablePreferenceState;
+	public final fun string (Ljava/lang/String;Ljava/lang/String;)Lfe/android/preference/helper/compose/MutablePreferenceState;
+	public static synthetic fun string$default (Lfe/android/preference/helper/compose/mock/MockRepositoryState;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lfe/android/preference/helper/compose/MutablePreferenceState;
+}
+

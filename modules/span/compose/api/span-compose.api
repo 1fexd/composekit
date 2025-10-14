@@ -1,0 +1,68 @@
+public final class fe/android/span/helper/DefaultLinkTags : fe/android/span/helper/LinkTags {
+	public static final field $stable I
+	public fun <init> ()V
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/util/Map;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/util/Map;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/util/Map;)Lfe/android/span/helper/DefaultLinkTags;
+	public static synthetic fun copy$default (Lfe/android/span/helper/DefaultLinkTags;Ljava/lang/String;Ljava/lang/String;Ljava/util/Map;ILjava/lang/Object;)Lfe/android/span/helper/DefaultLinkTags;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun get (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+	public fun getById (Ljava/lang/String;)Ljava/lang/String;
+	public final fun getUrlAnnotationKey ()Ljava/lang/String;
+	public final fun getUrlIdAnnotationKey ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class fe/android/span/helper/LinkAnnotationStyle {
+	public static final field $stable I
+	public fun <init> (Landroidx/compose/ui/text/SpanStyle;Landroidx/compose/ui/text/SpanStyle;Landroidx/compose/ui/text/SpanStyle;Landroidx/compose/ui/text/SpanStyle;Landroidx/compose/ui/text/LinkInteractionListener;)V
+	public synthetic fun <init> (Landroidx/compose/ui/text/SpanStyle;Landroidx/compose/ui/text/SpanStyle;Landroidx/compose/ui/text/SpanStyle;Landroidx/compose/ui/text/SpanStyle;Landroidx/compose/ui/text/LinkInteractionListener;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Landroidx/compose/ui/text/SpanStyle;
+	public final fun component2 ()Landroidx/compose/ui/text/SpanStyle;
+	public final fun component3 ()Landroidx/compose/ui/text/SpanStyle;
+	public final fun component4 ()Landroidx/compose/ui/text/SpanStyle;
+	public final fun component5 ()Landroidx/compose/ui/text/LinkInteractionListener;
+	public final fun copy (Landroidx/compose/ui/text/SpanStyle;Landroidx/compose/ui/text/SpanStyle;Landroidx/compose/ui/text/SpanStyle;Landroidx/compose/ui/text/SpanStyle;Landroidx/compose/ui/text/LinkInteractionListener;)Lfe/android/span/helper/LinkAnnotationStyle;
+	public static synthetic fun copy$default (Lfe/android/span/helper/LinkAnnotationStyle;Landroidx/compose/ui/text/SpanStyle;Landroidx/compose/ui/text/SpanStyle;Landroidx/compose/ui/text/SpanStyle;Landroidx/compose/ui/text/SpanStyle;Landroidx/compose/ui/text/LinkInteractionListener;ILjava/lang/Object;)Lfe/android/span/helper/LinkAnnotationStyle;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getFocusedStyle ()Landroidx/compose/ui/text/SpanStyle;
+	public final fun getHoveredStyle ()Landroidx/compose/ui/text/SpanStyle;
+	public final fun getInteractionListener ()Landroidx/compose/ui/text/LinkInteractionListener;
+	public final fun getPressedStyle ()Landroidx/compose/ui/text/SpanStyle;
+	public final fun getStyle ()Landroidx/compose/ui/text/SpanStyle;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+	public final fun toUrlAnnotation (Ljava/lang/String;)Landroidx/compose/ui/text/LinkAnnotation$Url;
+}
+
+public final class fe/android/span/helper/LinkAnnotationStyleKt {
+	public static final fun getDefaultHyperLinkStyle ()Lfe/android/span/helper/LinkAnnotationStyle;
+	public static final fun getLocalLinkAnnotationStyle ()Landroidx/compose/runtime/ProvidableCompositionLocal;
+}
+
+public abstract interface class fe/android/span/helper/LinkTags {
+	public abstract fun get (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+	public abstract fun getById (Ljava/lang/String;)Ljava/lang/String;
+}
+
+public final class fe/android/span/helper/LinkTagsKt {
+	public static final fun getLocalLinkTags ()Landroidx/compose/runtime/ProvidableCompositionLocal;
+}
+
+public final class fe/android/span/helper/composable/BaseAnnotatedStringKt {
+	public static final fun createAnnotatedString (I[Ljava/lang/Object;Lfe/android/span/helper/LinkAnnotationStyle;Landroidx/compose/runtime/Composer;II)Landroidx/compose/ui/text/AnnotatedString;
+	public static final fun fromStringRes (Landroidx/compose/ui/text/AnnotatedString$Builder;I[Ljava/lang/Object;Lfe/android/span/helper/LinkAnnotationStyle;Landroidx/compose/runtime/Composer;II)Landroidx/compose/ui/text/AnnotatedString$Builder;
+}
+
+public final class fe/android/span/helper/ext/AnnotatedStringBuilderExtKt {
+	public static final fun handleSpanned (Landroidx/compose/ui/text/AnnotatedString$Builder;Landroid/text/Spanned;Landroidx/compose/ui/unit/Density;Lfe/android/span/helper/LinkAnnotationStyle;Lfe/android/span/helper/LinkTags;)Landroidx/compose/ui/text/AnnotatedString$Builder;
+	public static final fun putSpan (Landroidx/compose/ui/text/AnnotatedString$Builder;Landroid/text/ParcelableSpan;Landroidx/compose/ui/unit/Density;Lfe/android/span/helper/LinkAnnotationStyle;Lfe/android/span/helper/LinkTags;II)V
+}
+
+public final class fe/android/span/helper/util/SpanConverterKt {
+	public static final fun toSpanStyle (Landroid/text/ParcelableSpan;Landroidx/compose/ui/unit/Density;)Landroidx/compose/ui/text/SpanStyle;
+}
+

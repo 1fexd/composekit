@@ -1,0 +1,13 @@
+public final class fe/droidkit/koin/ExtendedScope {
+	public static final field $stable I
+	public fun <init> (Lorg/koin/core/scope/Scope;Lkotlin/reflect/KClass;)V
+	public final fun getApplicationContext ()Landroid/app/Application;
+	public final fun getClazz ()Lkotlin/reflect/KClass;
+	public final fun getScope ()Lorg/koin/core/scope/Scope;
+}
+
+public final class fe/droidkit/koin/ScopeExtKt {
+	public static final fun getPackageManager (Lorg/koin/core/scope/Scope;)Landroid/content/pm/PackageManager;
+	public static final fun getResources (Lorg/koin/core/scope/Scope;)Landroid/content/res/Resources;
+}
+

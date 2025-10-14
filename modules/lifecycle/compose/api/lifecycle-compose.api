@@ -1,0 +1,5 @@
+public final class fe/composekit/lifecycle/RefreshableFlowExtKt {
+	public static final fun collectRefreshableAsStateWithLifecycle (Lfe/std/coroutines/BaseRefreshableFlow;Ljava/lang/Object;Landroidx/lifecycle/Lifecycle;Landroidx/lifecycle/Lifecycle$State;Lkotlin/coroutines/CoroutineContext;Landroidx/compose/runtime/Composer;II)Landroidx/compose/runtime/State;
+	public static final fun collectRefreshableAsStateWithLifecycle (Lfe/std/coroutines/BaseRefreshableFlow;Ljava/lang/Object;Landroidx/lifecycle/LifecycleOwner;Landroidx/lifecycle/Lifecycle$State;Lkotlin/coroutines/CoroutineContext;Landroidx/compose/runtime/Composer;II)Landroidx/compose/runtime/State;
+}
+

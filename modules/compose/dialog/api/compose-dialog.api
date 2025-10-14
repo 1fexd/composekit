@@ -1,0 +1,143 @@
+public final class fe/android/compose/dialog/helper/ComposeSaverKt {
+	public static final fun createSaver (Lkotlin/jvm/functions/Function2;Lkotlin/jvm/functions/Function1;)Landroidx/compose/runtime/saveable/Saver;
+}
+
+public final class fe/android/compose/dialog/helper/DialogConfig {
+	public static final field $stable I
+	public fun <init> (Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;)V
+	public final fun component1 ()Lkotlin/jvm/functions/Function0;
+	public final fun component2 ()Lkotlin/jvm/functions/Function0;
+	public final fun copy (Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;)Lfe/android/compose/dialog/helper/DialogConfig;
+	public static synthetic fun copy$default (Lfe/android/compose/dialog/helper/DialogConfig;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;ILjava/lang/Object;)Lfe/android/compose/dialog/helper/DialogConfig;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getClose ()Lkotlin/jvm/functions/Function0;
+	public final fun getOpen ()Lkotlin/jvm/functions/Function0;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class fe/android/compose/dialog/helper/DialogHelperKt {
+	public static final fun dialogHelper (Ljava/lang/Object;Lkotlin/jvm/functions/Function1;ZZZLkotlin/jvm/functions/Function4;Landroidx/compose/runtime/Composer;II)Lfe/android/compose/dialog/helper/DialogConfig;
+	public static final fun dialogHelper (Lkotlin/jvm/functions/Function2;Lkotlin/jvm/functions/Function1;ZZZZLkotlin/jvm/functions/Function4;Landroidx/compose/runtime/Composer;II)Lfe/android/compose/dialog/helper/StateDialogConfig;
+}
+
+public final class fe/android/compose/dialog/helper/DialogMinWidthKt {
+	public static final fun Dialog (ZLkotlin/jvm/functions/Function0;Landroidx/compose/ui/window/DialogProperties;Lkotlin/jvm/functions/Function2;Landroidx/compose/runtime/Composer;II)V
+	public static final fun getDialogMaxWidth ()F
+	public static final fun getDialogMinWidth ()F
+}
+
+public final class fe/android/compose/dialog/helper/StateDialogConfig {
+	public static final field $stable I
+	public fun <init> (Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function0;)V
+	public final fun component1 ()Lkotlin/jvm/functions/Function1;
+	public final fun component2 ()Lkotlin/jvm/functions/Function0;
+	public final fun copy (Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function0;)Lfe/android/compose/dialog/helper/StateDialogConfig;
+	public static synthetic fun copy$default (Lfe/android/compose/dialog/helper/StateDialogConfig;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function0;ILjava/lang/Object;)Lfe/android/compose/dialog/helper/StateDialogConfig;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getClose ()Lkotlin/jvm/functions/Function0;
+	public final fun getOpen ()Lkotlin/jvm/functions/Function1;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public abstract class fe/android/compose/dialog/helper/base/BaseDialogState {
+	public static final field $stable I
+	public fun <init> ()V
+	public fun <init> (Lfe/android/compose/dialog/helper/base/DialogState;)V
+	public synthetic fun <init> (Lfe/android/compose/dialog/helper/base/DialogState;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun getCurrentState ()Lfe/android/compose/dialog/helper/base/DialogState;
+	public final fun isOpen ()Z
+}
+
+public abstract class fe/android/compose/dialog/helper/base/BaseResultDialogState : fe/android/compose/dialog/helper/base/BaseDialogState {
+	public static final field $stable I
+	public fun <init> ()V
+	public fun <init> (Lfe/android/compose/dialog/helper/base/DialogState;Ljava/lang/Object;)V
+	public synthetic fun <init> (Lfe/android/compose/dialog/helper/base/DialogState;Ljava/lang/Object;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun close (Ljava/lang/Object;)Z
+	public fun dismiss ()Z
+}
+
+public final class fe/android/compose/dialog/helper/base/DialogState : java/lang/Enum {
+	public static final field Closed Lfe/android/compose/dialog/helper/base/DialogState;
+	public static final field Open Lfe/android/compose/dialog/helper/base/DialogState;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lfe/android/compose/dialog/helper/base/DialogState;
+	public static fun values ()[Lfe/android/compose/dialog/helper/base/DialogState;
+}
+
+public final class fe/android/compose/dialog/helper/confirm/ConfirmActionDialogKt {
+	public static final fun ConfirmActionDialog (Lfe/android/compose/dialog/helper/confirm/ConfirmActionDialogState;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function3;Landroidx/compose/runtime/Composer;II)V
+	public static final fun rememberConfirmActionDialog (Landroidx/compose/runtime/Composer;I)Lfe/android/compose/dialog/helper/confirm/ConfirmActionDialogState;
+}
+
+public final class fe/android/compose/dialog/helper/confirm/ConfirmActionDialogState : fe/android/compose/dialog/helper/base/BaseResultDialogState {
+	public static final field $stable I
+	public static final field Companion Lfe/android/compose/dialog/helper/confirm/ConfirmActionDialogState$Companion;
+	public fun <init> ()V
+	public final fun confirm ()V
+	public fun dismiss ()Z
+	public final fun open (Ljava/lang/Object;)Z
+	public final fun tryGetResult ()Lkotlin/Pair;
+}
+
+public final class fe/android/compose/dialog/helper/confirm/ConfirmActionDialogState$Companion {
+	public final fun Saver ()Landroidx/compose/runtime/saveable/Saver;
+}
+
+public final class fe/android/compose/dialog/helper/input/InputResultDialogKt {
+	public static final fun InputResultDialog (Lfe/android/compose/dialog/helper/input/InputResultDialogState;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function3;Landroidx/compose/runtime/Composer;II)V
+	public static final fun rememberInputResultDialog (Landroidx/compose/runtime/Composer;I)Lfe/android/compose/dialog/helper/input/InputResultDialogState;
+}
+
+public final class fe/android/compose/dialog/helper/input/InputResultDialogState : fe/android/compose/dialog/helper/base/BaseResultDialogState {
+	public static final field $stable I
+	public static final field Companion Lfe/android/compose/dialog/helper/input/InputResultDialogState$Companion;
+	public fun <init> ()V
+	public fun <init> (Ljava/lang/Object;)V
+	public synthetic fun <init> (Ljava/lang/Object;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun open (Ljava/lang/Object;)Z
+}
+
+public final class fe/android/compose/dialog/helper/input/InputResultDialogState$Companion {
+	public final fun Saver ()Landroidx/compose/runtime/saveable/Saver;
+}
+
+public final class fe/android/compose/dialog/helper/result/ResultDialogKt {
+	public static final fun ResultDialog (Lfe/android/compose/dialog/helper/result/ResultDialogState;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function2;Landroidx/compose/runtime/Composer;II)V
+	public static final fun rememberResultDialogState (Landroidx/compose/runtime/Composer;I)Lfe/android/compose/dialog/helper/result/ResultDialogState;
+}
+
+public final class fe/android/compose/dialog/helper/result/ResultDialogState : fe/android/compose/dialog/helper/base/BaseResultDialogState {
+	public static final field $stable I
+	public static final field Companion Lfe/android/compose/dialog/helper/result/ResultDialogState$Companion;
+	public fun <init> ()V
+	public fun <init> (Ljava/lang/Object;)V
+	public synthetic fun <init> (Ljava/lang/Object;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun open ()Z
+}
+
+public final class fe/android/compose/dialog/helper/result/ResultDialogState$Companion {
+	public final fun Saver ()Landroidx/compose/runtime/saveable/Saver;
+}
+
+public final class fe/android/compose/dialog/helper/stateful/StatefulDialogKt {
+	public static final fun StatefulDialog (Lfe/android/compose/dialog/helper/stateful/StatefulDialogState;Lkotlin/jvm/functions/Function2;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function3;Landroidx/compose/runtime/Composer;II)V
+	public static final fun rememberStatefulDialog (Ljava/lang/Object;Landroidx/compose/runtime/Composer;I)Lfe/android/compose/dialog/helper/stateful/StatefulDialogState;
+}
+
+public final class fe/android/compose/dialog/helper/stateful/StatefulDialogState : fe/android/compose/dialog/helper/base/BaseResultDialogState {
+	public static final field $stable I
+	public static final field Companion Lfe/android/compose/dialog/helper/stateful/StatefulDialogState$Companion;
+	public fun <init> (Ljava/lang/Object;Ljava/lang/Object;)V
+	public synthetic fun <init> (Ljava/lang/Object;Ljava/lang/Object;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun open (Ljava/lang/Object;)Z
+	public static synthetic fun open$default (Lfe/android/compose/dialog/helper/stateful/StatefulDialogState;Ljava/lang/Object;ILjava/lang/Object;)Z
+	public final fun tryGetResult ()Lkotlin/Pair;
+}
+
+public final class fe/android/compose/dialog/helper/stateful/StatefulDialogState$Companion {
+	public final fun Saver ()Landroidx/compose/runtime/saveable/Saver;
+}
+

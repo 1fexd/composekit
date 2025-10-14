@@ -1,0 +1,17 @@
+public final class fe/composekit/theme/preference/PreferenceThemeKt {
+	public static final fun PreferenceTheme (Lfe/android/preference/helper/compose/StatePreferenceRepository;Lfe/android/preference/helper/Preference$Mapped;Lfe/android/preference/helper/Preference$Boolean;Lfe/android/preference/helper/Preference$Boolean;Lkotlin/jvm/functions/Function3;Landroidx/compose/runtime/Composer;II)V
+}
+
+public final class fe/composekit/theme/preference/ThemeMapper : fe/android/preference/helper/OptionTypeMapper {
+	public static final field $stable I
+	public static final field INSTANCE Lfe/composekit/theme/preference/ThemeMapper;
+}
+
+public final class fe/composekit/theme/preference/ThemePreferences : fe/android/preference/helper/PreferenceDefinition {
+	public static final field $stable I
+	public static final field INSTANCE Lfe/composekit/theme/preference/ThemePreferences;
+	public final fun getTheme ()Lfe/android/preference/helper/Preference$Mapped;
+	public final fun getThemeAmoled ()Lfe/android/preference/helper/Preference$Boolean;
+	public final fun getThemeMaterialYou ()Lfe/android/preference/helper/Preference$Boolean;
+}
+

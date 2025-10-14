@@ -1,0 +1,17 @@
+public final class fe/android/lifecycle/util/test/ComposableSingletons$MainActivityKt {
+	public static final field INSTANCE Lfe/android/lifecycle/util/test/ComposableSingletons$MainActivityKt;
+	public fun <init> ()V
+	public final fun getLambda$-2121797930$lifecycle_test_app_release ()Lkotlin/jvm/functions/Function2;
+}
+
+public final class fe/android/lifecycle/util/test/LifecycleTestApp : android/app/Application {
+	public static final field $stable I
+	public fun <init> ()V
+	public fun onCreate ()V
+}
+
+public final class fe/android/lifecycle/util/test/MainActivity : androidx/activity/ComponentActivity {
+	public static final field $stable I
+	public fun <init> ()V
+}
+

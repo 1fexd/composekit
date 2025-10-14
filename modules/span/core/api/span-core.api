@@ -1,0 +1,15 @@
+public final class fe/android/span/helper/ext/SpannedExtKt {
+	public static final fun forEachSpan (Landroid/text/Spanned;IILkotlin/jvm/functions/Function2;)V
+	public static synthetic fun forEachSpan$default (Landroid/text/Spanned;IILkotlin/jvm/functions/Function2;ILjava/lang/Object;)V
+	public static final fun format (Landroid/text/Spanned;[Ljava/lang/Object;)Landroid/text/Spanned;
+	public static final fun getAllParcelableSpans (Landroid/text/Spanned;II)Ljava/util/Map;
+	public static synthetic fun getAllParcelableSpans$default (Landroid/text/Spanned;IIILjava/lang/Object;)Ljava/util/Map;
+	public static final fun getSpanRange (Landroid/text/Spanned;Ljava/lang/Object;)Lkotlin/ranges/IntRange;
+}
+
+public final class fe/android/span/helper/formatter/SpanFormatter {
+	public static final field $stable I
+	public static final field INSTANCE Lfe/android/span/helper/formatter/SpanFormatter;
+	public final fun format (Landroid/text/Spanned;[Ljava/lang/Object;)Landroid/text/Spanned;
+}
+

@@ -1,0 +1,109 @@
+public abstract class fe/android/preference/helper/testapp/BrowserMode {
+	public static final field $stable I
+	public static final field Companion Lfe/android/preference/helper/testapp/BrowserMode$Companion;
+	public synthetic fun <init> (Ljava/lang/String;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun getValue ()Ljava/lang/String;
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class fe/android/preference/helper/testapp/BrowserMode$AlwaysAsk : fe/android/preference/helper/testapp/BrowserMode {
+	public static final field $stable I
+	public static final field INSTANCE Lfe/android/preference/helper/testapp/BrowserMode$AlwaysAsk;
+}
+
+public final class fe/android/preference/helper/testapp/BrowserMode$Companion : fe/android/preference/helper/OptionTypeMapper {
+}
+
+public final class fe/android/preference/helper/testapp/BrowserMode$None : fe/android/preference/helper/testapp/BrowserMode {
+	public static final field $stable I
+	public static final field INSTANCE Lfe/android/preference/helper/testapp/BrowserMode$None;
+}
+
+public final class fe/android/preference/helper/testapp/BrowserMode$SelectedBrowser : fe/android/preference/helper/testapp/BrowserMode {
+	public static final field $stable I
+	public static final field INSTANCE Lfe/android/preference/helper/testapp/BrowserMode$SelectedBrowser;
+}
+
+public final class fe/android/preference/helper/testapp/BrowserMode$Whitelisted : fe/android/preference/helper/testapp/BrowserMode {
+	public static final field $stable I
+	public static final field INSTANCE Lfe/android/preference/helper/testapp/BrowserMode$Whitelisted;
+}
+
+public final class fe/android/preference/helper/testapp/ComposableSingletons$TestComposablePageKt {
+	public static final field INSTANCE Lfe/android/preference/helper/testapp/ComposableSingletons$TestComposablePageKt;
+	public fun <init> ()V
+	public final fun getLambda$-140350849$preference_test_app_release ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda$-228999045$preference_test_app_release ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda$1027896747$preference_test_app_release ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda$1083367112$preference_test_app_release ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda$1336449329$preference_test_app_release ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda$1931962420$preference_test_app_release ()Lkotlin/jvm/functions/Function3;
+}
+
+public final class fe/android/preference/helper/testapp/MainActivity : androidx/activity/ComponentActivity {
+	public static final field $stable I
+	public fun <init> ()V
+	public final fun getViewModelStoreOwner ()Landroidx/lifecycle/ViewModelStoreOwner;
+}
+
+public final class fe/android/preference/helper/testapp/NewTestRepository : fe/composekit/preference/FlowPreferenceRepository {
+	public static final field $stable I
+	public fun <init> (Landroid/content/Context;)V
+}
+
+public final class fe/android/preference/helper/testapp/PreferenceTestApp : android/app/Application {
+	public static final field $stable I
+	public fun <init> ()V
+	public fun onCreate ()V
+}
+
+public final class fe/android/preference/helper/testapp/TestComposablePageKt {
+	public static final fun TestComposablePage (Lfe/android/preference/helper/testapp/TestViewModel;Landroidx/compose/runtime/Composer;I)V
+	public static final fun TestComposablePage2 (Lfe/android/preference/helper/testapp/TestViewModel2;Landroidx/compose/runtime/Composer;I)V
+	public static final fun TestComposablePage2Wrapper (Lfe/android/preference/helper/testapp/TestViewModel2;Landroidx/compose/runtime/Composer;I)V
+	public static final fun TestComposablePageWrapper (Lfe/android/preference/helper/testapp/TestViewModel;Landroidx/compose/runtime/Composer;I)V
+}
+
+public final class fe/android/preference/helper/testapp/TestPreferenceDefinition : fe/android/preference/helper/PreferenceDefinition {
+	public static final field $stable I
+	public static final field INSTANCE Lfe/android/preference/helper/testapp/TestPreferenceDefinition;
+	public final fun getCounter ()Lfe/android/preference/helper/Preference$Int;
+	public final fun getInit ()Lfe/android/preference/helper/Preference$Init;
+	public final fun getInt ()Lfe/android/preference/helper/Preference$Int;
+	public final fun getNewTest ()Lfe/android/preference/helper/Preference$Nullable;
+	public final fun getNewTestInt ()Lfe/android/preference/helper/Preference$Int;
+	public final fun getNewTestInt2 ()Lfe/android/preference/helper/Preference$Int;
+	public final fun getTest ()Lfe/android/preference/helper/Preference$Mapped;
+	public final fun getTest123 ()Lfe/android/preference/helper/Preference$Long;
+}
+
+public final class fe/android/preference/helper/testapp/TestRepository : fe/android/preference/helper/compose/StatePreferenceRepository {
+	public static final field $stable I
+	public fun <init> (Landroid/content/Context;)V
+}
+
+public final class fe/android/preference/helper/testapp/TestViewModel : androidx/lifecycle/ViewModel {
+	public static final field $stable I
+	public static final field Companion Lfe/android/preference/helper/testapp/TestViewModel$Companion;
+	public fun <init> (Lfe/android/preference/helper/testapp/TestRepository;Lfe/android/preference/helper/testapp/NewTestRepository;)V
+	public final fun getNewTestInt ()Lfe/composekit/preference/ViewModelStatePreference;
+}
+
+public final class fe/android/preference/helper/testapp/TestViewModel$Companion {
+	public final fun getFactory ()Landroidx/lifecycle/ViewModelProvider$Factory;
+	public final fun getNEW_TEST_REPOSITORY_KEY ()Landroidx/lifecycle/viewmodel/CreationExtras$Key;
+	public final fun getTEST_REPOSITORY_KEY ()Landroidx/lifecycle/viewmodel/CreationExtras$Key;
+}
+
+public final class fe/android/preference/helper/testapp/TestViewModel2 : androidx/lifecycle/ViewModel {
+	public static final field $stable I
+	public static final field Companion Lfe/android/preference/helper/testapp/TestViewModel2$Companion;
+	public fun <init> (Lfe/android/preference/helper/testapp/NewTestRepository;)V
+	public final fun getNewTestInt ()Lfe/composekit/preference/ViewModelStatePreference;
+}
+
+public final class fe/android/preference/helper/testapp/TestViewModel2$Companion {
+	public final fun getFactory ()Landroidx/lifecycle/ViewModelProvider$Factory;
+	public final fun getNEW_TEST_REPOSITORY_KEY ()Landroidx/lifecycle/viewmodel/CreationExtras$Key;
+}
+
