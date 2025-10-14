@@ -90,6 +90,7 @@ buildSettings {
         includeProject(":test-core", "test/core")
         includeProject(":test-compose", "test/compose")
 
+        includeProject(":lifecycle-compose", "lifecycle/compose")
         includeProject(":lifecycle-core", "lifecycle/core")
         includeProject(":lifecycle-koin", "lifecycle/koin")
         includeProject(":lifecycle-network-core", "lifecycle/network/core")
