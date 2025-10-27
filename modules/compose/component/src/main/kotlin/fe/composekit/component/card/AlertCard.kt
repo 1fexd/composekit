@@ -41,6 +41,7 @@ public object AlertCardDefaults {
 
     public val IconSize: Dp = 20.dp
     public val IconContainerSize: Dp = 34.dp
+    public val IconOffset: IconOffset = IconOffset(y = (-1).dp)
 }
 
 @Composable
