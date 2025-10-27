@@ -103,6 +103,7 @@ buildSettings {
         includeProject(":preference-compose-core", "preference/compose-core")
         includeProject(":preference-compose-core2", "preference/compose-core2")
         includeProject(":preference-compose-mock", "preference/compose-mock")
+        includeProject(":preference-compose-mock2", "preference/compose-mock2")
 
         includeProject(":platform", "platform")
 

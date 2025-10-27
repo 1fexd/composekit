@@ -1,6 +1,5 @@
 package fe.composekit.preference
 
-import android.util.Log
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.State
 import androidx.lifecycle.Lifecycle
@@ -20,6 +19,7 @@ import kotlin.coroutines.CoroutineContext
 import kotlin.coroutines.EmptyCoroutineContext
 
 public typealias Pref<Type, NullableType> = Preference<Type, NullableType>
+public typealias BooleanVmPref = ViewModelStatePreference<Boolean, Boolean, Preference.Default<Boolean>>
 
 public class ViewModelStatePreference<Type : Any, NullableType, Preference : Pref<Type, NullableType>>(
     private val preference: Preference,
