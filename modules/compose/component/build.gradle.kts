@@ -8,9 +8,9 @@ dependencies {
     api(project(":compose-layout"))
     api(project(":span-compose"))
 
+    api("com.github.nanihadesuka:LazyColumnScrollbar:_")
     implementation(AndroidX.compose.ui.text)
     implementation(AndroidX.compose.ui.tooling)
     implementation(AndroidX.compose.ui.toolingPreview)
     implementation(AndroidX.compose.material.icons.core)
-    implementation("com.github.nanihadesuka:LazyColumnScrollbar:_")
 }
