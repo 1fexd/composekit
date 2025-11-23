@@ -19,7 +19,7 @@ pluginManagement {
 
     plugins {
         id("de.fayard.refreshVersions") version "0.60.6"
-        id("org.gradle.toolchains.foojay-resolver-convention") version "0.10.0"
+        id("org.gradle.toolchains.foojay-resolver-convention") version "1.0.0"
         id("net.nemerosa.versioning")
         id("com.android.library")
         id("org.jetbrains.kotlin.android")
