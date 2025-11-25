@@ -5,8 +5,8 @@ import androidx.compose.ui.unit.dp
 
 public object CustomShapeDefaults {
     // TODO: Use shape defaults or our own? Can we provide our own via LocalComposition or MaterialTheme?
-    private val ShapeLarge = 20.dp //    ShapeDefaults.Large
-    private val ShapeSmall = 4.dp
+    private val ShapeLarge = 24.dp //    ShapeDefaults.Large
+    private val ShapeSmall = 8.dp
 
     public val SingleShape: RoundedCornerShape = RoundedCornerShape(
         size = ShapeLarge
