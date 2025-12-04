@@ -4,7 +4,7 @@ import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 
 @Composable
-fun <I : Any, R : Any> InputResultDialog(
+public fun <I : Any, R : Any> InputResultDialog(
     state: InputResultDialogState<I, R>,
     onClose: (R) -> Unit,
     onDismiss: (() -> Unit)? = null,
@@ -29,6 +29,6 @@ fun <I : Any, R : Any> InputResultDialog(
 }
 
 @Composable
-fun <I : Any, R : Any> rememberInputResultDialog(): InputResultDialogState<I, R> {
+public fun <I : Any, R : Any> rememberInputResultDialog(): InputResultDialogState<I, R> {
     return rememberSaveable(saver = InputResultDialogState.Saver()) { InputResultDialogState() }
 }

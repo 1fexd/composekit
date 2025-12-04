@@ -8,7 +8,7 @@ import fe.android.compose.dialog.helper.base.DialogState
 import fe.android.compose.dialog.helper.createSaver
 
 @Stable
-class InputResultDialogState<I : Any, R : Any>(
+public class InputResultDialogState<I : Any, R : Any>(
     result: R? = null,
 ) : BaseResultDialogState<R>(DialogState.Closed, result) {
 
@@ -17,15 +17,15 @@ class InputResultDialogState<I : Any, R : Any>(
     internal val data: I
         get() = dataState.value!!
 
-    fun open(data: I): Boolean {
+    public fun open(data: I): Boolean {
         if (isOpen) return false
         dataState.value = data
 
         return super.tryOpen()
     }
 
-    companion object {
-        fun <I : Any, R : Any> Saver(): ComposeSaver<InputResultDialogState<I, R>, R> {
+    public companion object {
+        public fun <I : Any, R : Any> Saver(): ComposeSaver<InputResultDialogState<I, R>, R> {
             return createSaver(
                 save = { it.result },
                 restore = { InputResultDialogState(it) }
