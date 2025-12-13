@@ -27,9 +27,22 @@ public data class SaneLazyListScopeImpl(val lazyListScope: LazyListScope) : Sane
         require(size > 0) { "Group size must be greater than 0" }
         SaneLazyColumnGroupScopeImpl(size, this).apply(content)
     }
+
+    override fun group(
+        base: Int,
+        vararg optional: Boolean,
+        content: SaneLazyColumnGroupScope.() -> Unit
+    ) {
+        val size = groupSize(base, *optional)
+        group(size, content)
+    }
 }
 
 private fun compute(@StringRes id: Int, key: Any): Any {
     val keyHashCode = key.hashCode().toLong()
     return if (key == id) keyHashCode + System.currentTimeMillis() else keyHashCode
+}
+
+public fun groupSize(base: Int, vararg optional: Boolean): Int {
+    return base + optional.count { it }
 }
