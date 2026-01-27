@@ -64,7 +64,7 @@ public object FakePreferences : AbstractPreferenceDefinition() {
         )
     }
 
-    internal inline fun <reified T : Any, reified M : Any> mapped(
+    public inline fun <reified T : Any, reified M : Any> mapped(
         default: T,
         mapper: TypeMapper<T, M>,
         key: String = "mock_mapped_preference"
@@ -83,4 +83,18 @@ public object FakePreferences : AbstractPreferenceDefinition() {
         t: KClass<T>,
         m: KClass<M>
     ): Preference.Mapped<T, M> = mapped(key, default, mapper, t, m)
+}
+
+public fun fakeBooleanVM(
+    value: Boolean,
+    key: String = "mock_preference"
+): ViewModelStatePreference<Boolean, Boolean, Preference.Default<Boolean>> {
+    return FakePreferences.boolean(value, key).vm
+}
+
+public fun fakeIntVM(
+    value: Int,
+    key: String = "mock_preference"
+): ViewModelStatePreference<Int, Int, Preference.Default<Int>> {
+    return FakePreferences.int(value, key).vm
 }

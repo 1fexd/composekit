@@ -7,19 +7,16 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import fe.android.preference.helper.Preference
-import kotlinx.coroutines.CoroutineName
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import kotlin.coroutines.CoroutineContext
 import kotlin.coroutines.EmptyCoroutineContext
 
 public typealias Pref<Type, NullableType> = Preference<Type, NullableType>
 public typealias BooleanVmPref = ViewModelStatePreference<Boolean, Boolean, Preference.Default<Boolean>>
+public typealias IntVmPref = ViewModelStatePreference<Int, Int, Preference.Default<Int>>
 
 public class ViewModelStatePreference<Type : Any, NullableType, Preference : Pref<Type, NullableType>>(
     private val preference: Preference,
