@@ -5,15 +5,15 @@ import android.content.Intent
 import android.net.Uri
 import android.nfc.NfcAdapter
 import android.webkit.URLUtil
+import androidx.core.net.toUri
+import fe.composekit.mozilla.components.support.utils.SafeIntent
+import fe.composekit.mozilla.components.support.utils.WebURLFinder
 import fe.std.result.Failure
 import fe.std.result.IResult
 import fe.std.result.isSuccess
 import fe.std.result.mapFailure
 import fe.std.result.success
 import fe.std.result.tryCatch
-import mozilla.components.support.utils.SafeIntent
-import mozilla.components.support.utils.WebURLFinder
-import androidx.core.net.toUri
 import fe.std.result.unaryPlus
 
 

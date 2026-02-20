@@ -70,6 +70,10 @@ buildSettings {
         trySubstitute(Grrfe.std, properties["kotlin-ext.dir"])
     }
 
+    projects("external") {
+        includeProject(":ext-mozilla-support-utils", "mozilla-support-utils")
+    }
+
     projects("modules") {
         includeProject(":compose-core", "compose/core")
         includeProject(":compose-component", "compose/component")

@@ -2,6 +2,7 @@ import com.gitlab.grrfe.gradlebuild.android.AndroidSdk
 import com.gitlab.grrfe.gradlebuild.android.extension.singleVariant
 import com.gitlab.grrfe.gradlebuild.common.extension.isPlatform
 import com.gitlab.grrfe.gradlebuild.common.extension.isTestApp
+import com.gitlab.grrfe.gradlebuild.extension.isChildOf
 import com.gitlab.grrfe.gradlebuild.library.publishing.PublicationComponent2
 import com.gitlab.grrfe.gradlebuild.library.publishing.PublicationName2
 import com.gitlab.grrfe.gradlebuild.util.accessor.implementationProxy
@@ -24,6 +25,11 @@ plugins {
 }
 
 val baseGroup = "com.github.1fexd.composekit"
+val externalDir = rootDir.resolve("external")
+
+fun Project.isExternal(): Boolean {
+    return projectDir.isChildOf(externalDir)
+}
 
 subprojects {
     logger.quiet("Init for $this, isTestApp=$isTestApp, isPlatform=$isPlatform")
@@ -55,7 +61,9 @@ subprojects {
     if (!isPlatform && !isTestApp) {
         kotlinAndroidProxy().run {
             jvmToolchain(Version.JVM)
-            explicitApiWarning()
+            if(!isExternal()) {
+                explicitApiWarning()
+            }
         }
 
         androidLibraryProxy().run {
