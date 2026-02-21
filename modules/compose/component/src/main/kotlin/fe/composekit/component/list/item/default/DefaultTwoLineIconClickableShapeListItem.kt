@@ -2,6 +2,7 @@ package fe.composekit.component.list.item.default
 
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.semantics.Role
 import fe.android.compose.content.OptionalContent
@@ -16,6 +17,7 @@ import fe.composekit.component.shape.CustomShapeDefaults
 
 @Composable
 public fun DefaultTwoLineIconClickableShapeListItem(
+    modifier: Modifier = CommonDefaults.BaseModifier,
     enabled: Boolean = true,
     shape: Shape = CustomShapeDefaults.SingleShape,
     padding: PaddingValues = CommonDefaults.EmptyPadding,
@@ -32,6 +34,7 @@ public fun DefaultTwoLineIconClickableShapeListItem(
     }
 
     ClickableShapeListItem(
+        modifier = modifier,
         enabled = enabled,
         shape = shape,
         padding = padding,
