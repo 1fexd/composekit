@@ -85,6 +85,13 @@ public object FakePreferences : AbstractPreferenceDefinition() {
     ): Preference.Mapped<T, M> = mapped(key, default, mapper, t, m)
 }
 
+public fun fakeStringVM(
+    value: String?,
+    key: String = "mock_preference"
+): ViewModelStatePreference<String, String?, Preference.Nullable<String>> {
+    return FakePreferences.string(value, key).vm
+}
+
 public fun fakeBooleanVM(
     value: Boolean,
     key: String = "mock_preference"
