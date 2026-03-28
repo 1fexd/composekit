@@ -1,25 +1,24 @@
+import com.gitlab.grrfe.gradlebuild.Plugins
+import com.gitlab.grrfe.gradlebuild.PublicationComponent2
+import com.gitlab.grrfe.gradlebuild.PublicationName2
+import com.gitlab.grrfe.gradlebuild.Version
+import com.gitlab.grrfe.gradlebuild.accessor.androidLibraryProxy
 import com.gitlab.grrfe.gradlebuild.android.AndroidSdk
 import com.gitlab.grrfe.gradlebuild.android.extension.singleVariant
-import com.gitlab.grrfe.gradlebuild.common.extension.isPlatform
-import com.gitlab.grrfe.gradlebuild.common.extension.isTestApp
+import com.gitlab.grrfe.gradlebuild.android.version.AndroidVersionStrategy
+import com.gitlab.grrfe.gradlebuild.applyPlugin
 import com.gitlab.grrfe.gradlebuild.extension.isChildOf
-import com.gitlab.grrfe.gradlebuild.library.publishing.PublicationComponent2
-import com.gitlab.grrfe.gradlebuild.library.publishing.PublicationName2
-import com.gitlab.grrfe.gradlebuild.util.accessor.implementationProxy
+import com.gitlab.grrfe.gradlebuild.extension.isPlatform
+import com.gitlab.grrfe.gradlebuild.extension.isTestApp
 import fe.build.dependencies.Grrfe
-import fe.buildlogic.Plugins
-import fe.buildlogic.Version
-import fe.buildlogic.accessor.androidLibraryProxy
-import fe.buildlogic.accessor.kotlinAndroidProxy
-import fe.buildlogic.applyPlugin
-import fe.buildlogic.version.AndroidVersionStrategy
+import org.jetbrains.kotlin.gradle.dsl.kotlinExtension
+
 
 plugins {
-    id("org.jetbrains.kotlin.android") apply false
     id("com.android.library") apply false
     id("org.jetbrains.kotlin.plugin.compose") apply false
     id("net.nemerosa.versioning") apply false
-    id("com.gitlab.grrfe.new-build-logic-plugin")
+    id("com.gitlab.grrfe.android-build-plugin") apply false
     id("com.gitlab.grrfe.library-build-plugin")
     id("org.jetbrains.kotlinx.binary-compatibility-validator")
 }
@@ -28,19 +27,26 @@ val baseGroup = "com.github.1fexd.composekit"
 val externalDir = rootDir.resolve("external")
 
 fun Project.isExternal(): Boolean {
-    return projectDir.isChildOf(externalDir)
+//    projectDir.isChildOf(externalDir)
+    return false
+}
+
+fun Project.toNamespace() = buildString {
+    append(baseGroup.replace("1fexd", "fexd"))
+    append(".")
+    append(name.replace("-", ""))
 }
 
 subprojects {
     logger.quiet("Init for $this, isTestApp=$isTestApp, isPlatform=$isPlatform")
 
     if (!isTestApp && !isPlatform) {
-        applyPlugin(Plugins.AndroidLibrary, Plugins.KotlinAndroid, Plugins.KotlinPluginCompose)
+        applyPlugin(Plugins.AndroidLibrary, Plugins.KotlinPluginCompose)
     }
 
     applyPlugin(
         Plugins.MavenPublish,
-        Plugins.GrrfeNewBuildLogic,
+//        Plugins.Grr,
         Plugins.GrrfeLibraryBuild,
         Plugins.NemerosaVersioning
     )
@@ -59,15 +65,15 @@ subprojects {
     }
 
     if (!isPlatform && !isTestApp) {
-        kotlinAndroidProxy().run {
+        kotlinExtension.apply {
             jvmToolchain(Version.JVM)
-            if(!isExternal()) {
+            if (!isExternal()) {
                 explicitApiWarning()
             }
         }
 
         androidLibraryProxy().run {
-            namespace = baseGroup.replace("1fexd", "fexd")
+            namespace = project.toNamespace()
             compileSdk = AndroidSdk.COMPILE_SDK
 
             defaultConfig {
@@ -83,18 +89,22 @@ subprojects {
             publishing {
                 singleVariant(PublicationName2.Release) {
                     withSourcesJar()
-                   // Disable for now https://github.com/Kotlin/dokka/issues/2956#issuecomment-2191606810
+                    // Disable for now https://github.com/Kotlin/dokka/issues/2956#issuecomment-2191606810
 //                    withJavadocJar()
                 }
             }
         }
 
-        this@subprojects.dependencies {
-            implementationProxy(platform(Grrfe.std.bom))
-            implementationProxy(platform("androidx.compose:compose-bom-alpha:_"))
-            implementationProxy(AndroidX.compose.ui)
-            implementationProxy(AndroidX.compose.material3)
-            implementationProxy(AndroidX.test.core)
+        afterEvaluate {
+            dependencies {
+                configurations.findByName("implementation")?.let { implementation ->
+                    implementation(platform(Grrfe.std.bom))
+                    implementation(platform("androidx.compose:compose-bom-alpha:_"))
+                    implementation(AndroidX.compose.ui)
+                    implementation(AndroidX.compose.material3)
+                    implementation(AndroidX.test.core)
+                }
+            }
         }
     }
 }

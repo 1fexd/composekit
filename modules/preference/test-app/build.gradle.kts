@@ -1,9 +1,7 @@
 import com.gitlab.grrfe.gradlebuild.android.AndroidSdk
-import fe.buildlogic.Version
 
 plugins {
     id("com.android.application")
-    id("org.jetbrains.kotlin.android")
     id("org.jetbrains.kotlin.plugin.compose")
 }
 
@@ -36,15 +34,15 @@ android {
         }
     }
 
-    kotlin {
-        jvmToolchain(Version.JVM)
-    }
-
     packaging {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
+}
+
+kotlin {
+    jvmToolchain(com.gitlab.grrfe.gradlebuild.Version.JVM)
 }
 
 dependencies {
