@@ -2,12 +2,11 @@ import com.gitlab.grrfe.gradlebuild.Plugins
 import com.gitlab.grrfe.gradlebuild.PublicationComponent2
 import com.gitlab.grrfe.gradlebuild.PublicationName2
 import com.gitlab.grrfe.gradlebuild.Version
-import com.gitlab.grrfe.gradlebuild.accessor.androidLibraryProxy
 import com.gitlab.grrfe.gradlebuild.android.AndroidSdk
+import com.gitlab.grrfe.gradlebuild.android.accessor.androidLibraryExtension
 import com.gitlab.grrfe.gradlebuild.android.extension.singleVariant
 import com.gitlab.grrfe.gradlebuild.android.version.AndroidVersionStrategy
 import com.gitlab.grrfe.gradlebuild.applyPlugin
-import com.gitlab.grrfe.gradlebuild.extension.isChildOf
 import com.gitlab.grrfe.gradlebuild.extension.isPlatform
 import com.gitlab.grrfe.gradlebuild.extension.isTestApp
 import fe.build.dependencies.Grrfe
@@ -23,7 +22,7 @@ plugins {
     id("org.jetbrains.kotlinx.binary-compatibility-validator")
 }
 
-val baseGroup = "com.github.1fexd.composekit"
+val baseGroup = "com.github._1fexd.composekit"
 val externalDir = rootDir.resolve("external")
 
 fun Project.isExternal(): Boolean {
@@ -32,12 +31,14 @@ fun Project.isExternal(): Boolean {
 }
 
 fun Project.toNamespace() = buildString {
-    append(baseGroup.replace("1fexd", "fexd"))
+    append(baseGroup)
     append(".")
     append(name.replace("-", ""))
 }
 
 subprojects {
+    val subProject = this
+
     logger.quiet("Init for $this, isTestApp=$isTestApp, isPlatform=$isPlatform")
 
     if (!isTestApp && !isPlatform) {
@@ -72,8 +73,8 @@ subprojects {
             }
         }
 
-        androidLibraryProxy().run {
-            namespace = project.toNamespace()
+        androidLibraryExtension.apply {
+            namespace = subProject.toNamespace()
             compileSdk = AndroidSdk.COMPILE_SDK
 
             defaultConfig {
