@@ -17,7 +17,7 @@ plugins {
     id("com.android.library") apply false
     id("org.jetbrains.kotlin.plugin.compose") apply false
     id("net.nemerosa.versioning") apply false
-    id("com.gitlab.grrfe.android-build-plugin") apply false
+    id("com.gitlab.grrfe.android-build-plugin")
     id("com.gitlab.grrfe.library-build-plugin")
     id("org.jetbrains.kotlinx.binary-compatibility-validator")
 }
@@ -47,7 +47,7 @@ subprojects {
 
     applyPlugin(
         Plugins.MavenPublish,
-//        Plugins.Grr,
+        Plugins.GrrfeAndroidBuild,
         Plugins.GrrfeLibraryBuild,
         Plugins.NemerosaVersioning
     )
