@@ -22,7 +22,7 @@ plugins {
     id("org.jetbrains.kotlinx.binary-compatibility-validator")
 }
 
-val baseGroup = "com.github._1fexd.composekit"
+val baseGroup = "com.github.1fexd.composekit"
 val externalDir = rootDir.resolve("external")
 
 fun Project.isExternal(): Boolean {
@@ -31,7 +31,7 @@ fun Project.isExternal(): Boolean {
 }
 
 fun Project.toNamespace() = buildString {
-    append(baseGroup)
+    append(baseGroup.replace("1fexd", "qfexd"))
     append(".")
     append(name.replace("-", ""))
 }
