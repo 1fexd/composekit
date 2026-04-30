@@ -9,6 +9,7 @@ import com.gitlab.grrfe.gradlebuild.android.version.AndroidVersionStrategy
 import com.gitlab.grrfe.gradlebuild.applyPlugin
 import com.gitlab.grrfe.gradlebuild.extension.isPlatform
 import com.gitlab.grrfe.gradlebuild.extension.isTestApp
+import com.gitlab.grrfe.gradlebuild.util.FileUtil
 import fe.build.dependencies.Grrfe
 import org.jetbrains.kotlin.gradle.dsl.kotlinExtension
 
@@ -16,7 +17,6 @@ import org.jetbrains.kotlin.gradle.dsl.kotlinExtension
 plugins {
     id("com.android.library") apply false
     id("org.jetbrains.kotlin.plugin.compose") apply false
-    id("net.nemerosa.versioning") apply false
     id("com.gitlab.grrfe.android-build-plugin")
     id("com.gitlab.grrfe.library-build-plugin")
     id("org.jetbrains.kotlinx.binary-compatibility-validator")
@@ -26,8 +26,7 @@ val baseGroup = "com.github.1fexd.composekit"
 val externalDir = rootDir.resolve("external")
 
 fun Project.isExternal(): Boolean {
-//    projectDir.isChildOf(externalDir)
-    return false
+    return FileUtil.isChildOf(projectDir, externalDir, false)
 }
 
 fun Project.toNamespace() = buildString {
@@ -49,13 +48,11 @@ subprojects {
         Plugins.MavenPublish,
         Plugins.GrrfeAndroidBuild,
         Plugins.GrrfeLibraryBuild,
-        Plugins.NemerosaVersioning
     )
 
     group = baseGroup
     library {
-        val now = System.currentTimeMillis()
-        versionStrategy.set(AndroidVersionStrategy(now))
+        versionStrategy.set(AndroidVersionStrategy)
 
         if (!isTestApp) {
             publication {
