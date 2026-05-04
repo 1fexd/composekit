@@ -1,6 +1,9 @@
+@file:Suppress("FunctionName")
+
 package fe.android.lifecycle
 
 import android.util.Log
+import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ProcessLifecycleOwner
 import fe.android.lifecycle.AppLifecycleObserver.Companion.TAG
 import kotlinx.coroutines.CoroutineExceptionHandler
@@ -12,8 +15,10 @@ public val DefaultHandler: ExceptionHandler = { context, throwable ->
     Log.e(TAG, "Exception ${throwable.message}", throwable)
 }
 
-public fun ProcessServiceRegistry(exceptionHandler: ExceptionHandler = DefaultHandler): AppLifecycleObserver {
-    val owner = ProcessLifecycleOwner.get()
+public fun ProcessServiceRegistry(
+    owner: LifecycleOwner = ProcessLifecycleOwner.get(),
+    exceptionHandler: ExceptionHandler = DefaultHandler
+): AppLifecycleObserver {
     val observer = AppLifecycleObserver(
         owner = owner,
         exceptionHandler = CoroutineExceptionHandler(exceptionHandler)
