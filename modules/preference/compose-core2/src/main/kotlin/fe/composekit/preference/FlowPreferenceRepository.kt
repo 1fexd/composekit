@@ -8,6 +8,7 @@ import kotlinx.coroutines.CoroutineName
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.flow.StateFlow
 
 public typealias Put<P, NT> = (P, NT) -> Unit
 public typealias Get<P, NT> = (P) -> NT
@@ -78,6 +79,13 @@ public open class FlowPreferenceRepository(
     }
 }
 
+@JvmName("asBooleanFlow")
+public fun FlowPreferenceRepository.asFlow(
+    preference: Preference.Default<Boolean>,
+): StateFlow<Boolean> {
+    val state = asViewModelState(preference)
+    return state.stateFlow
+}
 
 @JvmName("asBooleanFunction")
 public fun FlowPreferenceRepository.asFunction(
