@@ -1,9 +1,13 @@
 @file:Suppress("UnstableApiUsage")
 
-import com.gitlab.grrfe.gradlebuild.config.MavenRepository
 import com.gitlab.grrfe.gradlebuild.config.configureRepositories
 import com.gitlab.grrfe.gradlebuild.extension.hasJitpackEnv
 import com.gitlab.grrfe.gradlebuild.maybeConfigureIncludingRootRefreshVersions
+import com.gitlab.grrfe.gradlebuild.repository.MavenRepository
+import com.gitlab.grrfe.gradlebuild.repository.google
+import com.gitlab.grrfe.gradlebuild.repository.jitpack
+import com.gitlab.grrfe.gradlebuild.repository.mavenCentral
+import com.gitlab.grrfe.gradlebuild.repository.mozilla
 import fe.build.dependencies.Grrfe
 
 rootProject.name = "composekit"
@@ -47,10 +51,10 @@ plugins {
 }
 
 configureRepositories(
-    MavenRepository.Google,
-    MavenRepository.MavenCentral,
-    MavenRepository.Jitpack,
-    MavenRepository.Mozilla,
+    MavenRepository.google(),
+    MavenRepository.mavenCentral(),
+    MavenRepository.jitpack(),
+    MavenRepository.mozilla(),
     MavenRepository("https://oss.sonatype.org/content/repositories/snapshots"),
     mode = RepositoriesMode.FAIL_ON_PROJECT_REPOS
 )
@@ -61,56 +65,67 @@ extra.properties["gradle.build.dir"]
     ?.let { includeBuild(it.toString()) }
 
 buildSettings {
-    substitutes {
-        trySubstitute(Grrfe.std, properties["kotlin-ext.dir"])
-    }
-
     projects("external") {
         includeProject(":ext-mozilla-support-utils", "mozilla-support-utils")
     }
 
     projects("modules") {
-        includeProject(":compose-core", "compose/core")
-        includeProject(":compose-component", "compose/component")
-        includeProject(":compose-m3compat", "compose/m3compat")
-        includeProject(":compose-layout", "compose/layout")
-        includeProject(":compose-app", "compose/app")
-        includeProject(":compose-dialog", "compose/dialog")
-        includeProject(":compose-route", "compose/route")
-
-        includeProject(":compose-theme-core", "compose/theme-core")
-        includeProject(":compose-theme-preference", "compose/theme-preference")
-
         includeProject(":core", "core")
         includeProject(":koin", "koin")
         includeProject(":process", "process")
         includeProject(":intent", "intent")
 
-        includeProject(":test-core", "test/core")
-        includeProject(":test-compose", "test/compose")
-
-        includeProject(":lifecycle-compose", "lifecycle/compose")
-        includeProject(":lifecycle-core", "lifecycle/core")
-        includeProject(":lifecycle-koin", "lifecycle/koin")
-        includeProject(":lifecycle-network-core", "lifecycle/network/core")
-        includeProject(":lifecycle-network-koin", "lifecycle/network/koin")
-
-        includeProject(":span-core", "span/core")
-        includeProject(":span-compose", "span/compose")
-
-        includeProject(":preference-core", "preference/core")
-        includeProject(":preference-compose-core", "preference/compose-core")
-        includeProject(":preference-compose-core2", "preference/compose-core2")
-        includeProject(":preference-compose-mock", "preference/compose-mock")
-        includeProject(":preference-compose-mock2", "preference/compose-mock2")
-
         includeProject(":platform", "platform")
 
-        if (!hasJitpackEnv) {
-            includeProject(":compose-test-app", "compose/test-app")
-            includeProject(":lifecycle-test-app", "lifecycle/test-app")
-            includeProject(":span-test-app", "span/test-app")
-            includeProject(":preference-test-app", "preference/test-app")
+        projects("compose") {
+            includeProject(":compose-core", "core")
+            includeProject(":compose-component", "component")
+            includeProject(":compose-m3compat", "m3compat")
+            includeProject(":compose-layout", "layout")
+            includeProject(":compose-app", "app")
+            includeProject(":compose-dialog", "dialog")
+            includeProject(":compose-route", "route")
+
+            includeProject(":compose-theme-core", "theme-core")
+            includeProject(":compose-theme-preference", "theme-preference")
+            if (!hasJitpackEnv) {
+                includeProject(":compose-test-app", "test-app")
+            }
         }
+        projects("test") {
+            includeProject(":test-core", "core")
+            includeProject(":test-compose", "compose")
+        }
+        projects("lifecycle") {
+            includeProject(":lifecycle-compose", "compose")
+            includeProject(":lifecycle-core", "core")
+            includeProject(":lifecycle-koin", "koin")
+            includeProject(":lifecycle-network-core", "network/core")
+            includeProject(":lifecycle-network-koin", "network/koin")
+            if (!hasJitpackEnv) {
+                includeProject(":lifecycle-test-app", "test-app")
+            }
+        }
+        projects("preference") {
+            includeProject(":preference-core", "core")
+            includeProject(":preference-compose-core", "compose-core")
+            includeProject(":preference-compose-core2", "compose-core2")
+            includeProject(":preference-compose-mock", "compose-mock")
+            includeProject(":preference-compose-mock2", "compose-mock2")
+            if (!hasJitpackEnv) {
+                includeProject(":preference-test-app", "test-app")
+            }
+        }
+        projects("span") {
+            includeProject(":span-core", "core")
+            includeProject(":span-compose", "compose")
+            if (!hasJitpackEnv) {
+                includeProject(":span-test-app", "test-app")
+            }
+        }
+    }
+
+    substitutes {
+        trySubstitute(Grrfe.std, properties["kotlin-ext.dir"])
     }
 }
