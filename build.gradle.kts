@@ -5,7 +5,6 @@ import com.gitlab.grrfe.gradlebuild.Version
 import com.gitlab.grrfe.gradlebuild.android.AndroidSdk
 import com.gitlab.grrfe.gradlebuild.android.accessor.androidLibraryExtension
 import com.gitlab.grrfe.gradlebuild.android.extension.singleVariant
-import com.gitlab.grrfe.gradlebuild.android.version.AndroidVersionStrategy
 import com.gitlab.grrfe.gradlebuild.applyPlugin
 import com.gitlab.grrfe.gradlebuild.extension.isPlatform
 import com.gitlab.grrfe.gradlebuild.extension.isTestApp
@@ -52,8 +51,6 @@ subprojects {
 
     group = baseGroup
     library {
-        versionStrategy.set(AndroidVersionStrategy)
-
         if (!isTestApp) {
             publication {
                 name.set(PublicationName2.Release)
