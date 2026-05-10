@@ -47,8 +47,12 @@ public fun SaneAlertDialog(
 }
 
 @Composable
-public fun SaneAlertDialogTextButton(content: TextContent, onClick: () -> Unit) {
-    TextButton(onClick = onClick) {
+public fun SaneAlertDialogTextButton(
+    modifier: Modifier = Modifier,
+    content: TextContent,
+    onClick: () -> Unit
+) {
+    TextButton(modifier = modifier, onClick = onClick) {
         content.content()
     }
 }
