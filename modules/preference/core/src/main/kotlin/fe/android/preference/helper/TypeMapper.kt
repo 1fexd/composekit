@@ -1,20 +1,21 @@
 package fe.android.preference.helper
 
-public typealias Unmapper<M, T> = (M) -> T?
-public typealias Mapper<T, M> = (T) -> M
+public typealias Unmapper<Storable, T> = (Storable) -> T?
+public typealias Mapper<T, Storable> = (T) -> Storable
 
-public interface TypeMapper<T, M> {
-    public val unmap: Unmapper<M, T>
-    public val map: Mapper<T, M>
+// Maps a non-primitive type T to a "primitive" type (String, Int, Long, Boolean) Storable which can be stored
+public interface TypeMapper<T, Storable> {
+    public val unmap: Unmapper<Storable, T>
+    public val map: Mapper<T, Storable>
 }
 
-public abstract class OptionTypeMapper<T, M>(key: (T) -> M, options: () -> Array<T>) : TypeMapper<T, M> {
+public abstract class OptionTypeMapper<T, Storable>(key: (T) -> Storable, options: () -> Array<T>) : TypeMapper<T, Storable> {
     private val readerOptions by lazy {
         options().associateBy { key(it) }
     }
 
-    override val unmap: Unmapper<M, T> = { readerOptions[it] }
-    override val map: Mapper<T, M> = key
+    override val unmap: Unmapper<Storable, T> = { readerOptions[it] }
+    override val map: Mapper<T, Storable> = key
 }
 
 public abstract class EnumTypeMapper<T : Enum<T>>(values: Array<T>) : TypeMapper<T, Int> {

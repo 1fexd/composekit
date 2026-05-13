@@ -5,7 +5,8 @@ import android.content.SharedPreferences
 
 public typealias PreferenceEditAction = SharedPreferences.Editor.() -> Unit
 
-public abstract class PreferenceRepository(context: Context, fileName: String = "preferences") : PreferenceEditor() {
+public abstract class PreferenceRepository(context: Context, fileName: String = "preferences") :
+    PreferenceEditor() {
     private val preferences by lazy {
         context.getSharedPreferences(context.packageName + "_$fileName", Context.MODE_PRIVATE)
     }
@@ -31,16 +32,11 @@ public abstract class PreferenceRepository(context: Context, fileName: String = 
     }
 
     @OptIn(UnsafePreferenceInteraction::class)
-    public fun setStringValueToPreference(preference: Preference<*, *>, value: String) {
-        val mapped = preference as? Preference.Mapped<*, *>
-        val type = mapped?.mappedClazz ?: preference.type
+    public fun setStringValueToPreference(preference: Preference<*, *>, value: String): Boolean {
+        val any = preference.stringToAny(value) ?: return false
+        if (preference is Preference.Mapped<*, *> && !preference.canUnmap(any)) return false
 
-        when (type) {
-            String::class -> unsafePut(preference.key, value)
-            Boolean::class -> unsafePut(preference.key, value.toBooleanStrict())
-            Int::class -> unsafePut(preference.key, value.toInt())
-            Long::class -> unsafePut(preference.key, value.toLong())
-        }
+        return unsafePut(preference, any)
     }
 
     @OptIn(UnsafePreferenceInteraction::class)

@@ -39,18 +39,24 @@ public sealed class Preference<T : Any, NT> protected constructor(
     ) : Default<kotlin.Long>(key, default, kotlin.Long::class)
 
 
-    public class Mapped<T : Any, M : Any> internal constructor(
-        key: String, default: T, private val mapper: TypeMapper<T, M>,
-        clazz: KClass<T>, public val mappedClazz: KClass<M>,
+    public class Mapped<T : Any, Storable : Any> internal constructor(
+        key: String, default: T, private val mapper: TypeMapper<T, Storable>,
+        clazz: KClass<T>, public val mappedClazz: KClass<Storable>,
     ) : Preference<T, T>(key, default, clazz) {
-        public val defaultMapped: M = map(default)
+        public val defaultMapped: Storable = map(default)
 
-        override val def: M = defaultMapped
+        override val def: Storable = defaultMapped
 
-        public fun unmap(mapped: M): T? = mapper.unmap(mapped)
+        public fun canUnmap(mapped: Any): kotlin.Boolean {
+            @Suppress("UNCHECKED_CAST")
+            val storable = mapped as? Storable ?: return false
+            return unmap(storable) != null
+        }
+
+        public fun unmap(mapped: Storable): T? = mapper.unmap(mapped)
 
         @Suppress("MemberVisibilityCanBePrivate")
-        public fun map(value: T): M = mapper.map(value)
+        public fun map(value: T): Storable = mapper.map(value)
     }
 
     public class Init internal constructor(
@@ -67,5 +73,21 @@ public sealed class Preference<T : Any, NT> protected constructor(
 
     override fun hashCode(): kotlin.Int {
         return key.hashCode()
+    }
+}
+
+public val Preference<*, *>.resolvedClass: KClass<out Any>
+    get() = mappedOrNull?.mappedClazz ?: clazz
+
+public val Preference<*, *>.mappedOrNull: Preference.Mapped<*, *>?
+    get() = this as? Preference.Mapped<*, *>
+
+public fun Preference<*, *>.stringToAny(value: String): Any? {
+    return when (resolvedClass) {
+        String::class -> value
+        Boolean::class -> value.toBooleanStrictOrNull()
+        Int::class -> value.toIntOrNull()
+        Long::class -> value.toLongOrNull()
+        else -> null
     }
 }

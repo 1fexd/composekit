@@ -71,6 +71,41 @@ public sealed class PreferenceEditor {
         return withEditor { putBoolean(key, newState) }
     }
 
+    @OptIn(UnsafePreferenceInteraction::class)
+    public fun unsafePut(
+        preference: Preference<*, *>,
+        value: Any?
+    ): Boolean {
+        val resolvedClass = preference.resolvedClass
+        if (value == null && resolvedClass != String::class) return false
+        when (resolvedClass) {
+            String::class -> {
+                if(value == null) {
+                    unsafePut(preference.key, null)
+                } else {
+                    if(value !is String) return false
+                    unsafePut(preference.key, value)
+                }
+            }
+            Boolean::class -> {
+                if(value !is Boolean) return false
+                unsafePut(preference.key, value)
+            }
+            Int::class -> {
+                if (value !is Int) return false
+                unsafePut(preference.key, value)
+            }
+            Long::class -> {
+                if (value !is Long) return false
+                unsafePut(preference.key, value)
+            }
+            else -> {
+                return false
+            }
+        }
+        return true
+    }
+
     protected abstract fun withEditor(action: PreferenceEditAction)
 
     public class Scope(private val editor: SharedPreferences.Editor) : PreferenceEditor() {
