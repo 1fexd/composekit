@@ -3,6 +3,7 @@ import com.gitlab.grrfe.gradlebuild.android.AndroidSdk
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.plugin.compose")
+    id("de.infix.testBalloon") version "0.8.4-K2.3.20"
 }
 
 group = "fe.android.preference.helper.testapp"
@@ -49,6 +50,9 @@ dependencies {
     implementation(project(":preference-core"))
     implementation(project(":preference-compose-core"))
     implementation(project(":preference-compose-core2"))
+    testImplementation("de.infix.testBalloon:testBalloon-framework-core:_")
+    testImplementation("de.infix.testBalloon:testBalloon-integration-robolectric:_")
+    testImplementation(Testing.junit4)
 
     implementation(AndroidX.core.ktx)
     implementation(AndroidX.lifecycle.runtime.ktx)
@@ -58,4 +62,5 @@ dependencies {
     implementation(AndroidX.compose.ui.graphics)
     implementation(AndroidX.compose.ui.toolingPreview)
     implementation(AndroidX.compose.material3)
+    androidTestImplementation(AndroidX.compose.ui.testJunit4)
 }

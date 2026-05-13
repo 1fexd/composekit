@@ -40,25 +40,30 @@ subprojects {
     logger.quiet("Init for $this, isTestApp=$isTestApp, isPlatform=$isPlatform")
 
     if (!isTestApp && !isPlatform) {
-        applyPlugin(Plugins.AndroidLibrary, Plugins.KotlinPluginCompose)
+        applyPlugin(
+            Plugins.AndroidLibrary,
+            Plugins.KotlinPluginCompose
+        )
+    }
+    if (!isTestApp) {
+        applyPlugin(Plugins.GrrfeLibraryBuild)
     }
 
     applyPlugin(
         Plugins.MavenPublish,
         Plugins.GrrfeAndroidBuild,
-        Plugins.GrrfeLibraryBuild,
     )
 
     group = baseGroup
-    library {
-        if (!isTestApp) {
+
+    if (!isTestApp && !isPlatform) {
+        library {
             publication {
                 name.set(PublicationName2.Release)
                 component.set(if (isPlatform) PublicationComponent2.JavaPlatform else PublicationComponent2.Android)
             }
         }
     }
-
     if (!isPlatform && !isTestApp) {
         kotlinExtension.apply {
             jvmToolchain(Version.JVM)

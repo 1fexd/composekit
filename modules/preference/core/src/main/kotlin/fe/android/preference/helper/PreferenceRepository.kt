@@ -5,8 +5,11 @@ import android.content.SharedPreferences
 
 public typealias PreferenceEditAction = SharedPreferences.Editor.() -> Unit
 
-public abstract class PreferenceRepository(context: Context, fileName: String = "preferences") :
-    PreferenceEditor() {
+public abstract class PreferenceRepository(
+    context: Context,
+    fileName: String = "preferences"
+) : PreferenceEditor() {
+
     private val preferences by lazy {
         context.getSharedPreferences(context.packageName + "_$fileName", Context.MODE_PRIVATE)
     }
