@@ -15,7 +15,7 @@ import kotlin.coroutines.EmptyCoroutineContext
 
 @Composable
 public fun <T> BaseRefreshableFlow<T>.collectRefreshableAsStateWithLifecycle(
-    initialValue: T,
+    initialValue: T = this.value,
     lifecycleOwner: LifecycleOwner = LocalLifecycleOwner.current,
     minActiveState: Lifecycle.State = Lifecycle.State.STARTED,
     context: CoroutineContext = EmptyCoroutineContext,
