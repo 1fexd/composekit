@@ -39,5 +39,8 @@ public inline fun <reified N : Nav> NavGraphBuilder.attachNav(nav: N, navControl
 
 public object NavTypes {
     public val UuidType: NavType<Uuid> = UuidNavType
-    public val Types: Map<KType, NavType<*>> = mapOf(Uuid::class.starProjectedType to UuidType)
+    public val Types: Map<KType, NavType<*>> by lazy {
+        // startProjectedType reflection access does IO work, allow "warmup" to be ran on IO dispatcher
+        mapOf(Uuid::class.starProjectedType to UuidType)
+    }
 }
