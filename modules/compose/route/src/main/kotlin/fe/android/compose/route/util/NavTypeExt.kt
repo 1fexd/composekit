@@ -5,8 +5,9 @@ import androidx.navigation.NavType
 import java.io.Serializable
 import kotlin.reflect.KClass
 
+@Deprecated("Use androidx.navigation")
 @Suppress("UNCHECKED_CAST")
-fun inferFromKClass(value: KClass<*>?): NavType<Any> {
+public fun inferFromKClass(value: KClass<*>?): NavType<Any> {
     return when {
         value == Int::class -> NavType.IntType as NavType<Any>
         value == IntArray::class -> NavType.IntArrayType as NavType<Any>

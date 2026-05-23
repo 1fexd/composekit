@@ -14,13 +14,15 @@ import androidx.navigation.navDeepLink
 import kotlin.reflect.KClass
 import kotlin.reflect.KProperty1
 
-fun <T : Any, A : Route.Arguments<T, U>, U> NavController.navigate(
+@Deprecated("Use androidx.navigation")
+public fun <T : Any, A : Route.Arguments<T, U>, U> NavController.navigate(
     route: ArgumentRoute<T, A, U>,
     data: T
-) = navigate(route.buildNavigation(data))
+): Unit = navigate(route.buildNavigation(data))
 
 
-fun <T : RouteData, A : Route.Arguments<T, U>, U : Route.Unbundled<T>> route(
+@Deprecated("Use androidx.navigation")
+public fun <T : RouteData, A : Route.Arguments<T, U>, U : Route.Unbundled<T>> route(
     base: String,
     buildRoute: (List<String>) -> String = { args ->
         args.joinToString(separator = "/") { it }
@@ -38,47 +40,52 @@ fun <T : RouteData, A : Route.Arguments<T, U>, U : Route.Unbundled<T>> route(
         deepLinks.map { navDeepLink(it) })
 }
 
-class ArgumentRoute<T : Any, A : Route.Arguments<T, U>, U>(
+@Deprecated("Use androidx.navigation")
+public class ArgumentRoute<T : Any, A : Route.Arguments<T, U>, U>(
     private val base: String,
     private val buildRoute: (List<String>) -> String,
     private val arguments: A,
     private val createInstance: (U) -> T,
-    val navDeepLinks: List<NavDeepLink>
+    public val navDeepLinks: List<NavDeepLink>
 ) {
-    val navArguments: List<NamedNavArgument> = arguments.items.map { it.toNavArgument() }
+    public val navArguments: List<NamedNavArgument> = arguments.items.map { it.toNavArgument() }
 
-    fun buildNavigation(instance: T) = buildArgumentRoute(arguments.fromInstance(instance))
+    public fun buildNavigation(instance: T): String = buildArgumentRoute(arguments.fromInstance(instance))
 
-    fun instance(bundle: Bundle) = createInstance(arguments.unbundle(bundle))
+    public fun instance(bundle: Bundle): T = createInstance(arguments.unbundle(bundle))
 
-    val route by lazy {
+    public val route: String by lazy {
         buildArgumentRoute(navArguments.map { it.asParameter() })
     }
 
     private fun buildArgumentRoute(arguments: List<String>) = "$base/${buildRoute(arguments)}"
 }
 
-fun NamedNavArgument.asParameter() = "{${name}}"
-fun String.asParameter() = "{${this}}"
+@Deprecated("Use androidx.navigation")
+public fun NamedNavArgument.asParameter(): String = "{${name}}"
+@Deprecated("Use androidx.navigation")
+public fun String.asParameter(): String = "{${this}}"
 
-interface RouteData
+@Deprecated("Use androidx.navigation")
+public interface RouteData
 
-abstract class Route<T : RouteData, A : Route.Arguments<T, U>, U : Route.Unbundled<T>>(
-    val arguments: A,
-    val createInstance: (U) -> T
+@Deprecated("Use androidx.navigation")
+public abstract class Route<T : RouteData, A : Route.Arguments<T, U>, U : Route.Unbundled<T>>(
+    public val arguments: A,
+    public val createInstance: (U) -> T
 ) {
-    data class Argument<T, V>(
+    public data class Argument<T, V>(
         val property: KProperty1<T, V>,
         val default: V? = null,
     ) {
         private val dataType = inferFromKClass(property.returnType.classifier as KClass<*>)
 
         @Suppress("UNCHECKED_CAST")
-        fun <R> unbundle(bundle: Bundle) = dataType[bundle, property.name].let {
+        public fun <R> unbundle(bundle: Bundle): R = dataType[bundle, property.name].let {
             (if (it == "null") null else it) as R
         }
 
-        fun toNavArgument() = navArgument(property.name) {
+        public fun toNavArgument(): NamedNavArgument = navArgument(property.name) {
             type = dataType
             nullable = property.returnType.isMarkedNullable
             if (default != null || nullable) {
@@ -87,38 +94,40 @@ abstract class Route<T : RouteData, A : Route.Arguments<T, U>, U : Route.Unbundl
         }
     }
 
-    interface Unbundled<T>
-    abstract class Arguments<T, U>(val unbundle: (Bundle) -> U, vararg val items: Argument<T, *>) {
-        fun fromInstance(instance: T) = items.map { it.property.get(instance).toString() }
+    public interface Unbundled<T>
+    public abstract class Arguments<T, U>(public val unbundle: (Bundle) -> U, public vararg val items: Argument<T, *>) {
+        public fun fromInstance(instance: T): List<String> = items.map { it.property.get(instance).toString() }
     }
 
-    fun buildDeepLinks(arguments: A): List<NavDeepLinkDslBuilder.() -> Unit> = listOf()
+    public fun buildDeepLinks(arguments: A): List<NavDeepLinkDslBuilder.() -> Unit> = listOf()
 }
 
-abstract class Route1<T : RouteData, R1>(
+@Deprecated("Use androidx.navigation")
+public abstract class Route1<T : RouteData, R1>(
     argument: Argument<T, R1>,
     unbundle: (R1) -> T
 ) : Route<T, Route1.Arguments<T, R1>, Route1.Unbundled<T, R1>>(
     Arguments(argument), { unbundle(it.value) }
 ) {
 
-    data class Arguments<T, R1>(
+    public data class Arguments<T, R1>(
         val argument: Argument<T, R1>
     ) : Route.Arguments<T, Unbundled<T, R1>>(
         { Unbundled(argument.unbundle(it)) }, argument
     )
 
-    data class Unbundled<T, R1>(val value: R1) : Route.Unbundled<T>
+    public data class Unbundled<T, R1>(val value: R1) : Route.Unbundled<T>
 }
 
-abstract class Route2<T : RouteData, R1, R2>(
+@Deprecated("Use androidx.navigation")
+public abstract class Route2<T : RouteData, R1, R2>(
     argument1: Argument<T, R1>,
     argument2: Argument<T, R2>,
     unbundle: (R1, R2) -> T
 ) : Route<T, Route2.Arguments<T, R1, R2>, Route2.Unbundled<T, R1, R2>>(
     Arguments(argument1, argument2), { unbundle(it.value1, it.value2) }
 ) {
-    data class Arguments<T, R1, R2>(
+    public data class Arguments<T, R1, R2>(
         val argument1: Argument<T, R1>,
         val argument2: Argument<T, R2>
     ) : Route.Arguments<T, Unbundled<T, R1, R2>>(
@@ -127,10 +136,11 @@ abstract class Route2<T : RouteData, R1, R2>(
         argument2
     )
 
-    data class Unbundled<T, R1, R2>(val value1: R1, val value2: R2) : Route.Unbundled<T>
+    public data class Unbundled<T, R1, R2>(val value1: R1, val value2: R2) : Route.Unbundled<T>
 }
 
-abstract class Route3<T : RouteData, R1, R2, R3>(
+@Deprecated("Use androidx.navigation")
+public abstract class Route3<T : RouteData, R1, R2, R3>(
     argument1: Argument<T, R1>,
     argument2: Argument<T, R2>,
     argument3: Argument<T, R3>,
@@ -138,7 +148,7 @@ abstract class Route3<T : RouteData, R1, R2, R3>(
 ) : Route<T, Route3.Arguments<T, R1, R2, R3>, Route3.Unbundled<T, R1, R2, R3>>(
     Arguments(argument1, argument2, argument3), { unbundle(it.value1, it.value2, it.value3) }
 ) {
-    data class Arguments<T, R1, R2, R3>(
+    public data class Arguments<T, R1, R2, R3>(
         val argument1: Argument<T, R1>,
         val argument2: Argument<T, R2>,
         val argument3: Argument<T, R3>
@@ -147,7 +157,7 @@ abstract class Route3<T : RouteData, R1, R2, R3>(
         argument1, argument2
     )
 
-    data class Unbundled<T, R1, R2, R3>(
+    public data class Unbundled<T, R1, R2, R3>(
         val value1: R1,
         val value2: R2,
         val value3: R3
@@ -155,7 +165,8 @@ abstract class Route3<T : RouteData, R1, R2, R3>(
 }
 
 
-fun <T : RouteData, A : Route.Arguments<T, U>, U> NavGraphBuilder.argumentRouteComposable(
+@Deprecated("Use androidx.navigation")
+public fun <T : RouteData, A : Route.Arguments<T, U>, U> NavGraphBuilder.argumentRouteComposable(
     route: ArgumentRoute<T, A, U>,
     content: @Composable (NavBackStackEntry, T) -> Unit
 ) {
