@@ -11,9 +11,10 @@ import my.nanihadesuka.compose.ScrollbarSettings
 
 @Composable
 public fun SaneIconAlertDialog(
-    state: LazyListState = rememberLazyListState(),
-    modifier: Modifier = SaneDialogDefaults.SaneDialogContentModifier,
+    modifier: Modifier = Modifier,
+    contentModifier: Modifier = SaneDialogDefaults.SaneDialogContentModifier,
     innerModifier: Modifier = SaneDialogDefaults.SaneDialogInnerModifier,
+    state: LazyListState = rememberLazyListState(),
     settings: ScrollbarSettings = DialogDefaults.DefaultScrollbarSettings,
     icon: OptionalContent? = null,
     title: TextContent,
@@ -23,13 +24,14 @@ public fun SaneIconAlertDialog(
     content: @Composable BoxScope.() -> Unit
 ) {
     AlertDialog(
+        modifier = modifier,
         padding = SaneDialogDefaults.SaneDialogPadding,
         icon = icon,
         title = title.content,
         text = {
             SaneAlertDialogContent(
                 state = state,
-                modifier = modifier,
+                contentModifier = contentModifier,
                 innerModifier = innerModifier,
                 settings = settings,
                 dividerTop = null,

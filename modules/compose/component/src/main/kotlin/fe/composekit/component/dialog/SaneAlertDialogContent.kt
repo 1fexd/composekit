@@ -14,7 +14,7 @@ import my.nanihadesuka.compose.ScrollbarSettings
 
 @Composable
 public fun SaneAlertDialogContent(
-    modifier: Modifier = SaneDialogDefaults.SaneDialogContentModifier,
+    contentModifier: Modifier = SaneDialogDefaults.SaneDialogContentModifier,
     innerModifier: Modifier = SaneDialogDefaults.SaneDialogInnerModifier,
     state: LazyListState = rememberLazyListState(),
     settings: ScrollbarSettings = DialogDefaults.DefaultScrollbarSettings,
@@ -22,7 +22,7 @@ public fun SaneAlertDialogContent(
     dividerBottom: OptionalContent? = { HorizontalDivider() },
     content: @Composable BoxScope.() -> Unit
 ) {
-    Column(modifier = modifier) {
+    Column(modifier = contentModifier) {
         dividerTop?.invoke()
 
         LazyColumnScrollbar(modifier = Modifier, state = state, settings = settings) {

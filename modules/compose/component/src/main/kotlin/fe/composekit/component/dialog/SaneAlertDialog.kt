@@ -32,7 +32,7 @@ public fun SaneAlertDialog(
         text = {
             SaneAlertDialogContent(
                 state = state,
-                modifier = SaneDialogDefaults.SaneDialogContentModifier,
+                contentModifier = SaneDialogDefaults.SaneDialogContentModifier,
                 innerModifier = SaneDialogDefaults.SaneDialogInnerModifier,
                 settings = DialogDefaults.DefaultScrollbarSettings,
                 dividerTop = { HorizontalDivider() },
