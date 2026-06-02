@@ -76,6 +76,9 @@ public sealed class Preference<T : Any, NT> protected constructor(
     }
 }
 
+public val Preference<*, *>.resolvedDefault: Any?
+    get() = mappedOrNull?.defaultMapped ?: default
+
 public val Preference<*, *>.resolvedClass: KClass<out Any>
     get() = mappedOrNull?.mappedClazz ?: clazz
 

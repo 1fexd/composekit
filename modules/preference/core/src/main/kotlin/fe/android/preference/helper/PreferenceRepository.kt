@@ -44,30 +44,9 @@ public abstract class PreferenceRepository(
 
     @OptIn(UnsafePreferenceInteraction::class)
     public fun getAnyAsString(preference: Preference<*, *>): String? {
-        if (preference is Preference.Mapped<*, *>) {
-            @Suppress("UNCHECKED_CAST")
-            return when (preference.mappedClazz) {
-                String::class -> get(preference as Preference.Mapped<*, String>)
-                Boolean::class -> get(preference as Preference.Mapped<*, Boolean>)
-                Int::class -> get(preference as Preference.Mapped<*, Int>)
-                Long::class -> get(preference as Preference.Mapped<*, Long>)
-                else -> null
-            }?.toString()
-        }
-
-        if (preference is Preference.Init) {
-            return raw.unsafeGetString(preference.key, preference.default)
-        }
-
-        return when (preference.type) {
-            String::class -> raw.unsafeGetString(preference.key, preference.default as String?)
-            Boolean::class -> raw.unsafeGetBoolean(preference.key, preference.default as Boolean)
-            Int::class -> raw.unsafeGetInt(preference.key, preference.default as Int)
-            Long::class -> raw.unsafeGetLong(preference.key, preference.default as Long)
-            else -> null
-        }?.toString()
+        val value = raw.unsafeGet(preference)
+        return value?.toString()
     }
-
 
     @JvmName("getString")
     @OptIn(UnsafePreferenceInteraction::class)
@@ -167,6 +146,19 @@ public class RawPreferenceRepository(private val preferences: SharedPreferences)
         get: (SharedPreferences, T) -> T?,
     ): T? {
         return runCatching { get(preferences, default) }.getOrDefault(default)
+    }
+}
+
+@UnsafePreferenceInteraction
+public fun RawPreferenceRepository.unsafeGet(preference: Preference<*, *>): Any? {
+    val key = preference.key
+    val default = preference.resolvedDefault
+    return when (preference.resolvedClass) {
+        String::class -> unsafeGetString(key, default as String?)
+        Boolean::class -> unsafeGetBoolean(key, default as Boolean)
+        Int::class -> unsafeGetInt(key, default as Int)
+        Long::class -> unsafeGetLong(key, default as Long)
+        else -> null
     }
 }
 

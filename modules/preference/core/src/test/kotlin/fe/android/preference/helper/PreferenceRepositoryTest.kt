@@ -2,7 +2,6 @@
 
 package fe.android.preference.helper
 
-import android.content.Context
 import android.os.Build
 import androidx.test.core.app.ApplicationProvider.getApplicationContext
 import assertk.assertThat
@@ -34,96 +33,190 @@ val PreferenceRepositoryTestSuite by testSuite {
 }
 
 internal class PreferenceRepositoryTest : RobolectricTestSuiteContent({
+    testSuite("setStringValueToPreference") {
+        testSuite("string") {
+            testFixture {
+                val repository = createRepository()
+                val definition = object : PreferenceDefinition() {
+                    val stringTest = string("string_test")
 
-    testSuite("string") {
-        val definition = testFixture {
-            object : PreferenceDefinition() {
-                val stringTest = string("string_test")
+                    init {
+                        finalize()
+                    }
+                }
 
-                init {
-                    finalize()
+                repository to definition
+            } asParameterForEach {
+                test("happy path") { (repository, definition) ->
+                    assertThat(repository.get(definition.stringTest)).isNull()
+                    assertThat(
+                        repository.setStringValueToPreference(
+                            definition.stringTest,
+                            ""
+                        )
+                    ).isTrue()
+                    assertThat(repository.get(definition.stringTest)).isEqualTo("")
                 }
             }
         }
+        testSuite("boolean") {
+            testFixture {
+                val repository = createRepository()
+                val definition = object : PreferenceDefinition() {
+                    val boolTest = boolean("bool_test")
 
-        testFixture {
-            val context = getApplicationContext<Context>()
-            val repository = object : PreferenceRepository(context) {}
+                    init {
+                        finalize()
+                    }
+                }
 
-            repository
-        } asParameterForEach {
-            test("happy path") {
-                assertThat(it.get(definition().stringTest)).isNull()
-                assertThat(it.setStringValueToPreference(definition().stringTest, "")).isTrue()
-                assertThat(it.get(definition().stringTest)).isEqualTo("")
+                repository to definition
+            } asParameterForEach {
+                test("happy path") { (repository, definition) ->
+                    assertThat(repository.get(definition.boolTest)).isFalse()
+                    assertThat(
+                        repository.setStringValueToPreference(
+                            definition.boolTest,
+                            "true"
+                        )
+                    ).isTrue()
+                    assertThat(repository.get(definition.boolTest)).isTrue()
+                    assertThat(
+                        repository.setStringValueToPreference(
+                            definition.boolTest,
+                            "false"
+                        )
+                    ).isTrue()
+                    assertThat(repository.get(definition.boolTest)).isFalse()
+                }
+
+                for (badValue in listOf("", "dummy")) {
+                    test("bad path '$badValue'") { (repository, definition) ->
+                        assertThat(repository.get(definition.boolTest)).isFalse()
+                        assertThat(
+                            repository.setStringValueToPreference(
+                                definition.boolTest,
+                                badValue
+                            )
+                        ).isFalse()
+                        assertThat(repository.get(definition.boolTest)).isFalse()
+                    }
+                }
+            }
+        }
+        testSuite("mapped") {
+            testFixture {
+                val repository = createRepository()
+                val definition = object : PreferenceDefinition() {
+                    val mappedTest = mapped("mapped_test", BrowserMode.None, BrowserMode)
+
+                    init {
+                        finalize()
+                    }
+                }
+
+                repository to definition
+            } asParameterForEach {
+                test("happy path") { (repository, definition) ->
+                    assertThat(repository.get(definition.mappedTest)).isEqualTo(BrowserMode.None)
+                    assertThat(
+                        repository.setStringValueToPreference(
+                            definition.mappedTest,
+                            "always_ask"
+                        )
+                    ).isTrue()
+                    assertThat(repository.get(definition.mappedTest)).isEqualTo(BrowserMode.AlwaysAsk)
+                    assertThat(
+                        repository.setStringValueToPreference(
+                            definition.mappedTest,
+                            "whitelisted"
+                        )
+                    ).isTrue()
+                    assertThat(repository.get(definition.mappedTest)).isEqualTo(BrowserMode.Whitelisted)
+                }
+                test("bad path") { (repository, definition) ->
+                    assertThat(repository.get(definition.mappedTest)).isEqualTo(BrowserMode.None)
+                    assertThat(
+                        repository.setStringValueToPreference(
+                            definition.mappedTest,
+                            "AlwaysAsk"
+                        )
+                    ).isFalse()
+                    assertThat(repository.get(definition.mappedTest)).isEqualTo(BrowserMode.None)
+                }
             }
         }
     }
-    testSuite("boolean") {
-        val definition = testFixture {
-            object : PreferenceDefinition() {
-                val boolTest = boolean("bool_test")
+    testSuite("getAnyAsString") {
+        testSuite("string") {
+            testFixture {
+                val repository = createRepository()
+                val definition = object : PreferenceDefinition() {
+                    val stringTest = string("string_test")
 
-                init {
-                    finalize()
+                    init {
+                        finalize()
+                    }
+                }
+
+                repository to definition
+            } asParameterForEach {
+                test("happy path") { (repository, definition) ->
+                    assertThat(repository.get(definition.stringTest)).isNull()
+                    repository.put(definition.stringTest, "hello world")
+                    assertThat(repository.getAnyAsString(definition.stringTest)).isEqualTo("hello world")
                 }
             }
         }
+        testSuite("boolean") {
+            testFixture {
+                val repository = createRepository()
+                val definition = object : PreferenceDefinition() {
+                    val boolTest = boolean("bool_test")
 
-        testFixture {
-            val context = getApplicationContext<Context>()
-            val repository = object : PreferenceRepository(context) {}
+                    init {
+                        finalize()
+                    }
+                }
 
-            repository
-        } asParameterForEach {
-            test("happy path") {
-                assertThat(it.get(definition().boolTest)).isFalse()
-                assertThat(it.setStringValueToPreference(definition().boolTest, "true")).isTrue()
-                assertThat(it.get(definition().boolTest)).isTrue()
-                assertThat(it.setStringValueToPreference(definition().boolTest, "false")).isTrue()
-                assertThat(it.get(definition().boolTest)).isFalse()
-            }
-
-            for (badValue in listOf("", "dummy")) {
-                test("bad path '$badValue'") {
-                    assertThat(it.get(definition().boolTest)).isFalse()
-                    assertThat(it.setStringValueToPreference(definition().boolTest, badValue)).isFalse()
-                    assertThat(it.get(definition().boolTest)).isFalse()
+                repository to definition
+            } asParameterForEach {
+                test("happy path") { (repository, definition) ->
+                    assertThat(repository.get(definition.boolTest)).isFalse()
+                    repository.put(definition.boolTest, true)
+                    assertThat(repository.getAnyAsString(definition.boolTest)).isEqualTo("true")
                 }
             }
         }
-    }
-    testSuite("mapped") {
-        testFixture {
-            val repository = object : PreferenceRepository(
-                context = getApplicationContext(),
-                fileName = Uuid.random().toString()
-            ) {}
-            val definition = object : PreferenceDefinition() {
-                val mappedTest = mapped("mapped_test", BrowserMode.None, BrowserMode)
+        testSuite("mapped") {
+            testFixture {
+                val repository = createRepository()
+                val definition = object : PreferenceDefinition() {
+                    val mappedTest = mapped("mapped_test", BrowserMode.None, BrowserMode)
 
-                init {
-                    finalize()
+                    init {
+                        finalize()
+                    }
                 }
-            }
 
-            repository to definition
-        } asParameterForEach {
-            test("happy path") { (repository, definition) ->
-                assertThat(repository.get(definition.mappedTest)).isEqualTo(BrowserMode.None)
-                assertThat(repository.setStringValueToPreference(definition.mappedTest, "always_ask")).isTrue()
-                assertThat(repository.get(definition.mappedTest)).isEqualTo(BrowserMode.AlwaysAsk)
-                assertThat(repository.setStringValueToPreference(definition.mappedTest, "whitelisted")).isTrue()
-                assertThat(repository.get(definition.mappedTest)).isEqualTo(BrowserMode.Whitelisted)
-            }
-            test("bad path") { (repository, definition) ->
-                assertThat(repository.get(definition.mappedTest)).isEqualTo(BrowserMode.None)
-                assertThat(repository.setStringValueToPreference(definition.mappedTest, "AlwaysAsk")).isFalse()
-                assertThat(repository.get(definition.mappedTest)).isEqualTo(BrowserMode.None)
+                repository to definition
+            } asParameterForEach {
+                test("happy path") { (repository, definition) ->
+                    assertThat(repository.getAnyAsString(definition.mappedTest)).isEqualTo("none")
+                    repository.put(definition.mappedTest, BrowserMode.AlwaysAsk)
+                    assertThat(repository.getAnyAsString(definition.mappedTest)).isEqualTo("always_ask")
+                }
             }
         }
     }
 })
+
+fun createRepository(): PreferenceRepository {
+    return object : PreferenceRepository(
+        context = getApplicationContext(),
+        fileName = Uuid.random().toString()
+    ) {}
+}
 
 
 sealed class BrowserMode(val value: String) {
@@ -135,8 +228,4 @@ sealed class BrowserMode(val value: String) {
     companion object Companion : OptionTypeMapper<BrowserMode, String>(
         { it.value }, { arrayOf(None, AlwaysAsk, SelectedBrowser, Whitelisted) }
     )
-
-    override fun toString(): String {
-        return value
-    }
 }
