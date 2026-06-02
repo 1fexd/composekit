@@ -112,6 +112,7 @@ buildSettings {
             includeProject(":preference-compose-core2", "compose-core2")
             includeProject(":preference-compose-mock", "compose-mock")
             includeProject(":preference-compose-mock2", "compose-mock2")
+            includeProject(":preference-util", "util")
             if (!hasJitpackEnv) {
                 includeProject(":preference-test-app", "test-app")
             }
