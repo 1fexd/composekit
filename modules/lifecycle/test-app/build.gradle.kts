@@ -7,7 +7,7 @@ plugins {
 
 android {
     namespace = "fe.android.lifecycle.util.test"
-    compileSdk = AndroidSdk.COMPILE_SDK
+    compileSdk = 37
 
     defaultConfig {
         applicationId = "fe.android.lifecycle.util.test"
