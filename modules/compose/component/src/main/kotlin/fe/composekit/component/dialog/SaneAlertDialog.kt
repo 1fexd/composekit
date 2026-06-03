@@ -49,10 +49,11 @@ public fun SaneAlertDialog(
 @Composable
 public fun SaneAlertDialogTextButton(
     modifier: Modifier = Modifier,
+    enabled: Boolean = true,
     content: TextContent,
     onClick: () -> Unit
 ) {
-    TextButton(modifier = modifier, onClick = onClick) {
+    TextButton(modifier = modifier, enabled = enabled, onClick = onClick) {
         content.content()
     }
 }
