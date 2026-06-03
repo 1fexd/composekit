@@ -56,16 +56,20 @@ public abstract class PreferenceDefinition(
     }
 
     override fun <T : Preference<*, *>> addMigration(preference: T, run: (PreferenceRepository) -> Unit): T {
-        if (finalized) {
-            definitionError("Cannot migrate '${preference.key}' as definition has already been finalized!")
-        }
-
-        if (preference.key in migratePreferences) {
-            definitionError("Preference '${preference.key}' already has a migration strategy!")
-        }
-
-        migratePreferences[preference.key] = run
+        addMigrationRaw(preference.key, run)
         return preference
+    }
+
+    override fun addMigrationRaw(preference: String, run: (PreferenceRepository) -> Unit)  {
+        if (finalized) {
+            definitionError("Cannot migrate '${preference}' as definition has already been finalized!")
+        }
+
+        if (preference in migratePreferences) {
+            definitionError("Preference '${preference}' already has a migration strategy!")
+        }
+
+        migratePreferences[preference] = run
     }
 
     public inline fun <reified T : Any, reified M : Any> mapped(

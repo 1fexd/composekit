@@ -5,10 +5,8 @@ import kotlin.reflect.KClass
 public abstract class AbstractPreferenceDefinition {
     protected open fun <T : Preference<*, *>> add(preference: T): T = preference
 
-    protected open fun <T : Preference<*, *>> addMigration(
-        preference: T,
-        run: (PreferenceRepository) -> Unit,
-    ): T = preference
+    protected open fun <T : Preference<*, *>> addMigration(preference: T, run: (PreferenceRepository) -> Unit): T = preference
+    protected open fun addMigrationRaw(preference: String, run: (PreferenceRepository) -> Unit) {}
 
     public open fun runMigrations(repository: PreferenceRepository): Unit = Unit
 
@@ -156,5 +154,9 @@ public abstract class AbstractPreferenceDefinition {
 
     public fun Preference.Init.migrate(fn: (PreferenceRepository, String) -> Unit): Preference.Init {
         return addMigration(this) { fn(it, it.getOrPutInit(this)) }
+    }
+
+    public fun migrate(key: String, fn: (PreferenceRepository) -> Unit) {
+        addMigrationRaw(key, fn)
     }
 }
