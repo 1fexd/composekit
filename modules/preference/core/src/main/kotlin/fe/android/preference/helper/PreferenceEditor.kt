@@ -2,6 +2,10 @@ package fe.android.preference.helper
 
 import android.content.SharedPreferences
 
+@DslMarker
+public annotation class EditorScopeDsl
+
+@EditorScopeDsl
 public sealed class PreferenceEditor {
     @JvmName("putMappedToString")
     @OptIn(UnsafePreferenceInteraction::class)
@@ -104,6 +108,14 @@ public sealed class PreferenceEditor {
             }
         }
         return true
+    }
+
+    @OptIn(UnsafePreferenceInteraction::class)
+    public fun setStringValueToPreference(preference: Preference<*, *>, value: String): Boolean {
+        val any = preference.stringToAny(value) ?: return false
+        if (preference is Preference.Mapped<*, *> && !preference.canUnmap(any)) return false
+
+        return unsafePut(preference, any)
     }
 
     protected abstract fun withEditor(action: PreferenceEditAction)

@@ -35,14 +35,6 @@ public abstract class PreferenceRepository(
     }
 
     @OptIn(UnsafePreferenceInteraction::class)
-    public fun setStringValueToPreference(preference: Preference<*, *>, value: String): Boolean {
-        val any = preference.stringToAny(value) ?: return false
-        if (preference is Preference.Mapped<*, *> && !preference.canUnmap(any)) return false
-
-        return unsafePut(preference, any)
-    }
-
-    @OptIn(UnsafePreferenceInteraction::class)
     public fun getAnyAsString(preference: Preference<*, *>): String? {
         val value = raw.unsafeGet(preference)
         return value?.toString()
