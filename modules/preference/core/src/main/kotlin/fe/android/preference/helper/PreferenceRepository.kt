@@ -42,7 +42,10 @@ public abstract class PreferenceRepository(
     }
 
     override fun withEditor(action: PreferenceEditAction) {
-        preferences.edit().apply(action).apply()
+        val editor = preferences.edit()
+        action(editor)
+        editor.apply()
+        Log.d("PreferenceRepository", "apply()")
     }
 
     public fun hasStoredValue(preference: Preference<*, *>): Boolean {
