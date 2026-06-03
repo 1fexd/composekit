@@ -11,7 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalResources
 import androidx.compose.ui.semantics.paneTitle
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
@@ -19,8 +19,8 @@ import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 
 // androidx.compose.material3.AlertDialog
-val DialogMinWidth = 280.dp
-val DialogMaxWidth = 560.dp
+public val DialogMinWidth = 280.dp
+public val DialogMaxWidth = 560.dp
 
 private inline fun Modifier.runIf(
     condition: Boolean,
@@ -29,13 +29,13 @@ private inline fun Modifier.runIf(
 ) = if (condition) this.let(runIf) else this.let(runElse)
 
 @Composable
-fun Dialog(
+public fun Dialog(
     dynamicHeight: Boolean = false,
     onDismissRequest: () -> Unit,
     properties: DialogProperties = DialogProperties(),
     content: @Composable () -> Unit,
 ) {
-    val resources = LocalContext.current.resources
+    val resources = LocalResources.current
     Dialog(
         onDismissRequest = onDismissRequest,
         properties = properties,

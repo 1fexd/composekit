@@ -1,10 +1,14 @@
 package fe.android.compose.dialog.helper.stateful
 
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 
 @Composable
-fun <T : Any, R : Any> StatefulDialog(
+public fun <T : Any, R : Any> StatefulDialog(
     state: StatefulDialogState<T, R>,
     onClose: (T, R) -> Unit,
     onDismiss: ((T) -> Unit)? = null,
@@ -28,6 +32,6 @@ fun <T : Any, R : Any> StatefulDialog(
 }
 
 @Composable
-fun <T : Any, R : Any> rememberStatefulDialog(data: T): StatefulDialogState<T, R> {
+public fun <T : Any, R : Any> rememberStatefulDialog(data: T): StatefulDialogState<T, R> {
     return rememberSaveable(saver = StatefulDialogState.Saver()) { StatefulDialogState(data) }
 }

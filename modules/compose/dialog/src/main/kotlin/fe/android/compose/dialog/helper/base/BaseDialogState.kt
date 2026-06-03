@@ -1,10 +1,11 @@
 package fe.android.compose.dialog.helper.base
 
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Stable
+import androidx.compose.runtime.mutableStateOf
 
 
 @Stable
-abstract class BaseDialogState(initial: DialogState = DialogState.Closed) {
+public abstract class BaseDialogState(initial: DialogState = DialogState.Closed) {
     private val dialogState = mutableStateOf(initial)
 
     internal fun tryOpen(): Boolean {
@@ -22,10 +23,10 @@ abstract class BaseDialogState(initial: DialogState = DialogState.Closed) {
         return true
     }
 
-    val currentState: DialogState
+    public val currentState: DialogState
         get() = dialogState.value
 
-    val isOpen: Boolean
+    public val isOpen: Boolean
         get() = currentState == DialogState.Open
 }
 

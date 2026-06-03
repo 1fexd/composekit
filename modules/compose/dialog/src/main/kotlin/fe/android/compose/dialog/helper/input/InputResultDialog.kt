@@ -1,7 +1,11 @@
 package fe.android.compose.dialog.helper.input
 
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 
 @Composable
 public fun <I : Any, R : Any> InputResultDialog(
@@ -28,7 +32,13 @@ public fun <I : Any, R : Any> InputResultDialog(
     }
 }
 
+@Deprecated("Use renamed method", replaceWith = ReplaceWith("rememberInputResultDialogState<I, R>()"))
 @Composable
 public fun <I : Any, R : Any> rememberInputResultDialog(): InputResultDialogState<I, R> {
+    return rememberInputResultDialogState()
+}
+
+@Composable
+public fun <I : Any, R : Any> rememberInputResultDialogState(): InputResultDialogState<I, R> {
     return rememberSaveable(saver = InputResultDialogState.Saver()) { InputResultDialogState() }
 }

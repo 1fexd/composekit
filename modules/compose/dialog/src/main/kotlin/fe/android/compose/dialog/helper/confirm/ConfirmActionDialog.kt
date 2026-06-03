@@ -1,10 +1,14 @@
 package fe.android.compose.dialog.helper.confirm
 
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 
 @Composable
-fun <T : Any> ConfirmActionDialog(
+public fun <T : Any> ConfirmActionDialog(
     state: ConfirmActionDialogState<T>,
     onConfirm: (T) -> Unit,
     onDismiss: ((T) -> Unit)? = null,
@@ -28,6 +32,6 @@ fun <T : Any> ConfirmActionDialog(
 }
 
 @Composable
-fun <T : Any> rememberConfirmActionDialog(): ConfirmActionDialogState<T> {
+public fun <T : Any> rememberConfirmActionDialog(): ConfirmActionDialogState<T> {
     return rememberSaveable(saver = ConfirmActionDialogState.Saver()) { ConfirmActionDialogState() }
 }
