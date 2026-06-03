@@ -9,5 +9,6 @@ public enum class ContentType {
     MiddleGroupItem,
     BottomGroupItem,
     TextItem,
-    CheckboxItem
+    CheckboxItem,
+    RadioItem
 }
