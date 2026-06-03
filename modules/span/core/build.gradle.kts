@@ -1,12 +1,23 @@
+import com.gitlab.grrfe.gradlebuild.android.AndroidSdk
 import fe.build.dependencies.Grrfe
 
 plugins {
 
 }
 
+android {
+    defaultConfig {
+        minSdk = AndroidSdk.MIN_SDK
+
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        testOptions.unitTests.isIncludeAndroidResources = true
+    }
+}
+
 dependencies{
     api(AndroidX.core.ktx)
 
+    testImplementation(Testing.robolectric)
     testImplementation(Grrfe.std.result.assert)
     testImplementation(Koin.test)
     testImplementation(Koin.junit4)
