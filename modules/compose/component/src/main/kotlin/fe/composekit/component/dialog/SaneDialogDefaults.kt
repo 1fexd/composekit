@@ -1,14 +1,16 @@
 package fe.composekit.component.dialog
 
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn
-import androidx.compose.foundation.layout.padding
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 
 public object SaneDialogDefaults {
+    public val HorizontalContentPadding: Dp = 16.dp
+    public val MaxHeight: Dp = 280.dp
+
     public val SaneDialogPadding: DialogPaddingOptions = DialogPaddingOptions(
         box = PaddingValues(vertical = DialogDefaults.DialogBoxPadding),
         icon = PaddingValues(
@@ -25,11 +27,15 @@ public object SaneDialogDefaults {
         buttons = PaddingValues(horizontal = DialogDefaults.DialogBoxPadding)
     )
 
+    public val ContentSettings: SaneDialogContentSettings = SaneDialogContentSettings(
+        innerPadding = PaddingValues(horizontal = HorizontalContentPadding),
+        contentSize = ContentSize.Max
+    )
+
     public val SaneDialogContentModifier: Modifier = Modifier
         .fillMaxWidth()
-        .heightIn(max = 280.dp)
+        .heightIn(max = MaxHeight)
 
-    public val SaneDialogInnerModifier: Modifier = Modifier
-        .fillMaxSize()
-        .padding(horizontal = 16.dp)
+    @Deprecated("Use new settings-based API")
+    public val SaneDialogInnerModifier: Modifier = ContentSettings.buildModifier()
 }
