@@ -63,8 +63,7 @@ subprojects {
                 component.set(if (isPlatform) PublicationComponent2.JavaPlatform else PublicationComponent2.Android)
             }
         }
-    }
-    if (!isPlatform && !isTestApp) {
+
         kotlinExtension.apply {
             jvmToolchain(Version.JVM)
             if (!isExternal()) {
@@ -94,7 +93,8 @@ subprojects {
                 }
             }
         }
-
+    }
+    if (!isPlatform) {
         afterEvaluate {
             dependencies {
                 configurations.findByName("implementation")?.let { implementation ->
