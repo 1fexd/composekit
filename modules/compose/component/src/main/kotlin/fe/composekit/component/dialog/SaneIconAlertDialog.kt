@@ -16,11 +16,11 @@ public fun SaneIconAlertDialog(
     innerModifier: Modifier = SaneDialogDefaults.SaneDialogInnerModifier,
     state: LazyListState = rememberLazyListState(),
     settings: ScrollbarSettings = DialogDefaults.DefaultScrollbarSettings,
-    icon: OptionalContent? = null,
+    icon: OptionalContent = null,
     title: TextContent,
     onDismiss: () -> Unit,
     confirmButton: @Composable () -> Unit,
-    dismissButton: OptionalContent? = null,
+    dismissButton: OptionalContent = null,
     content: @Composable BoxScope.() -> Unit
 ) {
     AlertDialog(

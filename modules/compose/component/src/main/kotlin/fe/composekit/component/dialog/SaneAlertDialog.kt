@@ -23,7 +23,7 @@ public fun SaneAlertDialog(
     title: TextContent,
     onDismiss: () -> Unit,
     confirmButton: @Composable () -> Unit,
-    dismissButton: OptionalContent? = null,
+    dismissButton: OptionalContent = null,
     content: @Composable BoxScope.() -> Unit
 ) {
     AlertDialog(

@@ -18,8 +18,8 @@ public fun SaneAlertDialogContent(
     innerModifier: Modifier = SaneDialogDefaults.SaneDialogInnerModifier,
     state: LazyListState = rememberLazyListState(),
     settings: ScrollbarSettings = DialogDefaults.DefaultScrollbarSettings,
-    dividerTop: OptionalContent? = { HorizontalDivider() },
-    dividerBottom: OptionalContent? = { HorizontalDivider() },
+    dividerTop: OptionalContent = { HorizontalDivider() },
+    dividerBottom: OptionalContent = { HorizontalDivider() },
     content: @Composable BoxScope.() -> Unit
 ) {
     Column(modifier = contentModifier) {
