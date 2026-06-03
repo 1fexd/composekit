@@ -1,7 +1,15 @@
+@file:OptIn(ExperimentalAtomicApi::class)
+
 package fe.android.preference.helper
 
 import android.content.Context
 import android.content.SharedPreferences
+import android.util.Log
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
+import kotlin.concurrent.atomics.ExperimentalAtomicApi
+import kotlin.getValue
 
 public typealias PreferenceEditAction = SharedPreferences.Editor.() -> Unit
 
@@ -9,9 +17,20 @@ public abstract class PreferenceRepository(
     context: Context,
     fileName: String = "preferences"
 ) : PreferenceEditor() {
+    private val prefFileName by lazy { context.packageName + "_$fileName" }
+    private val migrator: PreferenceFileMigrator by lazy {
+        PreferenceFileMigrator(context, fileName, prefFileName)
+    }
+
+    public suspend fun migrate(
+        dispatcher: CoroutineDispatcher = Dispatchers.IO
+    ): Unit = withContext(dispatcher) {
+        migrator.migrate()
+    }
 
     private val preferences by lazy {
-        context.getSharedPreferences(context.packageName + "_$fileName", Context.MODE_PRIVATE)
+        migrator.migrate()
+        context.getSharedPreferences(prefFileName, Context.MODE_PRIVATE)
     }
 
     public val raw: RawPreferenceRepository by lazy {
