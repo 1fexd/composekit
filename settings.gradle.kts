@@ -66,6 +66,7 @@ extra.properties["gradle.build.dir"]
 
 buildSettings {
     projects("external") {
+        includeProject(":ext-mozilla-support-base", "mozilla-support-base")
         includeProject(":ext-mozilla-support-utils", "mozilla-support-utils")
     }
 
