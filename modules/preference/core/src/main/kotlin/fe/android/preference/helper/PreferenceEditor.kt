@@ -118,6 +118,10 @@ public sealed class PreferenceEditor {
         return unsafePut(preference, any)
     }
 
+    public fun clearAll() {
+        withEditor { clear() }
+    }
+
     protected abstract fun withEditor(action: PreferenceEditAction)
 
     public class Scope(private val editor: SharedPreferences.Editor) : PreferenceEditor() {
