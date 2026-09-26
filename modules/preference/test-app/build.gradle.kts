@@ -10,6 +10,7 @@ group = "fe.android.preference.helper.testapp"
 android {
     namespace = group.toString()
     compileSdk = 37
+    compileSdkMinor = 2
 
     defaultConfig {
         applicationId = group.toString()
