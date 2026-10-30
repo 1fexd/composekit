@@ -12,5 +12,6 @@ public enum class ContentType {
     CheckboxItem,
     RadioItem,
     Button,
-    Custom
+    Custom,
+    Spacer
 }
