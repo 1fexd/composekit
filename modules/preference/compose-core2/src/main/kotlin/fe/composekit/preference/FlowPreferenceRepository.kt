@@ -17,7 +17,7 @@ public open class FlowPreferenceRepository(
     context: Context,
     fileName: String = "preferences",
     public val cache: FlowStateCache = FlowStateCache(),
-    dispatcher: CoroutineDispatcher = Dispatchers.Main.immediate,
+    dispatcher: CoroutineDispatcher = Dispatchers.IO,
 ) : PreferenceRepository(context, fileName) {
     private val coroutineScope = CoroutineScope(dispatcher + SupervisorJob() + CoroutineName("FlowPreferenceRepository"))
 
