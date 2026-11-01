@@ -17,6 +17,7 @@ pluginManagement {
         google()
         mavenCentral()
         gradlePluginPortal()
+        maven { url = uri("https://gitlab.com/api/v4/projects/66985192/packages/maven") }
         maven { url = uri("https://jitpack.io") }
     }
 
